@@ -11,6 +11,5 @@ install: npm install
 before_script: grunt build
 deploy:
   provider: heroku
-  api_key: apiKey
+  api_key: heroku_api_key
 
-  
