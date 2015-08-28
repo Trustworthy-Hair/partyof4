@@ -9,3 +9,8 @@ node_js:
 before_install: npm install -g grunt-cli
 install: npm install
 before_script: grunt build
+deploy:
+  provider: heroku
+  api_key: apiKey
+
+  
