@@ -12,5 +12,5 @@ before_script: grunt build
 deploy:
   provider: heroku
   api_key: heroku_api_key
-  app: trustasfdasdfasdf
+  app: trustworthywonton
 
