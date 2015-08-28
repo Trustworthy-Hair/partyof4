@@ -96,6 +96,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-execute');
 
   grunt.registerTask('test', ['jshint', 'webpack', 'karma']);
+  grunt.registerTask('build', ['jshint', 'webpack', 'karma', 'execute']);
   grunt.registerTask('default', ['webpack', 'execute']);
 
 };
