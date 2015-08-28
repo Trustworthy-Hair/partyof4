@@ -12,3 +12,5 @@ before_script: grunt build
 deploy:
   provider: heroku
   api_key: apiKey
+
+  
