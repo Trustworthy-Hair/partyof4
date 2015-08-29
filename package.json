@@ -27,6 +27,7 @@
     "grunt-execute": "^0.2.2",
     "grunt-webpack": "^1.0.11",
     "imports-loader": "^0.6.4",
+    "jquery": "^2.1.4",
     "react": "^0.13.3",
     "react-router": "^0.13.3",
     "webpack": "^1.11.0",
