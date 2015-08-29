@@ -1,6 +1,6 @@
 // locations.js
 
-module.exports: {
+module.exports = {
   getLocations: function(){
 
   },
@@ -8,4 +8,4 @@ module.exports: {
   getOneLocation: function(){
 
   }
-}
+};

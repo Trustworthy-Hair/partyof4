@@ -3,7 +3,7 @@ var User = require('../models/users');
 
 module.exports = {
   signup: function(){
-
+    console.log(User);
   },
 
   login: function(){
@@ -37,4 +37,4 @@ module.exports = {
   updateHistory: function(){
 
   }
-}
+};
