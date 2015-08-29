@@ -7,7 +7,7 @@ var locationRoutes = require('../routes/locations');
 module.exports = function(app, express) {
   app.use(bodyParser.json());
 
-  app.use(express.static(__dirname + '/../../client/build/'));
+  app.use(express.static(__dirname + '/../../client/'));
 
   eventRoutes(app);
   userRoutes(app);
