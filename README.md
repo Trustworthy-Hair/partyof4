@@ -1,6 +1,6 @@
 # Party Of 4 (Working Title)
 
-A social activity app. 
+A social app where you can find open seats at nearby restaurants. Meet new people & eat great food!
 
 ## Team
 
