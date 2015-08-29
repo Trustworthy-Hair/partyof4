@@ -22,7 +22,7 @@ module.exports = {
 
   },
 
-  getReview: function(){
+  getReviews: function(){
 
   },
 
@@ -38,3 +38,4 @@ module.exports = {
 
   }
 };
+

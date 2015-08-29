@@ -2,11 +2,11 @@
 var Event = require('../models/events');
 
 module.exports = {
-  nearYou: function(){
+  getNearbyEvents: function(){
     console.log(Event);
   },
 
-  creatEvent: function(){
+  createEvent: function(){
 
   },
 

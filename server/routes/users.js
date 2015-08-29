@@ -9,7 +9,7 @@ module.exports = function(app) {
   app.get('/user/:id', userController.getUser);
   app.post('/user/:id', userController.updateUser);
 
-  app.get('/users/:id/reviews', userController.getReview);
+  app.get('/users/:id/reviews', userController.getReviews);
   app.post('/users/:id/reviews', userController.postReview);
 
 
