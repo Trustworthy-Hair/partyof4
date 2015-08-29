@@ -1,0 +1,22 @@
+body {
+  width: 100%;
+}
+
+#content {
+  margin: 0 auto;
+  width: 60%;
+}
+
+#contentbox {
+  font-family: 'Special Elite', cursive;
+  font-size: 1.2em;
+}
+
+#headerbar {
+  font-family: 'Rock Salt', cursive;
+}
+
+#mainimg {
+  width:100%;
+  border-radius:20px;
+}
