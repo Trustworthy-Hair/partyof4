@@ -1,3 +1,5 @@
+var React = require('react');
+var $ = require('jquery');
 
 var MainView = React.createClass({
   render: function() {
@@ -66,8 +68,9 @@ var Credits = React.createClass({
   }
 });
 
-
-React.render(
-  <MainView type='landing'/>,
-  document.getElementById('content')
-);
+$(document).ready(function () {
+  React.render(
+    <MainView type='landing' />,
+    document.getElementById('content')
+  );
+});
