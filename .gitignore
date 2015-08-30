@@ -30,6 +30,3 @@ node_modules
 
 # Database configuration file contains sensitive info
 server/config/config.js
-
-# Build folder created by grunt should be ignored
-client/build
