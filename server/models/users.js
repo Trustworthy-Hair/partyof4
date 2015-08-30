@@ -1,7 +1,7 @@
 // users.js
 
 module.exports = function (sequelize, DataTypes) {
-  var User = sequelize.define({
+  var User = sequelize.define('User', {
     username: {
       type: DataTypes.STRING,
       validate: {
@@ -13,7 +13,7 @@ module.exports = function (sequelize, DataTypes) {
       validate: {
         notNull: true
       }
-    }
+    },
     email: {
       type: DataTypes.STRING,
       validate: {
@@ -27,7 +27,7 @@ module.exports = function (sequelize, DataTypes) {
         isUrl: true
       }
     },
-    interests: DataTypes.ARRAY,
+    interests: DataTypes.ARRAY(DataTypes.STRING),
     description: DataTypes.TEXT,
     status: {
       type: DataTypes.STRING,
