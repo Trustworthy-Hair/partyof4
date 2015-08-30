@@ -20,7 +20,7 @@ coverage
 .lock-wscript
 
 # Compiled binary addons (http://nodejs.org/api/addons.html)
-build/Release
+client/build
 
 # Dependency directory
 # https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git
@@ -28,6 +28,5 @@ node_modules
 
 .DS_Store
 
-client/build
-
+# Database configuration file contains sensitive info
 server/config/config.js
