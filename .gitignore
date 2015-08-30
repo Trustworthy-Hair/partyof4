@@ -20,7 +20,7 @@ coverage
 .lock-wscript
 
 # Compiled binary addons (http://nodejs.org/api/addons.html)
-client/build
+build/Release
 
 # Dependency directory
 # https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git
@@ -30,3 +30,6 @@ node_modules
 
 # Database configuration file contains sensitive info
 server/config/config.js
+
+# Build folder created by grunt should be ignored
+client/build
