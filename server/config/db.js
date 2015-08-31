@@ -12,8 +12,10 @@ var User = sequelize.import('../models/users');
 var Event = sequelize.import('../models/events');
 var UserEvent = sequelize.import('../models/userEvents');
 
-User.hasMany(Event, { through: UserEvent })
-Event.hasMany(User, { through: UserEvent })
+User.belongsToMany(Event, { through: UserEvent });
+Event.belongsToMany(User, { through: UserEvent });
+
+Event.belongsTo(User, { as: 'Host' });
 
 module.exports.Sequelize = Sequelize;
 module.exports.sequelize = sequelize;
