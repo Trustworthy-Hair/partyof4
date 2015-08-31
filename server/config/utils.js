@@ -1,5 +1,5 @@
 module.exports = {
-  sendResponse: function(res, stat, data){
-    res.status(stat).send(data).end;
+  sendResponse: function(res, statusCode, data){
+    res.status(statusCode).send(data).end();
   }
 }
