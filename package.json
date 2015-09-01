@@ -19,6 +19,8 @@
   },
   "homepage": "https://github.com/Trustworthy-Hair/partyof4#readme",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "bluebird": "^2.9.34",
     "body-parser": "^1.13.3",
     "express": "^4.13.3",
     "grunt": "^0.4.5",

@@ -1,4 +1,22 @@
 // users.js
+var Promise = require("bluebird");
+var bcrypt = Promise.promisifyAll(require('bcrypt-nodejs'));
+
+var instanceMethods = {};
+instanceMethods.hashPassword = function () {
+  bcrypt.genSaltAsync(10)
+  .then(function (salt) {
+    return bcrypt.hashAsync(this.password, salt);
+  })
+  .then(function (hash) {
+    this.setDataValue('password', hash);
+  })
+  .catch(function (err) {
+    console.log('Error: ', err);
+  });
+};
+
+
 
 module.exports = function (sequelize, DataTypes) {
   var User = sequelize.define('User', {
@@ -36,6 +54,8 @@ module.exports = function (sequelize, DataTypes) {
       }
     },
     connectedToFacebook: DataTypes.BOOLEAN
+  },{
+    instanceMethods : instanceMethods
   });
 
   return User;
