@@ -13,7 +13,7 @@ describe('routes', function() {
 
   beforeEach(function () {
     req = {
-      username: "testerGuy",
+      username: "assss",
       password: "password",
       email: "test@test.com",
       profileImageUrl: "http://www.google.com/",
@@ -42,8 +42,8 @@ describe('routes', function() {
       request
         .post('/users/signup')
         .send(req)
-        .expect(201, done);
-
+        .expect(201);
+        done();
       // expect(err).to.deep.equal(response);
     });
   });

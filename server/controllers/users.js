@@ -15,9 +15,16 @@ module.exports = {
     newUser.status = req.body.status;
     newUser.connectedToFacebook = req.body.connectedToFacebook;
 
+    var options = {};
+    options.where = {username: newUser.username};
+
     User.sync().then(function () {
-      return User.build(newUser);
-    }).then(function (newUser) {
+      return User.findOne(options);
+    }).then(function (user){
+      if (user){ utils.sendResponse(res, 301, {error: "username taken"});}
+      else{ return User.build(newUser);}
+    })
+    .then(function (newUser) {
       return newUser.hashPassword(newUser);
     }).then(function (newUser) {
       return newUser.save();
@@ -52,14 +59,6 @@ module.exports = {
   },
 
   updateUser: function(){
-
-  },
-
-  getReviews: function(){
-
-  },
-
-  postReview: function(){
 
   },
 
