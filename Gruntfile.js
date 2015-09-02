@@ -52,11 +52,6 @@ module.exports = function(grunt) {
         }
       }
     },
-    karma: {
-      unit: {
-        configFile: 'karma.conf.js'
-      }
-    },
     mochaTest: {
       test: {
         src: ['test/*.js'],
@@ -98,14 +93,13 @@ module.exports = function(grunt) {
   });
 
   grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-karma');
+  // grunt.loadNpmTasks('grunt-contrib-watch'); implement later
   grunt.loadNpmTasks('grunt-mocha-test');
   grunt.loadNpmTasks('grunt-webpack');
   grunt.loadNpmTasks('grunt-execute');
 
   grunt.registerTask('test', ['jshint', 'webpack', 'mochaTest']);
-  grunt.registerTask('build', ['jshint', 'webpack', 'karma', 'execute']);
+  grunt.registerTask('build', ['jshint', 'webpack', 'execute']);
   grunt.registerTask('default', ['webpack', 'execute']);
 
 };
