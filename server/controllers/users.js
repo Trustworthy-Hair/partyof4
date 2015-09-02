@@ -18,7 +18,7 @@ module.exports = {
     User.sync().then(function () {
       return User.build(newUser);
     }).then(function (newUser) {
-      return newUser.hashPassword();
+      return newUser.hashPassword(newUser);
     }).then(function (newUser) {
       return newUser.save();
     }).then(function (newUser) {
@@ -37,8 +37,18 @@ module.exports = {
 
   },
 
-  getUser: function(){
-
+  getUser: function(req, res){
+    var models = req.app.get('models');
+    var User = models.User;
+    var userId = req.params.userId;
+    User.sync().then(function () {
+      return User.findById(userId);
+    }).then(function (user) {
+      user.set('password', null);
+      utils.sendResponse(res, 200, user);
+    }).catch(function (err) {
+      console.log('Error: ', err);
+    });
   },
 
   updateUser: function(){

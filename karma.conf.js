@@ -10,7 +10,7 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['mocha'],
+    frameworks: ['mocha', 'chai', 'jquery-2.1.0'],
 
 
     // list of files / patterns to load in the browser
@@ -70,6 +70,16 @@ module.exports = function(config) {
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: true
+    singleRun: true,
+
+    plugins: [
+      "karma-mocha",
+      "karma-webpack",
+      "karma-phantomjs-launcher",
+      "karma-chrome-launcher",
+      "karma-firefox-launcher",
+      "karma-chai",
+      "karma-jquery"
+      ]
   })
 }
