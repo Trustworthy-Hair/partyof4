@@ -42,7 +42,7 @@ module.exports = {
     Event.sync().then(function () {
       return Event.findById(eventId);
     }).then(function (event) {
-      utils.sendResponse(res, 200, event)
+      utils.sendResponse(res, 200, event);
     }).catch(function (err) {
       console.log('Error: ', err);
     });
