@@ -3,10 +3,7 @@
 var config = require('./config');
 var Sequelize = require('sequelize');
 
-var sequelize = new Sequelize(config.database, config.username, config.password, {
-  host: config.host,
-  dialect: config.dialect
-});
+var sequelize = new Sequelize(config.databaseUrl);
 
 var User = sequelize.import('../models/users');
 var Event = sequelize.import('../models/events');
