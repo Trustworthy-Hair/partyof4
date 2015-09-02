@@ -1,24 +1,42 @@
 // users.js
+var bBird = require("bluebird");
+var bcrypt = bBird.promisifyAll(require('bcrypt-nodejs'));
+
+var instanceMethods = {};
+instanceMethods.hashPassword = function (newUser) {
+  return bcrypt.genSaltAsync(10)
+  .then(function (salt) {
+    return bcrypt.hashAsync(newUser.password, salt, null);
+  })
+  .then(function (hash) {
+    return newUser.set('password', hash);
+  })
+  .catch(function (err) {
+    console.log('Error: ', err);
+  });
+};
+
+
 
 module.exports = function (sequelize, DataTypes) {
   var User = sequelize.define('User', {
     username: {
       type: DataTypes.STRING,
       validate: {
-        notNull: true
+        // notNull: true
       }
     },
     password: {
       type: DataTypes.STRING,
       validate: {
-        notNull: true
+        // notNull: true
       }
     },
     email: {
       type: DataTypes.STRING,
       validate: {
         isEmail: true,
-        notNull: true
+        // notNull: true
       }
     },
     profileImageUrl: {
@@ -32,10 +50,12 @@ module.exports = function (sequelize, DataTypes) {
     status: {
       type: DataTypes.STRING,
       validate: {
-        notNull: true
+        // notNull: true
       }
     },
     connectedToFacebook: DataTypes.BOOLEAN
+  },{
+    instanceMethods : instanceMethods
   });
 
   return User;
