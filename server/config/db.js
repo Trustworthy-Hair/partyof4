@@ -28,12 +28,7 @@ module.exports.Event = Event;
 module.exports.UserEvent = UserEvent;
 module.exports.Review = Review;
 
+
 // RUN THE FOLLOWING CODE TO MAKE SURE TABLES ARE ADDED CORRECTLY
 
-// User.sync().then(function () {
-//   return Event.sync();
-// }).then(function () {
-//   return UserEvent.sync();
-// }).then(function () {
-//   return Review.sync();
-// });
+// sequelize.sync();
