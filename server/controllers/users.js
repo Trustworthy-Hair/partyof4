@@ -1,19 +1,16 @@
 // users.js
 var utils = require('../config/utils');
+var jwt = require('jwt-simple');
+var secret = 'shhhh';
 
 module.exports = {
   signup: function(req, res){
     var models = req.app.get('models');
     var User = models.User;
     var newUser = {};
-    newUser.username = req.body.username;
-    newUser.password = req.body.password;
-    newUser.email = req.body.email;
-    newUser.profileImageUrl = req.body.profileImageUrl;
-    newUser.interests = req.body.interests;
-    newUser.description = req.body.description;
-    newUser.status = req.body.status;
-    newUser.connectedToFacebook = req.body.connectedToFacebook;
+    for(var x in req.body){
+      newUser[x] = req.body[x];
+    }
 
     var options = {};
     options.where = {username: newUser.username};
@@ -21,8 +18,8 @@ module.exports = {
     User.sync().then(function () {
       return User.findOne(options);
     }).then(function (user){
-      if (user){ utils.sendResponse(res, 301, {error: "username taken"});}
-      else{ return User.build(newUser);}
+      if(user) utils.sendResponse(res, 301, {error: "username taken"});
+      else return User.build(newUser);
     })
     .then(function (newUser) {
       return newUser.hashPassword(newUser);
@@ -36,8 +33,29 @@ module.exports = {
     });
   },
 
-  login: function(){
+  login: function(req, res){
+    var models = req.app.get('models');
+    var User = models.User;
+    var potentialUser = {};
+    potentialUser.username = req.body.username;
+    potentialUser.password = req.body.password;
 
+    var options = {};
+    options.where = {username: potentialUser.username};
+
+    User.sync().then(function (){
+      return User.findOne(options);
+    }).then(function (user){
+      if(!user) utils.sendResponse(res, 301, {error: "User not found"});
+      else return user.comparePassword(user, potentialUser);
+    }).then(function (user){
+      if(user){
+        var token = jwt.encode(user, secret);
+        utils.sendResponse(res, 200, {token: token});
+      }else utils.sendResponse(res, 404, {error: "Password incorrect"});
+    }).catch(function (err){
+      console.log('Error: ', err);
+    });
   },
 
   logout: function(){
@@ -48,6 +66,7 @@ module.exports = {
     var models = req.app.get('models');
     var User = models.User;
     var userId = req.params.userId;
+
     User.sync().then(function () {
       return User.findById(userId);
     }).then(function (user) {
@@ -58,16 +77,29 @@ module.exports = {
     });
   },
 
-  updateUser: function(){
+  updateUser: function(req, res){
+    var models = req.app.get('models');
+    var User = models.User;
+    var userId = req.params.userId;
+    var updatedUser = {};
+    for(var x in req.body){
+      updatedUser[x] = req.body[x];
+    }
 
-  },
-
-  getHistory: function(){
-
-  },
-
-  updateHistory: function(){
-
+    User.sync().then(function () {
+      return User.findById(userId);
+    }).then(function (user){
+      return user.set(updatedUser);
+    }).then(function (user){
+      return user.hashPassword(user);
+    }).then(function (user){
+      return user.save();
+    }).then(function (user){
+      user.set('password', null);
+      utils.sendResponse(res, 201, user);
+    }).catch(function (err){
+      console.log('Error: ', err);
+    });
   }
 };
 

@@ -16,6 +16,13 @@ instanceMethods.hashPassword = function (newUser) {
   });
 };
 
+instanceMethods.comparePassword = function (user, potentialUser) {
+  return bcrypt.compareAsync(potentialUser.password, user.password)
+  .then(function (matched){
+    if(!matched) return bBird.resolve(false);
+    else return bBird.resolve(user);
+  });
+};
 
 
 module.exports = function (sequelize, DataTypes) {
