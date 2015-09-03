@@ -9,7 +9,6 @@ module.exports = function(grunt) {
           'esnext': true,
           'bitwise': true,
           'camelcase': true,
-          'curly': true,
           'eqeqeq': true,
           'immed': true,
           'indent': 2,
