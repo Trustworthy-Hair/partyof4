@@ -4,9 +4,8 @@
   "description": "partyof4",
   "main": "server/server.js",
   "scripts": {
-    "start": "node node_modules/grunt-cli/bin/grunt",
-    "test": "node node_modules/grunt-cli/bin/grunt test",
-    "mocha test": "mocha server/tests/serverSpec.js"
+    "start": "grunt",
+    "test": "grunt test"
   },
   "repository": {
     "type": "git",
