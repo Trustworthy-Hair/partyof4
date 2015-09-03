@@ -3,7 +3,7 @@
 var config = require('./config');
 var Sequelize = require('sequelize');
 
-var sequelize = new Sequelize(config.databaseUrl);
+var sequelize = new Sequelize(config.databaseUrl, config.options);
 
 var User = sequelize.import('../models/users');
 var Event = sequelize.import('../models/events');
