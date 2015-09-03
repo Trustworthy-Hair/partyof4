@@ -6,7 +6,7 @@ module.exports = function(app){
   app.post('/events', eventController.createEvent);
 
   app.get('/events/:eventId', eventController.getEvent);
-  app.post('/events/:eventId', eventController.updateEvent);
+  app.put('/events/:eventId', eventController.updateEvent);
 
-  app.get('/users/:userId/history', eventController.getHistory);
+  app.get('/users/:userId/history', eventController.getEventHistoryByUser);
 };

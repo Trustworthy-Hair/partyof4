@@ -1,5 +1,5 @@
+process.env.NODE_ENV = 'test';
 
-// var expect = chai.expect;
 var supertest = require('supertest');
 var server = require('../server/server');
 var assert = require('assert');
