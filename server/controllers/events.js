@@ -15,12 +15,9 @@ module.exports = {
        from the body of the request and some defaults. This object is used
        to build the Sequelize model that will be saved in the database. */
     var newEvent = {};
-    newEvent.HostId = req.body.HostId;
-    newEvent.locationId = req.body.locationId;
-    newEvent.plannedTime = req.body.plannedTime;
-    newEvent.capacity = req.body.capacity;
-    newEvent.currentSize = req.body.currentSize;
-    newEvent.currentActivity = req.body.currentActivity;
+    for (var key in req.body) {
+      newEvent[key] = req.body[key];
+    }
     newEvent.completedStatus = false;
 
     /* Builds a Sequelize model based on newEvent object and saves to the database. 
@@ -54,13 +51,9 @@ module.exports = {
     var eventId = req.params.eventId;
 
     var updatedEvent = {};
-    updatedEvent.HostId = req.body.HostId;
-    updatedEvent.locationId = req.body.locationId;
-    updatedEvent.plannedTime = req.body.plannedTime;
-    updatedEvent.capacity = req.body.capacity;
-    updatedEvent.currentSize = req.body.currentSize;
-    updatedEvent.currentActivity = req.body.currentActivity;
-    updatedEvent.completedStatus = req.body.completedStatus;
+    for (var key in req.body) {
+      updatedEvent[key] = req.body[key];
+    }
 
     var options = {};
     options.where = { id: eventId };
@@ -75,6 +68,22 @@ module.exports = {
          http://docs.sequelizejs.com/en/latest/api/model/#updatevalues-options-promisearrayaffectedcount-affectedrows */
       updatedEvent = update[1][0];
       utils.sendResponse(res, 200, updatedEvent);
+    }).catch(function (err) {
+      console.log('Error: ', err);
+    });
+  },
+
+  getEventHistoryByUser: function (req, res) {
+    var models = req.app.get('models');
+    var User = models.User;
+    var userId = req.params.userId;
+
+    User.sync().then(function () {
+      return User.findById(userId);
+    }).then(function (user) {
+      return user.getEvents();
+    }).then(function (events) {
+      utils.sendResponse(res, 201, events);
     }).catch(function (err) {
       console.log('Error: ', err);
     });

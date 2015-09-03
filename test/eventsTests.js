@@ -1,7 +1,10 @@
+process.env.NODE_ENV = 'test';
+
 var supertest = require('supertest');
+var server = require('../server/server');
 var assert = require('assert');
 
-var request = supertest('http://localhost:3000');
+var request = supertest(server);
 
 var req;
 var expectedResponse;
@@ -25,7 +28,7 @@ describe('Events routes: ', function() {
     }
   });
 
-  xdescribe('POST to /events', function() {
+  describe('POST to /events', function() {
 
     it('should return a 201 status code and respond with the created event', function (done) {
 
@@ -61,14 +64,14 @@ describe('Events routes: ', function() {
     it('should not return an nonexistent event', function (done) {
       request
         .get('/events/2')
-        .end(function (err, actualResponse) {          
-          console.log(actualResponse.body);
+        .end(function (err, actualResponse) {
+          assert.deepEqual(actualResponse.body, {});
           done();
         });
     });
   });
 
-  xdescribe('PUT to /events/:eventId', function() {
+  describe('PUT to /events/:eventId', function() {
 
     it('should return a 200 status code', function (done) {
 
