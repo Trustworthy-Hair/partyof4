@@ -3,6 +3,7 @@
 var supertest = require('supertest');
 var server = require('../server/server');
 var assert = require('assert');
+var expect = require('expect.js');
 
 var request = supertest(server);
 
@@ -41,9 +42,7 @@ describe('routes', function() {
 
     testData.newUser = {
       username: "brandon",
-      password: null,
       email: "test@testical.com",
-      profileImageUrl: "http://www.google.com/butts",
       interests: ['butts', 'butts', 'butts', 'butts', 'butts', 'butts', 'butts', 'butts'],
       description: "Most awesome guy ever bc butts",
       status: "lookin for butts",
@@ -51,7 +50,7 @@ describe('routes', function() {
     };
 
     testData.loginValid = {
-      username: "brandon",
+      username: "test",
       password: "password"
     };
 
@@ -75,7 +74,7 @@ describe('routes', function() {
           ['id', 'createdAt', 'updatedAt'].forEach(function (property) {
             delete result.body[property];
           });
-          assert.deepEqual(result.body, testdata.res);
+          assert.deepEqual(result.body, testData.res);
           done();
         });
     });
@@ -89,7 +88,7 @@ describe('routes', function() {
           ['id', 'createdAt', 'updatedAt'].forEach(function (property) {
             delete result.body[property];
           });
-          assert.deepEqual(result.body, testdata.res);
+          assert.deepEqual(result.body, testData.res);
           done();
         });
     })
@@ -101,9 +100,9 @@ describe('routes', function() {
         .post('/users/1')
         .send(testData.newUser)
         .end(function (err, result) {
-          ['id', 'createdAt', 'updatedAt'].forEach(function (property) {
-            delete result.body[property];
-          });
+          for(var x in result.body){
+            if(testData.newUser[x] === undefined) delete result.body[x];
+          }
           assert.deepEqual(result.body, testData.newUser );
           done();
         });
@@ -111,10 +110,35 @@ describe('routes', function() {
   });  
 
   describe('POST', function(){
-    it('should recieve token on valid login', function(done){
+    it('should recieve login error', function(done){
       request
         .post('/users/login')
-        .send()
+        .send(testData.loginInvalid)
+        .end(function (err, result){
+          expect(result.body).to.have.property('error');
+          done();
+        });
     })
-  })
+  });
+
+  describe('POST', function(){
+    it('should accept new user', function(done){
+
+      request
+        .post('/users/signup')
+        .send(testData.req)
+        .end(function(err, result){done()});
+
+    })
+    it('should login new user', function(done){
+      request
+        .post('/users/login')
+        .send(testData.loginValid)
+        .end(function (err, result){
+          expect(result.body).to.have.property('token');
+          done();
+        });
+    })
+  });
+
 });

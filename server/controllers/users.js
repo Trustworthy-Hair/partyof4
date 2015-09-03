@@ -8,14 +8,9 @@ module.exports = {
     var models = req.app.get('models');
     var User = models.User;
     var newUser = {};
-    newUser.username = req.body.username;
-    newUser.password = req.body.password;
-    newUser.email = req.body.email;
-    newUser.profileImageUrl = req.body.profileImageUrl;
-    newUser.interests = req.body.interests;
-    newUser.description = req.body.description;
-    newUser.status = req.body.status;
-    newUser.connectedToFacebook = req.body.connectedToFacebook;
+    for(var x in req.body){
+      newUser[x] = req.body[x];
+    }
 
     var options = {};
     options.where = {username: newUser.username};
@@ -87,14 +82,9 @@ module.exports = {
     var User = models.User;
     var userId = req.params.userId;
     var updatedUser = {};
-    updatedUser.username = req.body.username;
-    updatedUser.password = req.body.password;
-    updatedUser.email = req.body.email;
-    updatedUser.profileImageUrl = req.body.profileImageUrl;
-    updatedUser.interests = req.body.interests;
-    updatedUser.description = req.body.description;
-    updatedUser.status = req.body.status;
-    updatedUser.connectedToFacebook = req.body.connectedToFacebook;
+    for(var x in req.body){
+      updatedUser[x] = req.body[x];
+    }
 
     User.sync().then(function () {
       return User.findById(userId);
