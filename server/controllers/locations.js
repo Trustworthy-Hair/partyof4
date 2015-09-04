@@ -59,8 +59,11 @@ var formatLocationRes = function(location) {
 /*
  * Creates the http request object for the Foursquare API call
  */
-var createFoursquareReq = function(type,lat,long,query) {
-  var radius = (type === 'all') ? 1000 : 2000;
+var createFoursquareReq = function(type,params) {
+  var lat = params.latitude;
+  var long = params.longitude;
+  var query = params.q;
+  var radius = (params.radius) ? params.radius : ((type === 'all') ? 1000 : 2000);
   var version = 20150903;
 
   var url = '/v2/venues/explore?client_id='+config.foursquareId+'&client_secret='+config.foursquareSecret+
@@ -71,6 +74,7 @@ var createFoursquareReq = function(type,lat,long,query) {
   } else if (type === 'all') {
     url = url+'&section=food&limit=50';
   }
+
   return {
     host: 'api.foursquare.com',
     path: url,
@@ -99,7 +103,7 @@ module.exports = {
     } else if (config.foursquareId === '' || config.foursquareSecret === '') {
       res.status(500).send('Foursquare API misconfigured - please contact partyof4 administrator').end();
     } else {
-      https.request(createFoursquareReq(typeOfReq,lat,long,searchTerm), function(foursquareRes) {
+      https.request(createFoursquareReq(typeOfReq,req.query), function(foursquareRes) {
         var responseBody ='';
         foursquareRes.on('data', function (chunk) {
           responseBody += chunk;
