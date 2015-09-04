@@ -51,7 +51,12 @@ module.exports = {
     }).then(function (user){
       if(user){
         var token = jwt.encode(user, secret);
-        utils.sendResponse(res, 200, {token: token});
+        user.set('password', null);
+        var returnObject = {
+          user: user,
+          token: token
+        };
+        utils.sendResponse(res, 200, returnObject);
       }else utils.sendResponse(res, 404, {error: "Password incorrect"});
     }).catch(function (err){
       console.log('Error: ', err);

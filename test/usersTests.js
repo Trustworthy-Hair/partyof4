@@ -123,12 +123,10 @@ describe('routes', function() {
 
   describe('POST', function(){
     it('should accept new user', function(done){
-
       request
         .post('/users/signup')
         .send(testData.req)
         .end(function(err, result){done()});
-
     })
     it('should login new user', function(done){
       request
