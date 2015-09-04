@@ -1,9 +1,6 @@
 // locations.js
-if (process.env.NODE_ENV === 'production' || 'test' || 'travis') {
-  var config = require('../config/config.js');
-} else {
-  var config = require('../config/config2.js');
-}
+var config = require('../config/config.js');
+
 var https  = require('https');
 
 module.exports = {
@@ -20,6 +17,8 @@ module.exports = {
     } else if ((lat < -90 || lat > 90) || (long < -180 || long > 180)) {
       res.status(400).send('Invalid request - latitide and longitude must be valid.' +
                            '(-90 < latitude < 90 and -180 < longitude < 180)').end();
+    } else if (config.foursquareId === '' || config.foursquareSecret === '') {
+      res.status(500).send('Foursquare API misconfigured - please contact partyof4 administrator').end();
     } else {
 
       var apiUrl = '/v2/venues/explore?client_id='+config.foursquareId+'&client_secret='+config.foursquareSecret;
