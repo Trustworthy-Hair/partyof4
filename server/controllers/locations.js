@@ -9,15 +9,20 @@ var storeVenues = function(req, locations) {
 
   Location.sync().then(function() {
     locations.forEach(function(loc) {
-      Location.create({
-        fourSquareId: loc.locationId,
-        name: loc.name,
-        address: {street: loc.location[0],
-                  city: loc.location[1],
-                  country: loc.location[2]},
-        longitude: loc.coords.latitude,
-        latitude: loc.coords.longitude,
-        tags: loc.tags,
+      Location.findOne({where: {fourSquareId: loc.locationId}})
+      .then(function(location) {
+        if (!location) {
+          Location.create({
+            fourSquareId: loc.locationId,
+            name: loc.name,
+            address: {street: loc.location[0],
+                      city: loc.location[1],
+                      country: loc.location[2]},
+            longitude: loc.coords.latitude,
+            latitude: loc.coords.longitude,
+            tags: loc.tags,
+          });
+        }
       });
     });
   });
