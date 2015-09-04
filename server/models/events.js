@@ -15,12 +15,42 @@ Note:
 
 module.exports = function (sequelize, DataTypes) {
   var Event = sequelize.define('Event', {
-    locationId: DataTypes.INTEGER,
-    plannedTime: DataTypes.DATE,
-    capacity: DataTypes.INTEGER,
-    currentSize: DataTypes.INTEGER,
-    currentActivity: DataTypes.STRING,
-    completedStatus: DataTypes.BOOLEAN
+    locationId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    plannedTime: {
+      type: DataTypes.DATE,
+      allowNull: false
+    },
+    capacity: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: { min: 1 }
+    },
+    currentSize: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: { min: 0 }
+    },
+    currentActivity: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      defaultValue: null
+    },
+    completedStatus: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false
+    }
+  }, {
+    validate: {
+      currentSizeExceedsCapacity: function() {
+        if (this.currentSize > this.capacity) {
+          throw new Error('Current size exceeds capacity');
+        }
+      }
+    }
   });
 
   return Event;
