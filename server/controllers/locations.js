@@ -5,23 +5,24 @@ var config = require('../config/config.js'),
 module.exports = {
   getLocations: function(req,res){
 
+    // Hack Reactor coordinates for testing
+    // var lat = 37.7837418;
+    // var long = -122.4089911;
     var lat = req.query.latitude;
     var long = req.query.longitude;
 
     if (!(lat && long)) {
-      res.status(200).send('Invalid request - include latitude and longitude in URL parameters').end();
+      res.status(400).send('Invalid request - include latitude and longitude in URL parameters').end();
+    } else if ((lat < -90 || lat > 90) || (long < -180 || long > 180)) {
+      res.status(400).send('Invalid request - latitide and longitude must be valid. (-90 < latitude < 90 and -180 < longitude < 180)').end();
     } else {
 
-      var apiUrl = '/v2/venues/search?client_id='+config.foursquareId+'&client_secret='+config.foursquareSecret;
+      var apiUrl = '/v2/venues/explore?client_id='+config.foursquareId+'&client_secret='+config.foursquareSecret;
 
-      // Hack Reactor coordinates for testing
-      // var lat = 37.7837418;
-      // var long = -122.4089911;
       var radius = 1000;
-      var cat = '4d4b7105d754a06374d81259';
+      var version = 20150903;
 
-      var finalUrl = apiUrl+'&ll='+lat+','+long+'&intent=browse&v=20150903&radius='+radius+'&categoryId='+cat;
-      console.log(finalUrl);
+      var finalUrl = apiUrl+'&ll='+lat+','+long+'&v='+version+'&radius='+radius+'&section=food&limit=50&openNow=1';
 
       var options = {
         host: 'api.foursquare.com',
@@ -37,13 +38,16 @@ module.exports = {
         });
 
         foursquareRes.on('end', function () {
-          var responseArr = JSON.parse(responseBody).response.venues;
+          var responseArr = JSON.parse(responseBody).response.groups[0].items;
+
           var locations = [];
-          responseArr.forEach(function(location) {
+          responseArr.forEach(function(item) {
+            var location = item.venue;
             locations.push({
               "locationId": location.id,
               "name": location.name,
               "location": location.location.formattedAddress,
+              "distance": location.location.distance,
               "tags": location.categories.name,
               "coords": {
                 "latitude": location.location.lat,
@@ -52,15 +56,12 @@ module.exports = {
             });
           });
 
-          res.status(200).send(locations).end();
+          res.status(200).send({'locations':locations}).end();
         });
       }).end();
     }
 
   },
-
-// https://api.foursquare.com/v2/venues/search?ll=37.7837418,-122.4089911&intent=browse&radius=2000
-// &categoryId=4d4b7105d754a06374d81259&oauth_token=EU4NPNYSDTPEOKUBQ1YCJ3KN3HDDQTZYUNGIQVKAD10XIC4R&v=20150903
 
   getOneLocation: function(){
 
