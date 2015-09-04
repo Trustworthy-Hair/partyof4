@@ -1,0 +1,1865 @@
+{
+    "meta": {
+        "code": 200,
+        "requestId": "55e8cd80498efcd0f66e4e40"
+    },
+    "notifications": [{
+        "type": "notificationTray",
+        "item": {
+            "unreadCount": 0
+        }
+    }],
+    "response": {
+        "venues": [{
+            "id": "49ca8f4df964a520b9581fe3",
+            "name": "Blue Bottle Coffee",
+            "contact": {
+                "phone": "5106533394",
+                "formattedPhone": "(510) 653-3394",
+                "twitter": "bluebottlemint"
+            },
+            "location": {
+                "address": "66 Mint Plaza",
+                "crossStreet": "at Jessie St",
+                "lat": 37.78246395814844,
+                "lng": -122.40782260894775,
+                "distance": 175,
+                "postalCode": "94103",
+                "cc": "US",
+                "city": "San Francisco",
+                "state": "CA",
+                "country": "United States",
+                "formattedAddress": ["66 Mint Plaza (at Jessie St)", "San Francisco, CA 94103"]
+            },
+            "categories": [{
+                "id": "4bf58dd8d48988d1e0931735",
+                "name": "Coffee Shop",
+                "pluralName": "Coffee Shops",
+                "shortName": "Coffee Shop",
+                "icon": {
+                    "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/coffeeshop_",
+                    "suffix": ".png"
+                },
+                "primary": true
+            }],
+            "verified": true,
+            "stats": {
+                "checkinsCount": 49715,
+                "usersCount": 18824,
+                "tipCount": 561
+            },
+            "url": "http:\/\/www.bluebottlecoffee.com\/cafes\/mint-plaza",
+            "hasMenu": true,
+            "menu": {
+                "type": "Menu",
+                "label": "Menu",
+                "anchor": "View Menu",
+                "url": "https:\/\/foursquare.com\/v\/blue-bottle-coffee\/49ca8f4df964a520b9581fe3\/menu",
+                "mobileUrl": "https:\/\/foursquare.com\/v\/49ca8f4df964a520b9581fe3\/device_menu"
+            },
+            "allowMenuUrlEdit": true,
+            "specials": {
+                "count": 0,
+                "items": []
+            },
+            "hereNow": {
+                "count": 5,
+                "summary": "5 people are here",
+                "groups": [{
+                    "type": "others",
+                    "name": "Other people here",
+                    "count": 5,
+                    "items": []
+                }]
+            },
+            "venuePage": {
+                "id": "67189389"
+            },
+            "referralId": "v-1441320321"
+        }, {
+            "id": "3fd66200f964a52041ee1ee3",
+            "name": "Zeitgeist",
+            "contact": {
+                "phone": "4152557505",
+                "formattedPhone": "(415) 255-7505",
+                "twitter": "zeitgeistsf"
+            },
+            "location": {
+                "address": "199 Valencia St",
+                "crossStreet": "at Duboce Ave",
+                "lat": 37.770116839430536,
+                "lng": -122.42210805416107,
+                "distance": 1905,
+                "postalCode": "94103",
+                "cc": "US",
+                "city": "San Francisco",
+                "state": "CA",
+                "country": "United States",
+                "formattedAddress": ["199 Valencia St (at Duboce Ave)", "San Francisco, CA 94103"]
+            },
+            "categories": [{
+                "id": "4bf58dd8d48988d117941735",
+                "name": "Beer Garden",
+                "pluralName": "Beer Gardens",
+                "shortName": "Beer Garden",
+                "icon": {
+                    "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/nightlife\/beergarden_",
+                    "suffix": ".png"
+                },
+                "primary": true
+            }],
+            "verified": true,
+            "stats": {
+                "checkinsCount": 46721,
+                "usersCount": 20273,
+                "tipCount": 306
+            },
+            "url": "http:\/\/www.zeitgeistsf.com",
+            "hasMenu": true,
+            "menu": {
+                "type": "Menu",
+                "label": "Menu",
+                "anchor": "View Menu",
+                "url": "https:\/\/foursquare.com\/v\/zeitgeist\/3fd66200f964a52041ee1ee3\/menu",
+                "mobileUrl": "https:\/\/foursquare.com\/v\/3fd66200f964a52041ee1ee3\/device_menu"
+            },
+            "allowMenuUrlEdit": true,
+            "specials": {
+                "count": 0,
+                "items": []
+            },
+            "hereNow": {
+                "count": 2,
+                "summary": "2 people are here",
+                "groups": [{
+                    "type": "others",
+                    "name": "Other people here",
+                    "count": 2,
+                    "items": []
+                }]
+            },
+            "venuePage": {
+                "id": "52309814"
+            },
+            "referralId": "v-1441320321"
+        }, {
+            "id": "4a4b8a43f964a5206fac1fe3",
+            "name": "Sightglass Coffee",
+            "contact": {
+                "phone": "4158611313",
+                "formattedPhone": "(415) 861-1313",
+                "twitter": "sightglass"
+            },
+            "location": {
+                "address": "270 7th St",
+                "crossStreet": "btwn Howard & Folsom St",
+                "lat": 37.77699197247508,
+                "lng": -122.40852980833175,
+                "distance": 752,
+                "postalCode": "94103",
+                "cc": "US",
+                "city": "San Francisco",
+                "state": "CA",
+                "country": "United States",
+                "formattedAddress": ["270 7th St (btwn Howard & Folsom St)", "San Francisco, CA 94103"]
+            },
+            "categories": [{
+                "id": "4bf58dd8d48988d1e0931735",
+                "name": "Coffee Shop",
+                "pluralName": "Coffee Shops",
+                "shortName": "Coffee Shop",
+                "icon": {
+                    "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/coffeeshop_",
+                    "suffix": ".png"
+                },
+                "primary": true
+            }],
+            "verified": true,
+            "stats": {
+                "checkinsCount": 44847,
+                "usersCount": 13169,
+                "tipCount": 433
+            },
+            "url": "http:\/\/www.sightglasscoffee.com",
+            "hasMenu": true,
+            "menu": {
+                "type": "Menu",
+                "label": "Menu",
+                "anchor": "View Menu",
+                "url": "https:\/\/foursquare.com\/v\/sightglass-coffee\/4a4b8a43f964a5206fac1fe3\/menu",
+                "mobileUrl": "https:\/\/foursquare.com\/v\/4a4b8a43f964a5206fac1fe3\/device_menu"
+            },
+            "allowMenuUrlEdit": true,
+            "specials": {
+                "count": 0,
+                "items": []
+            },
+            "hereNow": {
+                "count": 5,
+                "summary": "5 people are here",
+                "groups": [{
+                    "type": "others",
+                    "name": "Other people here",
+                    "count": 5,
+                    "items": []
+                }]
+            },
+            "venuePage": {
+                "id": "48020594"
+            },
+            "referralId": "v-1441320321"
+        }, {
+            "id": "5579b87c498e975f3be98a1e",
+            "name": "Blue Bottle Coffee",
+            "contact": {},
+            "location": {
+                "address": "115 Sansome St",
+                "crossStreet": "at Bush St",
+                "lat": 37.791301283468826,
+                "lng": -122.40071398857404,
+                "distance": 1112,
+                "postalCode": "94104",
+                "cc": "US",
+                "city": "San Francisco",
+                "state": "CA",
+                "country": "United States",
+                "formattedAddress": ["115 Sansome St (at Bush St)", "San Francisco, CA 94104"]
+            },
+            "categories": [{
+                "id": "4bf58dd8d48988d1e0931735",
+                "name": "Coffee Shop",
+                "pluralName": "Coffee Shops",
+                "shortName": "Coffee Shop",
+                "icon": {
+                    "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/coffeeshop_",
+                    "suffix": ".png"
+                },
+                "primary": true
+            }],
+            "verified": false,
+            "stats": {
+                "checkinsCount": 1246,
+                "usersCount": 615,
+                "tipCount": 21
+            },
+            "url": "https:\/\/bluebottlecoffee.com",
+            "allowMenuUrlEdit": true,
+            "specials": {
+                "count": 0,
+                "items": []
+            },
+            "hereNow": {
+                "count": 4,
+                "summary": "4 people are here",
+                "groups": [{
+                    "type": "others",
+                    "name": "Other people here",
+                    "count": 4,
+                    "items": []
+                }]
+            },
+            "referralId": "v-1441320321"
+        }, {
+            "id": "4a844f01f964a5203bfc1fe3",
+            "name": "Philz Coffee",
+            "contact": {
+                "phone": "4158759943",
+                "formattedPhone": "(415) 875-9943",
+                "twitter": "philzcoffee"
+            },
+            "location": {
+                "address": "201 Berry St",
+                "crossStreet": "at 4th St",
+                "lat": 37.775835520768936,
+                "lng": -122.39346184871675,
+                "distance": 1625,
+                "postalCode": "94158",
+                "cc": "US",
+                "city": "San Francisco",
+                "state": "CA",
+                "country": "United States",
+                "formattedAddress": ["201 Berry St (at 4th St)", "San Francisco, CA 94158"]
+            },
+            "categories": [{
+                "id": "4bf58dd8d48988d1e0931735",
+                "name": "Coffee Shop",
+                "pluralName": "Coffee Shops",
+                "shortName": "Coffee Shop",
+                "icon": {
+                    "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/coffeeshop_",
+                    "suffix": ".png"
+                },
+                "primary": true
+            }],
+            "verified": true,
+            "stats": {
+                "checkinsCount": 40863,
+                "usersCount": 9852,
+                "tipCount": 274
+            },
+            "url": "http:\/\/www.philzcoffee.com",
+            "hasMenu": true,
+            "menu": {
+                "type": "Menu",
+                "label": "Menu",
+                "anchor": "View Menu",
+                "url": "https:\/\/foursquare.com\/v\/philz-coffee\/4a844f01f964a5203bfc1fe3\/menu",
+                "mobileUrl": "https:\/\/foursquare.com\/v\/4a844f01f964a5203bfc1fe3\/device_menu"
+            },
+            "allowMenuUrlEdit": true,
+            "specials": {
+                "count": 0,
+                "items": []
+            },
+            "hereNow": {
+                "count": 0,
+                "summary": "Nobody here",
+                "groups": []
+            },
+            "referralId": "v-1441320321"
+        }, {
+            "id": "555b8b7d498e2877d4286508",
+            "name": "Philz Coffee",
+            "contact": {
+                "phone": "4155682535",
+                "formattedPhone": "(415) 568-2535",
+                "twitter": "philzcoffee"
+            },
+            "location": {
+                "address": "1 Front St Ste 100",
+                "crossStreet": "Market St",
+                "lat": 37.79123595273694,
+                "lng": -122.39883323753146,
+                "distance": 1222,
+                "postalCode": "94111",
+                "cc": "US",
+                "city": "San Francisco",
+                "state": "CA",
+                "country": "United States",
+                "formattedAddress": ["1 Front St Ste 100 (Market St)", "San Francisco, CA 94111"]
+            },
+            "categories": [{
+                "id": "4bf58dd8d48988d1e0931735",
+                "name": "Coffee Shop",
+                "pluralName": "Coffee Shops",
+                "shortName": "Coffee Shop",
+                "icon": {
+                    "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/coffeeshop_",
+                    "suffix": ".png"
+                },
+                "primary": true
+            }],
+            "verified": false,
+            "stats": {
+                "checkinsCount": 1167,
+                "usersCount": 541,
+                "tipCount": 22
+            },
+            "url": "http:\/\/www.philzcoffee.com",
+            "allowMenuUrlEdit": true,
+            "specials": {
+                "count": 0,
+                "items": []
+            },
+            "hereNow": {
+                "count": 2,
+                "summary": "2 people are here",
+                "groups": [{
+                    "type": "others",
+                    "name": "Other people here",
+                    "count": 2,
+                    "items": []
+                }]
+            },
+            "referralId": "v-1441320321"
+        }, {
+            "id": "511c234119a980d7108a70b9",
+            "name": "Mikkeller Bar",
+            "contact": {
+                "phone": "4159840279",
+                "formattedPhone": "(415) 984-0279",
+                "twitter": "mikkellerbarsf",
+                "facebook": "117065905128734",
+                "facebookUsername": "MikkellerBarSanFrancisco",
+                "facebookName": "Mikkeller Bar SF"
+            },
+            "location": {
+                "address": "34 Mason St",
+                "crossStreet": "at Market St",
+                "lat": 37.783587477500795,
+                "lng": -122.40902423858641,
+                "distance": 17,
+                "postalCode": "94102",
+                "cc": "US",
+                "city": "San Francisco",
+                "state": "CA",
+                "country": "United States",
+                "formattedAddress": ["34 Mason St (at Market St)", "San Francisco, CA 94102"]
+            },
+            "categories": [{
+                "id": "4bf58dd8d48988d155941735",
+                "name": "Gastropub",
+                "pluralName": "Gastropubs",
+                "shortName": "Gastropub",
+                "icon": {
+                    "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/gastropub_",
+                    "suffix": ".png"
+                },
+                "primary": true
+            }],
+            "verified": false,
+            "stats": {
+                "checkinsCount": 13946,
+                "usersCount": 8416,
+                "tipCount": 230
+            },
+            "url": "http:\/\/www.mikkellerbar.com",
+            "menu": {
+                "type": "Menu",
+                "label": "Menu",
+                "anchor": "View Menu",
+                "url": "http:\/\/www.mikkellerbar.com\/menu.html",
+                "mobileUrl": "http:\/\/www.mikkellerbar.com\/menu.html",
+                "externalUrl": "http:\/\/www.mikkellerbar.com\/menu.html"
+            },
+            "allowMenuUrlEdit": true,
+            "specials": {
+                "count": 0,
+                "items": []
+            },
+            "hereNow": {
+                "count": 2,
+                "summary": "2 people are here",
+                "groups": [{
+                    "type": "others",
+                    "name": "Other people here",
+                    "count": 2,
+                    "items": []
+                }]
+            },
+            "referralId": "v-1441320321"
+        }, {
+            "id": "547cd07d498ef3265ffc5a75",
+            "name": "The Market",
+            "contact": {
+                "phone": "4157675130",
+                "formattedPhone": "(415) 767-5130",
+                "twitter": "visitthemarket",
+                "facebook": "887100784648235",
+                "facebookUsername": "visitthemarket",
+                "facebookName": "The Market"
+            },
+            "location": {
+                "address": "1355 Market St Ste 100",
+                "crossStreet": "10th Street",
+                "lat": 37.77646866434578,
+                "lng": -122.41706957256804,
+                "distance": 1077,
+                "postalCode": "94103",
+                "cc": "US",
+                "city": "San Francisco",
+                "state": "CA",
+                "country": "United States",
+                "formattedAddress": ["1355 Market St Ste 100 (10th Street)", "San Francisco, CA 94103"]
+            },
+            "categories": [{
+                "id": "4bf58dd8d48988d1f9941735",
+                "name": "Food & Drink Shop",
+                "pluralName": "Food & Drink Shops",
+                "shortName": "Food & Drink",
+                "icon": {
+                    "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/shops\/foodanddrink_",
+                    "suffix": ".png"
+                },
+                "primary": true
+            }],
+            "verified": true,
+            "stats": {
+                "checkinsCount": 3072,
+                "usersCount": 1445,
+                "tipCount": 34
+            },
+            "url": "http:\/\/www.visitthemarket.com",
+            "allowMenuUrlEdit": true,
+            "specials": {
+                "count": 0,
+                "items": []
+            },
+            "hereNow": {
+                "count": 1,
+                "summary": "One other person is here",
+                "groups": [{
+                    "type": "others",
+                    "name": "Other people here",
+                    "count": 1,
+                    "items": []
+                }]
+            },
+            "venuePage": {
+                "id": "134615431"
+            },
+            "referralId": "v-1441320321"
+        }, {
+            "id": "5560dbdb498e91a2bcde84f6",
+            "name": "Blue Bottle Coffee",
+            "contact": {
+                "twitter": "bluebottleroast"
+            },
+            "location": {
+                "address": "1355 Market St Ste 190",
+                "crossStreet": "at 10th St",
+                "lat": 37.77625554409089,
+                "lng": -122.41690918183825,
+                "distance": 1086,
+                "postalCode": "94103",
+                "cc": "US",
+                "city": "San Francisco",
+                "state": "CA",
+                "country": "United States",
+                "formattedAddress": ["1355 Market St Ste 190 (at 10th St)", "San Francisco, CA 94103"]
+            },
+            "categories": [{
+                "id": "4bf58dd8d48988d1e0931735",
+                "name": "Coffee Shop",
+                "pluralName": "Coffee Shops",
+                "shortName": "Coffee Shop",
+                "icon": {
+                    "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/coffeeshop_",
+                    "suffix": ".png"
+                },
+                "primary": true
+            }],
+            "verified": false,
+            "stats": {
+                "checkinsCount": 1231,
+                "usersCount": 366,
+                "tipCount": 12
+            },
+            "url": "https:\/\/bluebottlecoffee.com",
+            "allowMenuUrlEdit": true,
+            "specials": {
+                "count": 0,
+                "items": []
+            },
+            "hereNow": {
+                "count": 7,
+                "summary": "7 people are here",
+                "groups": [{
+                    "type": "others",
+                    "name": "Other people here",
+                    "count": 7,
+                    "items": []
+                }]
+            },
+            "referralId": "v-1441320321"
+        }, {
+            "id": "4d964291daec224b08b9123e",
+            "name": "Smitten Ice Cream",
+            "contact": {
+                "phone": "4158631518",
+                "formattedPhone": "(415) 863-1518",
+                "twitter": "smittenicecream"
+            },
+            "location": {
+                "address": "432 Octavia St #1A",
+                "crossStreet": "at Linden St",
+                "lat": 37.77628641647586,
+                "lng": -122.42419481277466,
+                "distance": 1574,
+                "postalCode": "94102",
+                "cc": "US",
+                "city": "San Francisco",
+                "state": "CA",
+                "country": "United States",
+                "formattedAddress": ["432 Octavia St #1A (at Linden St)", "San Francisco, CA 94102"]
+            },
+            "categories": [{
+                "id": "4bf58dd8d48988d1c9941735",
+                "name": "Ice Cream Shop",
+                "pluralName": "Ice Cream Shops",
+                "shortName": "Ice Cream",
+                "icon": {
+                    "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/icecream_",
+                    "suffix": ".png"
+                },
+                "primary": true
+            }],
+            "verified": true,
+            "stats": {
+                "checkinsCount": 20490,
+                "usersCount": 11993,
+                "tipCount": 256
+            },
+            "url": "http:\/\/smittenicecream.com",
+            "allowMenuUrlEdit": true,
+            "specials": {
+                "count": 0,
+                "items": []
+            },
+            "hereNow": {
+                "count": 0,
+                "summary": "Nobody here",
+                "groups": []
+            },
+            "venuePage": {
+                "id": "52310139"
+            },
+            "referralId": "v-1441320321"
+        }, {
+            "id": "49d68c61f964a520e65c1fe3",
+            "name": "Blue Bottle Coffee",
+            "contact": {
+                "phone": "4159563331",
+                "formattedPhone": "(415) 956-3331",
+                "twitter": "bluebottleferry"
+            },
+            "location": {
+                "address": "1 Ferry Building Ste 7",
+                "crossStreet": "at The Embarcardero",
+                "lat": 37.79590475625579,
+                "lng": -122.39393759555746,
+                "distance": 1893,
+                "postalCode": "94111",
+                "cc": "US",
+                "city": "San Francisco",
+                "state": "CA",
+                "country": "United States",
+                "formattedAddress": ["1 Ferry Building Ste 7 (at The Embarcardero)", "San Francisco, CA 94111"]
+            },
+            "categories": [{
+                "id": "4bf58dd8d48988d1e0931735",
+                "name": "Coffee Shop",
+                "pluralName": "Coffee Shops",
+                "shortName": "Coffee Shop",
+                "icon": {
+                    "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/coffeeshop_",
+                    "suffix": ".png"
+                },
+                "primary": true
+            }],
+            "verified": false,
+            "stats": {
+                "checkinsCount": 39664,
+                "usersCount": 17897,
+                "tipCount": 343
+            },
+            "url": "http:\/\/www.bluebottlecoffee.com\/locations\/ferry-building\/",
+            "hasMenu": true,
+            "menu": {
+                "type": "Menu",
+                "label": "Menu",
+                "anchor": "View Menu",
+                "url": "https:\/\/foursquare.com\/v\/blue-bottle-coffee\/49d68c61f964a520e65c1fe3\/menu",
+                "mobileUrl": "https:\/\/foursquare.com\/v\/49d68c61f964a520e65c1fe3\/device_menu"
+            },
+            "allowMenuUrlEdit": true,
+            "specials": {
+                "count": 0,
+                "items": []
+            },
+            "hereNow": {
+                "count": 5,
+                "summary": "5 people are here",
+                "groups": [{
+                    "type": "others",
+                    "name": "Other people here",
+                    "count": 5,
+                    "items": []
+                }]
+            },
+            "referralId": "v-1441320321"
+        }, {
+            "id": "4b7ef75cf964a520ee0c30e3",
+            "name": "The Grove",
+            "contact": {
+                "phone": "4159570558",
+                "formattedPhone": "(415) 957-0558"
+            },
+            "location": {
+                "address": "690 Mission St",
+                "crossStreet": "btwn 3rd & Annie St",
+                "lat": 37.78653398485857,
+                "lng": -122.40192174911499,
+                "distance": 695,
+                "postalCode": "94105",
+                "cc": "US",
+                "city": "San Francisco",
+                "state": "CA",
+                "country": "United States",
+                "formattedAddress": ["690 Mission St (btwn 3rd & Annie St)", "San Francisco, CA 94105"]
+            },
+            "categories": [{
+                "id": "4bf58dd8d48988d16d941735",
+                "name": "Café",
+                "pluralName": "Cafés",
+                "shortName": "Café",
+                "icon": {
+                    "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/cafe_",
+                    "suffix": ".png"
+                },
+                "primary": true
+            }],
+            "verified": true,
+            "stats": {
+                "checkinsCount": 28709,
+                "usersCount": 14828,
+                "tipCount": 476
+            },
+            "url": "http:\/\/www.thegrovesf.com",
+            "hasMenu": true,
+            "menu": {
+                "type": "Menu",
+                "label": "Menu",
+                "anchor": "View Menu",
+                "url": "https:\/\/foursquare.com\/v\/the-grove\/4b7ef75cf964a520ee0c30e3\/menu",
+                "mobileUrl": "https:\/\/foursquare.com\/v\/4b7ef75cf964a520ee0c30e3\/device_menu"
+            },
+            "allowMenuUrlEdit": true,
+            "specials": {
+                "count": 0,
+                "items": []
+            },
+            "hereNow": {
+                "count": 0,
+                "summary": "Nobody here",
+                "groups": []
+            },
+            "venuePage": {
+                "id": "89928819"
+            },
+            "referralId": "v-1441320321"
+        }, {
+            "id": "42af6f80f964a5205e251fe3",
+            "name": "21st Amendment Brewery & Restaurant",
+            "contact": {
+                "phone": "4153690900",
+                "formattedPhone": "(415) 369-0900",
+                "twitter": "21stamendment"
+            },
+            "location": {
+                "address": "563 2nd St",
+                "crossStreet": "at De Boom St",
+                "lat": 37.78237800515974,
+                "lng": -122.39258779659154,
+                "distance": 1451,
+                "postalCode": "94107",
+                "cc": "US",
+                "city": "San Francisco",
+                "state": "CA",
+                "country": "United States",
+                "formattedAddress": ["563 2nd St (at De Boom St)", "San Francisco, CA 94107"]
+            },
+            "categories": [{
+                "id": "50327c8591d4c4b30a586d5d",
+                "name": "Brewery",
+                "pluralName": "Breweries",
+                "shortName": "Brewery",
+                "icon": {
+                    "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/brewery_",
+                    "suffix": ".png"
+                },
+                "primary": true
+            }],
+            "verified": true,
+            "stats": {
+                "checkinsCount": 42114,
+                "usersCount": 21873,
+                "tipCount": 332
+            },
+            "url": "http:\/\/21st-amendment.com",
+            "hasMenu": true,
+            "menu": {
+                "type": "Menu",
+                "label": "Menu",
+                "anchor": "View Menu",
+                "url": "https:\/\/foursquare.com\/v\/21st-amendment-brewery--restaurant\/42af6f80f964a5205e251fe3\/menu",
+                "mobileUrl": "https:\/\/foursquare.com\/v\/42af6f80f964a5205e251fe3\/device_menu"
+            },
+            "allowMenuUrlEdit": true,
+            "specials": {
+                "count": 0,
+                "items": []
+            },
+            "hereNow": {
+                "count": 0,
+                "summary": "Nobody here",
+                "groups": []
+            },
+            "venuePage": {
+                "id": "52310023"
+            },
+            "referralId": "v-1441320321"
+        }, {
+            "id": "469019cbf964a5209f481fe3",
+            "name": "The Cheesecake Factory",
+            "contact": {
+                "phone": "4153914444",
+                "formattedPhone": "(415) 391-4444",
+                "twitter": "cheesecake",
+                "facebook": "106628409154",
+                "facebookUsername": "thecheesecakefactory",
+                "facebookName": "The Cheesecake Factory"
+            },
+            "location": {
+                "address": "251 Geary St",
+                "crossStreet": "btwn Powell St & Stockton St",
+                "lat": 37.787352202751634,
+                "lng": -122.40740954875946,
+                "distance": 425,
+                "postalCode": "94102",
+                "cc": "US",
+                "city": "San Francisco",
+                "state": "CA",
+                "country": "United States",
+                "formattedAddress": ["251 Geary St (btwn Powell St & Stockton St)", "San Francisco, CA 94102"]
+            },
+            "categories": [{
+                "id": "4bf58dd8d48988d14e941735",
+                "name": "American Restaurant",
+                "pluralName": "American Restaurants",
+                "shortName": "American",
+                "icon": {
+                    "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/default_",
+                    "suffix": ".png"
+                },
+                "primary": true
+            }],
+            "verified": true,
+            "stats": {
+                "checkinsCount": 31507,
+                "usersCount": 22769,
+                "tipCount": 358
+            },
+            "url": "http:\/\/www.thecheesecakefactory.com",
+            "hasMenu": true,
+            "menu": {
+                "type": "Menu",
+                "label": "Menu",
+                "anchor": "View Menu",
+                "url": "https:\/\/foursquare.com\/v\/the-cheesecake-factory\/469019cbf964a5209f481fe3\/menu",
+                "mobileUrl": "https:\/\/foursquare.com\/v\/469019cbf964a5209f481fe3\/device_menu"
+            },
+            "allowMenuUrlEdit": true,
+            "specials": {
+                "count": 0,
+                "items": []
+            },
+            "hereNow": {
+                "count": 1,
+                "summary": "One other person is here",
+                "groups": [{
+                    "type": "others",
+                    "name": "Other people here",
+                    "count": 1,
+                    "items": []
+                }]
+            },
+            "referralId": "v-1441320321"
+        }, {
+            "id": "4ddd32f9d4c082f960d7fe2b",
+            "name": "Super Duper Burger",
+            "contact": {
+                "phone": "4155383437",
+                "formattedPhone": "(415) 538-3437",
+                "twitter": "superdupersf",
+                "facebook": "128159183877083",
+                "facebookUsername": "SuperDuperBurgers",
+                "facebookName": "Super Duper Burgers"
+            },
+            "location": {
+                "address": "721 Market St",
+                "crossStreet": "btwn 3rd St & 4th St",
+                "lat": 37.787033183640254,
+                "lng": -122.40404337644577,
+                "distance": 568,
+                "postalCode": "94103",
+                "cc": "US",
+                "city": "San Francisco",
+                "state": "CA",
+                "country": "United States",
+                "formattedAddress": ["721 Market St (btwn 3rd St & 4th St)", "San Francisco, CA 94103"]
+            },
+            "categories": [{
+                "id": "4bf58dd8d48988d16c941735",
+                "name": "Burger Joint",
+                "pluralName": "Burger Joints",
+                "shortName": "Burgers",
+                "icon": {
+                    "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/burger_",
+                    "suffix": ".png"
+                },
+                "primary": true
+            }],
+            "verified": true,
+            "stats": {
+                "checkinsCount": 27509,
+                "usersCount": 15367,
+                "tipCount": 320
+            },
+            "url": "http:\/\/www.superdupersf.com",
+            "hasMenu": true,
+            "menu": {
+                "type": "Menu",
+                "label": "Menu",
+                "anchor": "View Menu",
+                "url": "https:\/\/foursquare.com\/v\/super-duper-burger\/4ddd32f9d4c082f960d7fe2b\/menu",
+                "mobileUrl": "https:\/\/foursquare.com\/v\/4ddd32f9d4c082f960d7fe2b\/device_menu"
+            },
+            "allowMenuUrlEdit": true,
+            "specials": {
+                "count": 0,
+                "items": []
+            },
+            "hereNow": {
+                "count": 6,
+                "summary": "6 people are here",
+                "groups": [{
+                    "type": "others",
+                    "name": "Other people here",
+                    "count": 6,
+                    "items": []
+                }]
+            },
+            "storeId": "",
+            "referralId": "v-1441320321"
+        }, {
+            "id": "4a424d0ef964a520b7a51fe3",
+            "name": "Whole Foods Market",
+            "contact": {
+                "phone": "4156180066",
+                "formattedPhone": "(415) 618-0066",
+                "twitter": "wholefoodsnorca",
+                "facebook": "24922591487",
+                "facebookUsername": "wholefoods",
+                "facebookName": "Whole Foods Market"
+            },
+            "location": {
+                "address": "399 4th St",
+                "crossStreet": "at Harrison St",
+                "lat": 37.781329822235854,
+                "lng": -122.39991813898087,
+                "distance": 842,
+                "postalCode": "94107",
+                "cc": "US",
+                "city": "San Francisco",
+                "state": "CA",
+                "country": "United States",
+                "formattedAddress": ["399 4th St (at Harrison St)", "San Francisco, CA 94107"]
+            },
+            "categories": [{
+                "id": "4bf58dd8d48988d118951735",
+                "name": "Grocery Store",
+                "pluralName": "Grocery Stores",
+                "shortName": "Grocery Store",
+                "icon": {
+                    "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/shops\/food_grocery_",
+                    "suffix": ".png"
+                },
+                "primary": true
+            }],
+            "verified": true,
+            "stats": {
+                "checkinsCount": 37046,
+                "usersCount": 8834,
+                "tipCount": 147
+            },
+            "url": "http:\/\/www.wholefoodsmarket.com",
+            "allowMenuUrlEdit": true,
+            "specials": {
+                "count": 0,
+                "items": []
+            },
+            "hereNow": {
+                "count": 1,
+                "summary": "One other person is here",
+                "groups": [{
+                    "type": "others",
+                    "name": "Other people here",
+                    "count": 1,
+                    "items": []
+                }]
+            },
+            "storeId": "SOM",
+            "referralId": "v-1441320321"
+        }, {
+            "id": "511ab11fe4b078c672896eab",
+            "name": "Garaje",
+            "contact": {
+                "phone": "4156640838",
+                "formattedPhone": "(415) 664-0838"
+            },
+            "location": {
+                "address": "475 3rd St",
+                "crossStreet": "at Bryant St",
+                "lat": 37.781810106659364,
+                "lng": -122.3960286433832,
+                "distance": 1160,
+                "postalCode": "94107",
+                "cc": "US",
+                "city": "San Francisco",
+                "state": "CA",
+                "country": "United States",
+                "formattedAddress": ["475 3rd St (at Bryant St)", "San Francisco, CA 94107"]
+            },
+            "categories": [{
+                "id": "4bf58dd8d48988d1c1941735",
+                "name": "Mexican Restaurant",
+                "pluralName": "Mexican Restaurants",
+                "shortName": "Mexican",
+                "icon": {
+                    "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/mexican_",
+                    "suffix": ".png"
+                },
+                "primary": true
+            }],
+            "verified": true,
+            "stats": {
+                "checkinsCount": 11303,
+                "usersCount": 4716,
+                "tipCount": 188
+            },
+            "url": "http:\/\/www.garaje475.com",
+            "hasMenu": true,
+            "menu": {
+                "type": "Menu",
+                "label": "Menu",
+                "anchor": "View Menu",
+                "url": "https:\/\/foursquare.com\/v\/garaje\/511ab11fe4b078c672896eab\/menu",
+                "mobileUrl": "https:\/\/foursquare.com\/v\/511ab11fe4b078c672896eab\/device_menu"
+            },
+            "allowMenuUrlEdit": true,
+            "specials": {
+                "count": 0,
+                "items": []
+            },
+            "hereNow": {
+                "count": 0,
+                "summary": "Nobody here",
+                "groups": []
+            },
+            "venuePage": {
+                "id": "89858994"
+            },
+            "referralId": "v-1441320321"
+        }, {
+            "id": "533cc33f498e604ebad95d8c",
+            "name": "Souvla",
+            "contact": {
+                "phone": "4154005458",
+                "formattedPhone": "(415) 400-5458",
+                "twitter": "soulvasf"
+            },
+            "location": {
+                "address": "517 Hayes St",
+                "crossStreet": "at Octavia St",
+                "lat": 37.77652235934059,
+                "lng": -122.42494500911538,
+                "distance": 1617,
+                "postalCode": "94102",
+                "cc": "US",
+                "city": "San Francisco",
+                "state": "CA",
+                "country": "United States",
+                "formattedAddress": ["517 Hayes St (at Octavia St)", "San Francisco, CA 94102"]
+            },
+            "categories": [{
+                "id": "52e81612bcbc57f1066b79f3",
+                "name": "Souvlaki Shop",
+                "pluralName": "Souvlaki Shops",
+                "shortName": "Souvlaki",
+                "icon": {
+                    "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/souvlaki_",
+                    "suffix": ".png"
+                },
+                "primary": true
+            }],
+            "verified": true,
+            "stats": {
+                "checkinsCount": 3957,
+                "usersCount": 2059,
+                "tipCount": 91
+            },
+            "url": "http:\/\/souvlasf.com",
+            "menu": {
+                "type": "Menu",
+                "label": "Menu",
+                "anchor": "View Menu",
+                "url": "http:\/\/sanfrancisco.menupages.com\/restaurants\/souvla\/menu",
+                "mobileUrl": "http:\/\/sanfrancisco.menupages.com\/restaurants\/souvla\/menu",
+                "externalUrl": "http:\/\/sanfrancisco.menupages.com\/restaurants\/souvla\/menu"
+            },
+            "allowMenuUrlEdit": true,
+            "specials": {
+                "count": 0,
+                "items": []
+            },
+            "hereNow": {
+                "count": 0,
+                "summary": "Nobody here",
+                "groups": []
+            },
+            "venuePage": {
+                "id": "83689801"
+            },
+            "storeId": "",
+            "referralId": "v-1441320321"
+        }, {
+            "id": "5010936ce4b0abd8740f8fb7",
+            "name": "Super Duper Burger",
+            "contact": {
+                "phone": "4158821750",
+                "formattedPhone": "(415) 882-1750",
+                "twitter": "superdupersf",
+                "facebook": "128159183877083",
+                "facebookUsername": "SuperDuperBurgers",
+                "facebookName": "Super Duper Burgers"
+            },
+            "location": {
+                "address": "783 Mission St",
+                "crossStreet": "btwn 3rd & 4th St",
+                "lat": 37.78483392804297,
+                "lng": -122.40353107452393,
+                "distance": 495,
+                "postalCode": "94103",
+                "cc": "US",
+                "city": "San Francisco",
+                "state": "CA",
+                "country": "United States",
+                "formattedAddress": ["783 Mission St (btwn 3rd & 4th St)", "San Francisco, CA 94103"]
+            },
+            "categories": [{
+                "id": "4bf58dd8d48988d16c941735",
+                "name": "Burger Joint",
+                "pluralName": "Burger Joints",
+                "shortName": "Burgers",
+                "icon": {
+                    "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/burger_",
+                    "suffix": ".png"
+                },
+                "primary": true
+            }],
+            "verified": true,
+            "stats": {
+                "checkinsCount": 13517,
+                "usersCount": 7629,
+                "tipCount": 127
+            },
+            "url": "http:\/\/www.superdupersf.com",
+            "hasMenu": true,
+            "menu": {
+                "type": "Menu",
+                "label": "Menu",
+                "anchor": "View Menu",
+                "url": "https:\/\/foursquare.com\/v\/super-duper-burger\/5010936ce4b0abd8740f8fb7\/menu",
+                "mobileUrl": "https:\/\/foursquare.com\/v\/5010936ce4b0abd8740f8fb7\/device_menu"
+            },
+            "allowMenuUrlEdit": true,
+            "specials": {
+                "count": 0,
+                "items": []
+            },
+            "hereNow": {
+                "count": 1,
+                "summary": "One other person is here",
+                "groups": [{
+                    "type": "others",
+                    "name": "Other people here",
+                    "count": 1,
+                    "items": []
+                }]
+            },
+            "storeId": "",
+            "referralId": "v-1441320321"
+        }, {
+            "id": "4a5f8994f964a520d5bf1fe3",
+            "name": "Tropisueño",
+            "contact": {
+                "phone": "4152430299",
+                "formattedPhone": "(415) 243-0299",
+                "twitter": "tropisueno",
+                "facebook": "132127506826790",
+                "facebookUsername": "Tropisueno",
+                "facebookName": "Tropisueño SF"
+            },
+            "location": {
+                "address": "75 Yerba Buena Ln",
+                "crossStreet": "btwn 3rd & 4th St",
+                "lat": 37.78534267732514,
+                "lng": -122.40393340587616,
+                "distance": 479,
+                "postalCode": "94103",
+                "cc": "US",
+                "city": "San Francisco",
+                "state": "CA",
+                "country": "United States",
+                "formattedAddress": ["75 Yerba Buena Ln (btwn 3rd & 4th St)", "San Francisco, CA 94103"]
+            },
+            "categories": [{
+                "id": "4bf58dd8d48988d1c1941735",
+                "name": "Mexican Restaurant",
+                "pluralName": "Mexican Restaurants",
+                "shortName": "Mexican",
+                "icon": {
+                    "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/mexican_",
+                    "suffix": ".png"
+                },
+                "primary": true
+            }],
+            "verified": true,
+            "stats": {
+                "checkinsCount": 24401,
+                "usersCount": 12761,
+                "tipCount": 298
+            },
+            "url": "http:\/\/www.tropisueno.com",
+            "hasMenu": true,
+            "menu": {
+                "type": "Menu",
+                "label": "Menu",
+                "anchor": "View Menu",
+                "url": "https:\/\/foursquare.com\/v\/tropisue%C3%B1o\/4a5f8994f964a520d5bf1fe3\/menu",
+                "mobileUrl": "https:\/\/foursquare.com\/v\/4a5f8994f964a520d5bf1fe3\/device_menu"
+            },
+            "allowMenuUrlEdit": true,
+            "specials": {
+                "count": 0,
+                "items": []
+            },
+            "hereNow": {
+                "count": 0,
+                "summary": "Nobody here",
+                "groups": []
+            },
+            "venuePage": {
+                "id": "39701060"
+            },
+            "storeId": "",
+            "referralId": "v-1441320321"
+        }, {
+            "id": "4c44d4b9dcd61b8df9e67b56",
+            "name": "Zero Zero",
+            "contact": {
+                "phone": "4153488800",
+                "formattedPhone": "(415) 348-8800",
+                "twitter": "zerozerosf"
+            },
+            "location": {
+                "address": "826 Folsom St",
+                "crossStreet": "btwn 4th St & 5th St",
+                "lat": 37.78167112478022,
+                "lng": -122.40177154541016,
+                "distance": 675,
+                "postalCode": "94107",
+                "cc": "US",
+                "city": "San Francisco",
+                "state": "CA",
+                "country": "United States",
+                "formattedAddress": ["826 Folsom St (btwn 4th St & 5th St)", "San Francisco, CA 94107"]
+            },
+            "categories": [{
+                "id": "4bf58dd8d48988d1ca941735",
+                "name": "Pizza Place",
+                "pluralName": "Pizza Places",
+                "shortName": "Pizza",
+                "icon": {
+                    "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/pizza_",
+                    "suffix": ".png"
+                },
+                "primary": true
+            }],
+            "verified": true,
+            "stats": {
+                "checkinsCount": 23346,
+                "usersCount": 12987,
+                "tipCount": 323
+            },
+            "url": "http:\/\/www.zerozerosf.com",
+            "hasMenu": true,
+            "reservations": {
+                "url": "http:\/\/www.opentable.com\/single.aspx?rid=48964&ref=9601"
+            },
+            "menu": {
+                "type": "Menu",
+                "label": "Menu",
+                "anchor": "View Menu",
+                "url": "https:\/\/foursquare.com\/v\/zero-zero\/4c44d4b9dcd61b8df9e67b56\/menu",
+                "mobileUrl": "https:\/\/foursquare.com\/v\/4c44d4b9dcd61b8df9e67b56\/device_menu"
+            },
+            "allowMenuUrlEdit": true,
+            "specials": {
+                "count": 0,
+                "items": []
+            },
+            "hereNow": {
+                "count": 0,
+                "summary": "Nobody here",
+                "groups": []
+            },
+            "venuePage": {
+                "id": "52310912"
+            },
+            "referralId": "v-1441320321"
+        }, {
+            "id": "43fed1fff964a520fe2f1fe3",
+            "name": "Hog Island Oyster Co.",
+            "contact": {
+                "phone": "4153917117",
+                "formattedPhone": "(415) 391-7117",
+                "twitter": "hogislandoyster"
+            },
+            "location": {
+                "address": "1 Ferry Building",
+                "crossStreet": "at The Embarcadero",
+                "lat": 37.7960679927155,
+                "lng": -122.39360690116882,
+                "distance": 1927,
+                "postalCode": "94111",
+                "cc": "US",
+                "city": "San Francisco",
+                "state": "CA",
+                "country": "United States",
+                "formattedAddress": ["1 Ferry Building (at The Embarcadero)", "San Francisco, CA 94111"]
+            },
+            "categories": [{
+                "id": "4bf58dd8d48988d1ce941735",
+                "name": "Seafood Restaurant",
+                "pluralName": "Seafood Restaurants",
+                "shortName": "Seafood",
+                "icon": {
+                    "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/seafood_",
+                    "suffix": ".png"
+                },
+                "primary": true
+            }],
+            "verified": true,
+            "stats": {
+                "checkinsCount": 13805,
+                "usersCount": 10245,
+                "tipCount": 232
+            },
+            "url": "http:\/\/www.hogislandoysters.com",
+            "hasMenu": true,
+            "menu": {
+                "type": "Menu",
+                "label": "Menu",
+                "anchor": "View Menu",
+                "url": "https:\/\/foursquare.com\/v\/hog-island-oyster-co\/43fed1fff964a520fe2f1fe3\/menu",
+                "mobileUrl": "https:\/\/foursquare.com\/v\/43fed1fff964a520fe2f1fe3\/device_menu"
+            },
+            "allowMenuUrlEdit": true,
+            "specials": {
+                "count": 0,
+                "items": []
+            },
+            "hereNow": {
+                "count": 1,
+                "summary": "One other person is here",
+                "groups": [{
+                    "type": "others",
+                    "name": "Other people here",
+                    "count": 1,
+                    "items": []
+                }]
+            },
+            "venuePage": {
+                "id": "52311147"
+            },
+            "referralId": "v-1441320321"
+        }, {
+            "id": "43d3901ef964a5201f2e1fe3",
+            "name": "Blue Bottle Coffee",
+            "contact": {
+                "phone": "4152527535",
+                "formattedPhone": "(415) 252-7535",
+                "twitter": "bluebottlealley"
+            },
+            "location": {
+                "address": "315 Linden St",
+                "crossStreet": "btwn Gough & Octavia St",
+                "lat": 37.776407,
+                "lng": -122.42325067520142,
+                "distance": 1496,
+                "postalCode": "94102",
+                "cc": "US",
+                "neighborhood": "Hayes Valley",
+                "city": "San Francisco",
+                "state": "CA",
+                "country": "United States",
+                "formattedAddress": ["315 Linden St (btwn Gough & Octavia St)", "San Francisco, CA 94102"]
+            },
+            "categories": [{
+                "id": "4bf58dd8d48988d1e0931735",
+                "name": "Coffee Shop",
+                "pluralName": "Coffee Shops",
+                "shortName": "Coffee Shop",
+                "icon": {
+                    "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/coffeeshop_",
+                    "suffix": ".png"
+                },
+                "primary": true
+            }],
+            "verified": false,
+            "stats": {
+                "checkinsCount": 22814,
+                "usersCount": 7037,
+                "tipCount": 190
+            },
+            "url": "http:\/\/www.bluebottlecoffee.com\/locations\/kiosk\/",
+            "hasMenu": true,
+            "menu": {
+                "type": "Menu",
+                "label": "Menu",
+                "anchor": "View Menu",
+                "url": "https:\/\/foursquare.com\/v\/blue-bottle-coffee\/43d3901ef964a5201f2e1fe3\/menu",
+                "mobileUrl": "https:\/\/foursquare.com\/v\/43d3901ef964a5201f2e1fe3\/device_menu"
+            },
+            "allowMenuUrlEdit": true,
+            "specials": {
+                "count": 0,
+                "items": []
+            },
+            "hereNow": {
+                "count": 2,
+                "summary": "2 people are here",
+                "groups": [{
+                    "type": "others",
+                    "name": "Other people here",
+                    "count": 2,
+                    "items": []
+                }]
+            },
+            "referralId": "v-1441320321"
+        }, {
+            "id": "3fd66200f964a52031f11ee3",
+            "name": "Tonga Room & Hurricane Bar",
+            "contact": {
+                "phone": "4157725278",
+                "formattedPhone": "(415) 772-5278",
+                "twitter": "fairmonthotels",
+                "facebook": "54927053756",
+                "facebookUsername": "tongaroom",
+                "facebookName": "Tonga Room and Hurricane Bar"
+            },
+            "location": {
+                "address": "950 Mason St",
+                "lat": 37.792261319862405,
+                "lng": -122.40963578224182,
+                "distance": 950,
+                "postalCode": "94108",
+                "cc": "US",
+                "city": "San Francisco",
+                "state": "CA",
+                "country": "United States",
+                "formattedAddress": ["950 Mason St", "San Francisco, CA 94108"]
+            },
+            "categories": [{
+                "id": "4bf58dd8d48988d11e941735",
+                "name": "Cocktail Bar",
+                "pluralName": "Cocktail Bars",
+                "shortName": "Cocktail",
+                "icon": {
+                    "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/nightlife\/cocktails_",
+                    "suffix": ".png"
+                },
+                "primary": true
+            }],
+            "verified": true,
+            "stats": {
+                "checkinsCount": 12688,
+                "usersCount": 10305,
+                "tipCount": 126
+            },
+            "url": "http:\/\/bit.ly\/wWpDIs",
+            "hasMenu": true,
+            "reservations": {
+                "url": "http:\/\/www.opentable.com\/single.aspx?rid=2509&ref=9601"
+            },
+            "menu": {
+                "type": "Menu",
+                "label": "Menu",
+                "anchor": "View Menu",
+                "url": "https:\/\/foursquare.com\/v\/tonga-room--hurricane-bar\/3fd66200f964a52031f11ee3\/menu",
+                "mobileUrl": "https:\/\/foursquare.com\/v\/3fd66200f964a52031f11ee3\/device_menu"
+            },
+            "allowMenuUrlEdit": true,
+            "specials": {
+                "count": 0,
+                "items": []
+            },
+            "hereNow": {
+                "count": 0,
+                "summary": "Nobody here",
+                "groups": []
+            },
+            "storeId": "SAF-R",
+            "referralId": "v-1441320321"
+        }, {
+            "id": "54f0d6d5498e9a7e483f2e80",
+            "name": "Sharetea",
+            "contact": {
+                "phone": "4152270888",
+                "formattedPhone": "(415) 227-0888"
+            },
+            "location": {
+                "address": "135 4th St",
+                "crossStreet": "at Mission St",
+                "lat": 37.78442746530533,
+                "lng": -122.40339676642412,
+                "distance": 498,
+                "postalCode": "94103",
+                "cc": "US",
+                "city": "San Francisco",
+                "state": "CA",
+                "country": "United States",
+                "formattedAddress": ["135 4th St (at Mission St)", "San Francisco, CA 94103"]
+            },
+            "categories": [{
+                "id": "52e81612bcbc57f1066b7a0c",
+                "name": "Bubble Tea Shop",
+                "pluralName": "Bubble Tea Shops",
+                "shortName": "Bubble Tea",
+                "icon": {
+                    "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/bubble_",
+                    "suffix": ".png"
+                },
+                "primary": true
+            }],
+            "verified": false,
+            "stats": {
+                "checkinsCount": 1304,
+                "usersCount": 664,
+                "tipCount": 10
+            },
+            "url": "http:\/\/shareteametreon.net",
+            "allowMenuUrlEdit": true,
+            "specials": {
+                "count": 0,
+                "items": []
+            },
+            "hereNow": {
+                "count": 3,
+                "summary": "3 people are here",
+                "groups": [{
+                    "type": "others",
+                    "name": "Other people here",
+                    "count": 3,
+                    "items": []
+                }]
+            },
+            "referralId": "v-1441320321"
+        }, {
+            "id": "51e08f37498e1d7e82c50708",
+            "name": "Workshop Cafe",
+            "contact": {
+                "phone": "4153221048",
+                "formattedPhone": "(415) 322-1048",
+                "twitter": "workshopcafe",
+                "facebook": "323851227682664",
+                "facebookUsername": "WorkshopCafe",
+                "facebookName": "Workshop Cafe"
+            },
+            "location": {
+                "address": "180 Montgomery St Ste 100",
+                "crossStreet": "at Bush St",
+                "lat": 37.79065041928419,
+                "lng": -122.40220069885254,
+                "distance": 973,
+                "postalCode": "94104",
+                "cc": "US",
+                "city": "San Francisco",
+                "state": "CA",
+                "country": "United States",
+                "formattedAddress": ["180 Montgomery St Ste 100 (at Bush St)", "San Francisco, CA 94104"]
+            },
+            "categories": [{
+                "id": "4bf58dd8d48988d16d941735",
+                "name": "Café",
+                "pluralName": "Cafés",
+                "shortName": "Café",
+                "icon": {
+                    "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/cafe_",
+                    "suffix": ".png"
+                },
+                "primary": true
+            }],
+            "verified": true,
+            "stats": {
+                "checkinsCount": 6907,
+                "usersCount": 3086,
+                "tipCount": 94
+            },
+            "url": "http:\/\/www.workshopcafe.com",
+            "hasMenu": true,
+            "menu": {
+                "type": "Menu",
+                "label": "Menu",
+                "anchor": "View Menu",
+                "url": "https:\/\/foursquare.com\/v\/workshop-cafe\/51e08f37498e1d7e82c50708\/menu",
+                "mobileUrl": "https:\/\/foursquare.com\/v\/51e08f37498e1d7e82c50708\/device_menu"
+            },
+            "allowMenuUrlEdit": true,
+            "specials": {
+                "count": 0,
+                "items": []
+            },
+            "hereNow": {
+                "count": 2,
+                "summary": "2 people are here",
+                "groups": [{
+                    "type": "others",
+                    "name": "Other people here",
+                    "count": 2,
+                    "items": []
+                }]
+            },
+            "venuePage": {
+                "id": "64469397"
+            },
+            "storeId": "",
+            "referralId": "v-1441320321"
+        }, {
+            "id": "54976d5c498eccc96c62bc55",
+            "name": "Burma Love",
+            "contact": {
+                "phone": "4158612100",
+                "formattedPhone": "(415) 861-2100"
+            },
+            "location": {
+                "address": "211 Valencia St",
+                "crossStreet": "Duboce Ave",
+                "lat": 37.769618,
+                "lng": -122.422199,
+                "distance": 1955,
+                "postalCode": "94103",
+                "cc": "US",
+                "city": "San Francisco",
+                "state": "CA",
+                "country": "United States",
+                "formattedAddress": ["211 Valencia St (Duboce Ave)", "San Francisco, CA 94103"]
+            },
+            "categories": [{
+                "id": "4bf58dd8d48988d142941735",
+                "name": "Asian Restaurant",
+                "pluralName": "Asian Restaurants",
+                "shortName": "Asian",
+                "icon": {
+                    "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/asian_",
+                    "suffix": ".png"
+                },
+                "primary": true
+            }],
+            "verified": false,
+            "stats": {
+                "checkinsCount": 1683,
+                "usersCount": 1264,
+                "tipCount": 45
+            },
+            "url": "http:\/\/burmalovesf.com",
+            "menu": {
+                "type": "Menu",
+                "label": "Menu",
+                "anchor": "View Menu",
+                "url": "http:\/\/www.burmalovesf.com\/dinner.pdf",
+                "mobileUrl": "http:\/\/www.burmalovesf.com\/dinner.pdf",
+                "externalUrl": "http:\/\/www.burmalovesf.com\/dinner.pdf"
+            },
+            "allowMenuUrlEdit": true,
+            "specials": {
+                "count": 0,
+                "items": []
+            },
+            "hereNow": {
+                "count": 2,
+                "summary": "2 people are here",
+                "groups": [{
+                    "type": "others",
+                    "name": "Other people here",
+                    "count": 2,
+                    "items": []
+                }]
+            },
+            "referralId": "v-1441320321"
+        }, {
+            "id": "4dd7e48fd22d38ef42f35bd8",
+            "name": "Biergarten",
+            "contact": {
+                "phone": "4152529289",
+                "formattedPhone": "(415) 252-9289",
+                "twitter": "biergartensf"
+            },
+            "location": {
+                "address": "424 Octavia St",
+                "crossStreet": "btwn Linden & Fell St",
+                "lat": 37.77600657051945,
+                "lng": -122.42387294769287,
+                "distance": 1567,
+                "postalCode": "94102",
+                "cc": "US",
+                "city": "San Francisco",
+                "state": "CA",
+                "country": "United States",
+                "formattedAddress": ["424 Octavia St (btwn Linden & Fell St)", "San Francisco, CA 94102"]
+            },
+            "categories": [{
+                "id": "4bf58dd8d48988d117941735",
+                "name": "Beer Garden",
+                "pluralName": "Beer Gardens",
+                "shortName": "Beer Garden",
+                "icon": {
+                    "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/nightlife\/beergarden_",
+                    "suffix": ".png"
+                },
+                "primary": true
+            }],
+            "verified": true,
+            "stats": {
+                "checkinsCount": 12751,
+                "usersCount": 7611,
+                "tipCount": 109
+            },
+            "url": "http:\/\/www.biergartensf.com",
+            "menu": {
+                "type": "Menu",
+                "label": "Menu",
+                "anchor": "View Menu",
+                "url": "http:\/\/sanfrancisco.menupages.com\/restaurants\/biergarten\/menu",
+                "mobileUrl": "http:\/\/sanfrancisco.menupages.com\/restaurants\/biergarten\/menu",
+                "externalUrl": "http:\/\/sanfrancisco.menupages.com\/restaurants\/biergarten\/menu"
+            },
+            "allowMenuUrlEdit": true,
+            "specials": {
+                "count": 0,
+                "items": []
+            },
+            "hereNow": {
+                "count": 0,
+                "summary": "Nobody here",
+                "groups": []
+            },
+            "venuePage": {
+                "id": "33219322"
+            },
+            "storeId": "",
+            "referralId": "v-1441320321"
+        }, {
+            "id": "535ec7a0498ef28116175e96",
+            "name": "Plentea",
+            "contact": {
+                "phone": "4157669852",
+                "formattedPhone": "(415) 766-9852",
+                "twitter": "plenteaca",
+                "facebook": "603304023094835",
+                "facebookName": "Plentea inc."
+            },
+            "location": {
+                "address": "341 Kearny St",
+                "crossStreet": "btwn Bush & Pine St",
+                "lat": 37.79144597561414,
+                "lng": -122.40413797545523,
+                "distance": 958,
+                "postalCode": "94108",
+                "cc": "US",
+                "city": "San Francisco",
+                "state": "CA",
+                "country": "United States",
+                "formattedAddress": ["341 Kearny St (btwn Bush & Pine St)", "San Francisco, CA 94108"]
+            },
+            "categories": [{
+                "id": "52e81612bcbc57f1066b7a0c",
+                "name": "Bubble Tea Shop",
+                "pluralName": "Bubble Tea Shops",
+                "shortName": "Bubble Tea",
+                "icon": {
+                    "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/bubble_",
+                    "suffix": ".png"
+                },
+                "primary": true
+            }],
+            "verified": false,
+            "stats": {
+                "checkinsCount": 4116,
+                "usersCount": 2121,
+                "tipCount": 72
+            },
+            "allowMenuUrlEdit": true,
+            "specials": {
+                "count": 0,
+                "items": []
+            },
+            "hereNow": {
+                "count": 1,
+                "summary": "One other person is here",
+                "groups": [{
+                    "type": "others",
+                    "name": "Other people here",
+                    "count": 1,
+                    "items": []
+                }]
+            },
+            "referralId": "v-1441320321"
+        }, {
+            "id": "54024696498e2fef352d2586",
+            "name": "Boba Guys",
+            "contact": {
+                "twitter": "bobaguys",
+                "facebook": "136972233062657",
+                "facebookUsername": "bobaguys",
+                "facebookName": "Boba Guys"
+            },
+            "location": {
+                "address": "429 Stockton St",
+                "lat": 37.789953018925054,
+                "lng": -122.40708063438913,
+                "distance": 711,
+                "postalCode": "94108",
+                "cc": "US",
+                "city": "San Francisco",
+                "state": "CA",
+                "country": "United States",
+                "formattedAddress": ["429 Stockton St", "San Francisco, CA 94108"]
+            },
+            "categories": [{
+                "id": "52e81612bcbc57f1066b7a0c",
+                "name": "Bubble Tea Shop",
+                "pluralName": "Bubble Tea Shops",
+                "shortName": "Bubble Tea",
+                "icon": {
+                    "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/bubble_",
+                    "suffix": ".png"
+                },
+                "primary": true
+            }],
+            "verified": false,
+            "stats": {
+                "checkinsCount": 1920,
+                "usersCount": 961,
+                "tipCount": 32
+            },
+            "url": "http:\/\/bobaguys.com",
+            "menu": {
+                "type": "Menu",
+                "label": "Menu",
+                "anchor": "View Menu",
+                "url": "http:\/\/bobaguys.com\/menu",
+                "mobileUrl": "http:\/\/bobaguys.com\/menu",
+                "externalUrl": "http:\/\/bobaguys.com\/menu"
+            },
+            "allowMenuUrlEdit": true,
+            "specials": {
+                "count": 0,
+                "items": []
+            },
+            "hereNow": {
+                "count": 5,
+                "summary": "5 people are here",
+                "groups": [{
+                    "type": "others",
+                    "name": "Other people here",
+                    "count": 5,
+                    "items": []
+                }]
+            },
+            "referralId": "v-1441320321"
+        }]
+    }
+}
