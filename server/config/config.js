@@ -11,5 +11,12 @@ if (process.env.NODE_ENV === 'production') {
   databaseUrl = 'postgres://127.0.0.1:5432/partyof4';
 }
 
-module.exports.databaseUrl = databaseUrl;
-module.exports.options = options;
+var foursquareId = process.env.FOURSQUARE_ID || '';
+var foursquareSecret = process.env.FOURSQUARE_SECRET || '';
+
+module.exports = {
+  databaseUrl: databaseUrl,
+  options: options,
+  foursquareId: foursquareId,
+  foursquareSecret: foursquareSecret
+};
