@@ -1,6 +1,10 @@
 // locations.js
-var config = require('../config/config.js'),
-    https  = require('https');
+if (process.env.NODE_ENV === 'production') {
+  var config = require('../config/config.js');
+} else {
+  var config = require('../config/config2.js');
+}
+var https  = require('https');
 
 module.exports = {
   getLocations: function(req,res){

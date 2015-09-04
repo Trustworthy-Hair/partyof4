@@ -29,4 +29,4 @@ node_modules
 .DS_Store
 
 # Database configuration file contains sensitive info
-server/config/config.js
+server/config/config2.js
