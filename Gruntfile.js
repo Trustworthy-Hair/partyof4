@@ -53,7 +53,7 @@ module.exports = function(grunt) {
     },
     mochaTest: {
       test: {
-        src: ['test/usersTests.js', 'test/eventsTests.js'],
+        src: ['test/usersTests.js', 'test/eventsTests.js', 'test/locationsTests.js'],
         options: {
           run: true,
         },
