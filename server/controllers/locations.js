@@ -59,13 +59,18 @@ var formatLocationRes = function(location) {
 /*
  * Creates the http request object for the Foursquare API call
  */
-var createFoursquareReq = function(lat,long) {
-  var radius = 1000;
+var createFoursquareReq = function(type,lat,long,query) {
+  var radius = (type === 'all') ? 1000 : 2000;
   var version = 20150903;
 
   var url = '/v2/venues/explore?client_id='+config.foursquareId+'&client_secret='+config.foursquareSecret+
-            '&ll='+lat+','+long+'&v='+version+'&radius='+radius+'&section=food&limit=50&openNow=1';
+            '&ll='+lat+','+long+'&v='+version+'&radius='+radius+'&openNow=1';
 
+  if (type === 'search') {
+    url = url+'&query='+query;
+  } else if (type === 'all') {
+    url = url+'&section=food&limit=50';
+  }
   return {
     host: 'api.foursquare.com',
     path: url,
@@ -83,6 +88,8 @@ module.exports = {
     // var long = -122.4089911;
     var lat = req.query.latitude;
     var long = req.query.longitude;
+    var searchTerm = req.query.q;
+    var typeOfReq = searchTerm ? 'search' : 'all';
 
     if (!(lat && long)) {
       res.status(400).send('Invalid request - include latitude and longitude in URL parameters').end();
@@ -92,7 +99,7 @@ module.exports = {
     } else if (config.foursquareId === '' || config.foursquareSecret === '') {
       res.status(500).send('Foursquare API misconfigured - please contact partyof4 administrator').end();
     } else {
-      https.request(createFoursquareReq(lat,long), function(foursquareRes) {
+      https.request(createFoursquareReq(typeOfReq,lat,long,searchTerm), function(foursquareRes) {
         var responseBody ='';
         foursquareRes.on('data', function (chunk) {
           responseBody += chunk;
@@ -113,17 +120,6 @@ module.exports = {
           }
         });
       }).end();
-    }
-
-  },
-
-  getLocationSearch: function(req, res){
-    var searchTerm = req.query.q;
-
-    if (!searchTerm) {
-      res.status(400).send('Invalid request - must include search term in URL parameter').end();
-    } else {
-
     }
   }
 };
