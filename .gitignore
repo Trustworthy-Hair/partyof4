@@ -30,3 +30,6 @@ node_modules
 
 # Database configuration file contains sensitive info
 server/config/config2.js
+
+#build file
+client/build/*.*
