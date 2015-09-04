@@ -1,5 +1,5 @@
 // locations.js
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'production' || 'test' || 'travis') {
   var config = require('../config/config.js');
 } else {
   var config = require('../config/config2.js');
