@@ -14,7 +14,8 @@ module.exports = {
     if (!(lat && long)) {
       res.status(400).send('Invalid request - include latitude and longitude in URL parameters').end();
     } else if ((lat < -90 || lat > 90) || (long < -180 || long > 180)) {
-      res.status(400).send('Invalid request - latitide and longitude must be valid. (-90 < latitude < 90 and -180 < longitude < 180)').end();
+      res.status(400).send('Invalid request - latitide and longitude must be valid.' +
+                           '(-90 < latitude < 90 and -180 < longitude < 180)').end();
     } else {
 
       var apiUrl = '/v2/venues/explore?client_id='+config.foursquareId+'&client_secret='+config.foursquareSecret;
@@ -43,12 +44,16 @@ module.exports = {
           var locations = [];
           responseArr.forEach(function(item) {
             var location = item.venue;
+            var tags = [];
+            location.categories.forEach(function(category) {
+              tags.push(category.name);
+            });
             locations.push({
               "locationId": location.id,
               "name": location.name,
               "location": location.location.formattedAddress,
               "distance": location.location.distance,
-              "tags": location.categories.name,
+              "tags": tags,
               "coords": {
                 "latitude": location.location.lat,
                 "longitude": location.location.lng
