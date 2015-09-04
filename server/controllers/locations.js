@@ -3,6 +3,9 @@ var config = require('../config/config.js');
 
 var https  = require('https');
 
+/*
+ * Stores venue information in the Location table
+ */
 var storeVenues = function(req, locations) {
   var models = req.app.get('models');
   var Location = models.Location;
@@ -12,12 +15,14 @@ var storeVenues = function(req, locations) {
       Location.findOne({where: {fourSquareId: loc.locationId}})
       .then(function(location) {
         if (!location) {
+          var price = loc.price ? loc.price.tier : 0;
           Location.create({
             fourSquareId: loc.locationId,
             name: loc.name,
             address: {street: loc.location[0],
                       city: loc.location[1],
                       country: loc.location[2]},
+            price: price,
             longitude: loc.coords.latitude,
             latitude: loc.coords.longitude,
             tags: loc.tags,
@@ -28,17 +33,21 @@ var storeVenues = function(req, locations) {
   });
 };
 
-
+/*
+ * Formats the response from the Foursquare API 
+ */
 var formatLocationRes = function(location) {
   var tags = [];
   location.categories.forEach(function(category) {
     tags.push(category.name);
   });
+  var price = location.price ? location.price.tier : 0;
   return {
     "locationId": location.id,
     "name": location.name,
     "location": location.location.formattedAddress,
     "distance": location.location.distance,
+    "price": price,
     "tags": tags,
     "coords": {
       "latitude": location.location.lat,
@@ -47,6 +56,9 @@ var formatLocationRes = function(location) {
   };
 };
 
+/*
+ * Creates the http request object for the Foursquare API call
+ */
 var createFoursquareReq = function(lat,long) {
   var radius = 1000;
   var version = 20150903;
@@ -87,21 +99,31 @@ module.exports = {
         });
 
         foursquareRes.on('end', function () {
-          var responseArr = JSON.parse(responseBody).response.groups[0].items;
+          if (JSON.parse(responseBody).response) {
+            var responseArr = JSON.parse(responseBody).response.groups[0].items;
 
-          var locations = responseArr.map(function(item) {
-            return formatLocationRes(item.venue);
-          });
+            var locations = responseArr.map(function(item) {
+              return formatLocationRes(item.venue);
+            });
 
-          storeVenues(req, locations);
-          res.status(200).send({'locations':locations}).end();
+            storeVenues(req, locations);
+            res.status(200).send({'locations':locations}).end();
+          } else {
+            res.status(500).send('Unexpected server error - please contact partyof4 administrator').end();
+          }
         });
       }).end();
     }
 
   },
 
-  getOneLocation: function(){
+  getLocationSearch: function(req, res){
+    var searchTerm = req.query.q;
 
+    if (!searchTerm) {
+      res.status(400).send('Invalid request - must include search term in URL parameter').end();
+    } else {
+
+    }
   }
 };

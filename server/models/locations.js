@@ -10,6 +10,7 @@ module.exports = function (sequelize, DataTypes) {
     fourSquareId: DataTypes.STRING(24),
     name: DataTypes.STRING,
     address: DataTypes.JSON,
+    price: DataTypes.INTEGER,
     longitude: DataTypes.DOUBLE,
     latitude: DataTypes.DOUBLE,
     tags: DataTypes.ARRAY(DataTypes.TEXT),
