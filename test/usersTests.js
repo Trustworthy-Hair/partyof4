@@ -9,6 +9,8 @@ var request = supertest(server);
 
 var testData = {};
 
+var utils = require('./testUtils.js');
+
 describe('routes', function() {
 
   before(function(done){
@@ -96,22 +98,18 @@ describe('routes', function() {
 
   describe('POST', function(){
     it('should update User', function(done){
-      request
-        .post('/users/login')
-        .send(testData.loginValid)
-        .end(function (err, result){
-          var accessToken = result.res.body.token;
-          request
-            .post('/users/1?accessToken='+accessToken)
-            .send(testData.newUser)
-            .end(function (err2, result2) {
-              for(var x in result2.body){
-                if(testData.newUser[x] === undefined) delete result2.body[x];
-              }
-              assert.deepEqual(result2.body, testData.newUser );
-              done();
-            });
-        });
+      utils.logIn(function(result, accessToken) {
+        request
+          .post('/users/1?accessToken='+accessToken)
+          .send(testData.newUser)
+          .end(function (err2, result2) {
+            for(var x in result2.body){
+              if(testData.newUser[x] === undefined) delete result2.body[x];
+            }
+            assert.deepEqual(result2.body, testData.newUser );
+            done();
+          });
+      });
     })
   });  
 
