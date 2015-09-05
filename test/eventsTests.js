@@ -1,15 +1,15 @@
 process.env.NODE_ENV = 'test';
 
-var supertest = require('supertest');
-var server = require('../server/server');
-var assert = require('assert');
+var supertest = require('supertest'),
+    server    = require('../server/server'),
+    assert    = require('assert'),
+    utils     = require('./testUtils.js');
 
 var request = supertest(server);
 
 var req;
 var expectedResponse;
 
-var utils = require('./testUtils.js');
 
 describe('Events routes: ', function() {
 

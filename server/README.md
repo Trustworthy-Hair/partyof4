@@ -10,17 +10,18 @@
 - /users/:id/reviews
 
 ## /locations 
-
 GET request
 
 Returns a list of venues from the Foursquare API near a given location
 
 #### Required urls params 
 latitude : latitude of user's position
+
 longitude : longitude on user's position
 
 #### Optional urls params 
 q : search term for querying foursquare
+
 radius : max distance (in meters) from current location for searching for venues
 
 #### Example request
@@ -40,7 +41,8 @@ radius : max distance (in meters) from current location for searching for venues
     price: 1,
     tags: ["Donut Shop"],
     coords: {latitude: 37.791704,longitude: -122.420935}
-  }]}```
+  }]}
+```
 
 ## /events 
 

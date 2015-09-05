@@ -1,11 +1,11 @@
 // middleware.js
-var bodyParser = require('body-parser');
-var userRoutes = require('../routes/users');
-var eventRoutes = require('../routes/events');
-var locationRoutes = require('../routes/locations');
-var reviewRoutes = require('../routes/reviews');
-var jwt = require('jwt-simple');
-var utils = require('../config/utils');
+var bodyParser     = require('body-parser'),
+    userRoutes     = require('../routes/users'),
+    eventRoutes    = require('../routes/events'),
+    locationRoutes = require('../routes/locations'),
+    reviewRoutes   = require('../routes/reviews'),
+    jwt            = require('jwt-simple'),
+    utils          = require('../config/utils');
 
 var authToken = function(req, res, next) {
   var reqPath = req.path;

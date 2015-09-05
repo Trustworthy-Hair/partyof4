@@ -1,6 +1,6 @@
-var supertest = require('supertest');
-var server = require('../server/server');
-var request = supertest(server);
+var supertest = require('supertest'),
+    server    = require('../server/server'),
+    request   = supertest(server);
 
 var loginValid = {
   username: "test",
