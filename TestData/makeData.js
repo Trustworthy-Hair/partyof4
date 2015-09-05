@@ -1,7 +1,8 @@
 // makeData.js
 
-// Enter the number of new users you want to insert
-var numOfUsers = 10;
+//usage: `node makeData [numberOfUsers] [numberOfEvents]`
+var numOfUsers = process.argv[2] || 10;
+var numOfEvents = process.argv[3] || 20;
 
 var db = require('../server/config/db');
 var faker = require('faker');
@@ -18,8 +19,7 @@ for (var i = 0; i < numOfUsers; i++) {
   });
 }
 
-db.User.sync().then(function() {
-  newUsers.forEach(function(newUser) {
-    db.User.build(newUser).save();
-  });
+newUsers.forEach(function(newUser) {
+  db.User.build(newUser).save();
 });
+
