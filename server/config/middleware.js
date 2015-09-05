@@ -8,8 +8,17 @@ var jwt = require('jwt-simple');
 var utils = require('../config/utils');
 
 var authToken = function(req, res, next) {
-  var acceptedUrls = ['/','/users/signin','/users/signup'];
-  if (acceptedUrls.indexOf(req.path) !== -1) {
+  var reqPath = req.path;
+  if (req.method ==='GET') {
+    if (req.path.substring(0,6) === '/users') reqPath = '/users';
+    if (req.path.substring(0,7) === '/events') reqPath = '/events';
+  }
+  var acceptedPostUrls = ['/users/login','/users/signup'];
+  var acceptedGetUrls = ['/','/locations', '/users', '/events'];
+
+  var checkAccepted = (req.method === 'GET') ? (acceptedGetUrls.indexOf(reqPath) !== -1) : (acceptedPostUrls.indexOf(reqPath) !== -1);
+
+  if (checkAccepted) {
     return next();
   } else {
     var token = (req.body && req.body.accessToken) || (req.query && req.query.accessToken) || req.headers['x-access-token'];
