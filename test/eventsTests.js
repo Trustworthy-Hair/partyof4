@@ -15,7 +15,7 @@ describe('Events routes: ', function() {
 
   beforeEach(function () {
     req = {
-      HostId: 1,
+      hostId: 1,
       locationId: 1,
       plannedTime: (new Date(2015, 8, 2, 19, 30)).toISOString(),
       capacity: 10,
