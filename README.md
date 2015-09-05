@@ -1,3 +1,5 @@
+![build status](https://travis-ci.org/Trustworthy-Hair/partyof4.svg)
+
 # Party Of 4 (Working Title)
 
 A social app where you can find open seats at nearby restaurants. Meet new people & eat great food!
