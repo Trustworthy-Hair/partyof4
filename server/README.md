@@ -28,7 +28,8 @@ radius : max distance (in meters) from current location for searching for venues
 /locations?latitude=37.7837209&longitude=-122.4090445&q=donuts&radius=500
 
 #### Response Format  
-```{locations: [
+```json
+{locations: [
   {
     locationId: "44cf44a2f964a52020361fe3",
     name: "Bob's Donut & Pastry Shop",
@@ -43,7 +44,6 @@ radius : max distance (in meters) from current location for searching for venues
     coords: {latitude: 37.791704,longitude: -122.420935}
   }]}
 ```
-
 ## /events 
 
 #### Required urls params 
