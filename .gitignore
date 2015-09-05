@@ -27,6 +27,7 @@ build/Release
 node_modules
 
 .DS_Store
+.idea/
 
 #build file
 client/build/*.*

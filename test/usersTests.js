@@ -110,7 +110,7 @@ describe('routes', function() {
   });  
 
   describe('POST', function(){
-    it('should recieve login error', function(done){
+    it('should receive login error', function(done){
       request
         .post('/users/login')
         .send(testData.loginInvalid)
