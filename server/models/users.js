@@ -29,21 +29,19 @@ module.exports = function (sequelize, DataTypes) {
   var User = sequelize.define('User', {
     username: {
       type: DataTypes.STRING,
-      validate: {
-        // notNull: true
-      }
+      allowNull: false,
+      unique: true
     },
     password: {
       type: DataTypes.STRING,
-      validate: {
-        // notNull: true
-      }
+      allowNull: false
     },
     email: {
       type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
       validate: {
-        isEmail: true,
-        // notNull: true
+        isEmail: true
       }
     },
     profileImageUrl: {
@@ -56,9 +54,7 @@ module.exports = function (sequelize, DataTypes) {
     description: DataTypes.TEXT,
     status: {
       type: DataTypes.STRING,
-      validate: {
-        // notNull: true
-      }
+      allowNull: false
     },
     connectedToFacebook: DataTypes.BOOLEAN
   },{
