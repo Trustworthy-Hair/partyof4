@@ -1,7 +1,6 @@
 // users.js
 var utils = require('../config/utils');
 var jwt = require('jwt-simple');
-var secret = 'shhhh';
 
 module.exports = {
   signup: function(req, res){
@@ -50,14 +49,15 @@ module.exports = {
       else return user.comparePassword(user, potentialUser);
     }).then(function (user){
       if(user){
-        var token = jwt.encode(user, secret);
-        user.set('password', null);
+        var expireDate = Date.now() + 100000000;
+        var token = jwt.encode({"iss": "joe",
+                                "exp": expireDate}, utils.jwtTokenSecret);
+        // user.set('password', null);
         var returnObject = {
-          user: user,
           token: token
         };
         utils.sendResponse(res, 200, returnObject);
-      }else utils.sendResponse(res, 404, {error: "Password incorrect"});
+      } else utils.sendResponse(res, 404, {error: "Password incorrect"});
     }).catch(function (err){
       console.log('Error: ', err);
     });

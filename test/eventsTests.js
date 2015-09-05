@@ -1,13 +1,15 @@
 process.env.NODE_ENV = 'test';
 
-var supertest = require('supertest');
-var server = require('../server/server');
-var assert = require('assert');
+var supertest = require('supertest'),
+    server    = require('../server/server'),
+    assert    = require('assert'),
+    utils     = require('./testUtils.js');
 
 var request = supertest(server);
 
 var req;
 var expectedResponse;
+
 
 describe('Events routes: ', function() {
 
@@ -31,19 +33,20 @@ describe('Events routes: ', function() {
   describe('POST to /events', function() {
 
     it('should return a 201 status code and respond with the created event', function (done) {
+      utils.logIn(function(result, accessToken) {
+        request
+          .post('/events?accessToken='+accessToken)
+          .send(req)
+          .end(function (err, actualResponse) {          
+            ['id', 'createdAt', 'updatedAt'].forEach(function (property) {
+              delete actualResponse.body[property];
+            });
 
-      request
-        .post('/events')
-        .send(req)
-        .end(function (err, actualResponse) {          
-          ['id', 'createdAt', 'updatedAt'].forEach(function (property) {
-            delete actualResponse.body[property];
+            assert.equal(actualResponse.status, 201);
+            assert.deepEqual(actualResponse.body, expectedResponse);
+            done();
           });
-
-          assert.equal(actualResponse.status, 201);
-          assert.deepEqual(actualResponse.body, expectedResponse);
-          done();
-        });
+      });
     });
   });
 
@@ -76,29 +79,31 @@ describe('Events routes: ', function() {
     it('should return a 200 status code', function (done) {
 
       req.currentActivity = 'Eating';
-
-      request
-        .put('/events/1')
-        .send(req)
-        .end(function (err, actualResponse) {          
-          assert.equal(actualResponse.status, 200);
-          done();
-        });
+      utils.logIn(function(result, accessToken) {
+        request
+          .put('/events/1?accessToken='+accessToken)
+          .send(req)
+          .end(function (err, actualResponse) {          
+            assert.equal(actualResponse.status, 200);
+            done();
+          });
+      });
     });
 
     it('should modify the event in the database', function (done) {
+      utils.logIn(function(result, accessToken) {
+        request
+          .get('/events/1?accessToken='+accessToken)
+          .end(function (err, actualResponse) {          
+            ['id', 'createdAt', 'updatedAt'].forEach(function (property) {
+              delete actualResponse.body[property];
+            });
 
-      request
-        .get('/events/1')
-        .end(function (err, actualResponse) {          
-          ['id', 'createdAt', 'updatedAt'].forEach(function (property) {
-            delete actualResponse.body[property];
+            assert.notDeepEqual(actualResponse.body, expectedResponse);
+            expectedResponse.currentActivity = 'Eating';
+            assert.deepEqual(actualResponse.body, expectedResponse);
+            done();
           });
-
-          assert.notDeepEqual(actualResponse.body, expectedResponse);
-          expectedResponse.currentActivity = 'Eating';
-          assert.deepEqual(actualResponse.body, expectedResponse);
-          done();
         });
     });
   });

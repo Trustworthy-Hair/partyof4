@@ -1,9 +1,9 @@
 process.env.NODE_ENV = 'test';
 
-var supertest = require('supertest');
-var server = require('../server/server');
-var assert = require('assert');
-var expect = require('expect.js');
+var supertest = require('supertest'),
+    server    = require('../server/server'),
+    assert    = require('assert'),
+    expect    = require('expect.js');
 
 var request = supertest(server);
 

@@ -1,9 +1,10 @@
 process.env.NODE_ENV = 'test';
 
-var supertest = require('supertest');
-var server = require('../server/server');
-var assert = require('assert');
-var expect = require('expect.js');
+var supertest = require('supertest'),
+    server    = require('../server/server'),
+    assert    = require('assert'),
+    expect    = require('expect.js'),
+    utils     = require('./testUtils.js');
 
 var request = supertest(server);
 
@@ -58,9 +59,7 @@ describe('routes', function() {
       username: "brandon",
       password: "butts"
     }
-
-
-
+    
   });
 
   describe('POST', function() {
@@ -96,16 +95,18 @@ describe('routes', function() {
 
   describe('POST', function(){
     it('should update User', function(done){
-      request
-        .post('/users/1')
-        .send(testData.newUser)
-        .end(function (err, result) {
-          for(var x in result.body){
-            if(testData.newUser[x] === undefined) delete result.body[x];
-          }
-          assert.deepEqual(result.body, testData.newUser );
-          done();
-        });
+      utils.logIn(function(result, accessToken) {
+        request
+          .post('/users/1?accessToken='+accessToken)
+          .send(testData.newUser)
+          .end(function (err2, result2) {
+            for(var x in result2.body){
+              if(testData.newUser[x] === undefined) delete result2.body[x];
+            }
+            assert.deepEqual(result2.body, testData.newUser );
+            done();
+          });
+      });
     })
   });  
 
