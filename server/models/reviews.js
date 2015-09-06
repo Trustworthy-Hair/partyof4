@@ -8,7 +8,10 @@ Some Open Issues:
 
 module.exports = function (sequelize, DataTypes) {
   var Review = sequelize.define('Review', {
-    starRating: DataTypes.INTEGER,
+    starRating: {
+      type: DataTypes.INTEGER,
+      validation: { min: 0, max: 5 }
+    },
     text: DataTypes.TEXT
   });
 
