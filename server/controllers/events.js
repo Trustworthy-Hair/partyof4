@@ -2,9 +2,19 @@
 var utils = require('../config/utils');
 
 module.exports = {
-  getNearbyEvents: function(){
+  getNearbyEvents: function(req, res){
     /* Select all events from events table where distance
        between user and events < some number. */
+    // TODO: implement getNearbyEvents based on location
+    var models = req.app.get('models');
+    var Event = models.Event;
+
+
+    Event.findAll().then(function(events) {
+      utils.sendResponse(res, 201, events);
+    }).catch(function(err) {
+      console.error(err);
+    });
   },
 
   createEvent: function(req, res){

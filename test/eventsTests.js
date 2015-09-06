@@ -50,27 +50,42 @@ describe('Events routes: ', function() {
     });
   });
 
-  describe('GET to /events/:eventId', function () {
-    it('should return an existing event', function (done) {
+  describe('GET to /events', function () {
+    it('should return nearby events', function (done) {
       request
-        .get('/events/1')
-        .end(function (err, actualResponse) {          
+        .get('/events')
+        .end(function (err, actualResponse) {
           ['id', 'createdAt', 'updatedAt'].forEach(function (property) {
-            delete actualResponse.body[property];
+            delete actualResponse.body[0][property];
           });
 
-          assert.deepEqual(actualResponse.body, expectedResponse);
+          assert.deepEqual(actualResponse.body, [expectedResponse]);
           done();
         });
     });
 
-    it('should not return an nonexistent event', function (done) {
-      request
-        .get('/events/2')
-        .end(function (err, actualResponse) {
-          assert.deepEqual(actualResponse.body, {});
-          done();
-        });
+    describe('/:eventId', function () {
+      it('should return an existing event', function (done) {
+        request
+          .get('/events/1')
+          .end(function (err, actualResponse) {
+            ['id', 'createdAt', 'updatedAt'].forEach(function (property) {
+              delete actualResponse.body[property];
+            });
+
+            assert.deepEqual(actualResponse.body, expectedResponse);
+            done();
+          });
+      });
+
+      it('should not return an nonexistent event', function (done) {
+        request
+          .get('/events/2')
+          .end(function (err, actualResponse) {
+            assert.deepEqual(actualResponse.body, {});
+            done();
+          });
+      });
     });
   });
 
