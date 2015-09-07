@@ -60,6 +60,8 @@ module.exports = {
     var Event = models.Event;
     var eventId = req.params.eventId;
 
+    var currentUser = req.userId;
+
     var updatedEvent = {};
     for (var key in req.body) {
       updatedEvent[key] = req.body[key];
@@ -70,14 +72,24 @@ module.exports = {
     options.returning = true;
 
     Event.sync().then(function () {
-      return Event.update(updatedEvent, options);
+      return Event.findOne(options);
+    }).then(function(event) {
+      if (event.hostId === currentUser) {
+        return Event.update(updatedEvent, options);
+      } else {
+        return false;
+      }
     }).then(function (update) {
       /* Sequelize update method returns an array. Second element is an 
          array contained updated records. We want the first updated record 
          since there should be only one. See documentation of .update() at: 
          http://docs.sequelizejs.com/en/latest/api/model/#updatevalues-options-promisearrayaffectedcount-affectedrows */
-      updatedEvent = update[1][0];
-      utils.sendResponse(res, 200, updatedEvent);
+      if (update) {
+        updatedEvent = update[1][0];
+        utils.sendResponse(res, 200, updatedEvent);
+      } else {
+        utils.sendResponse(res, 403, 'Not authorized to edit this event');
+      }
     }).catch(function (err) {
       console.log('Error: ', err);
     });
