@@ -1,15 +1,20 @@
 var utils = require('../config/utils');
 
+var getInfo = function(req) {
+  var userId = req.params.id;
+  var models = req.app.get('models');
+  var Review = models.Review;
+  return {userId: userId, Review: Review};
+};
+
 module.exports = {
 
-  getReviews: function(req,res){
-    var userId = req.params.id;
-    var models = req.app.get('models');
-    var Review = models.Review;
+  getReviews: function(req, res){
+    var reviewUtils = getInfo(req);
 
-    Review.sync().then(function() {
-      return Review.findAll({
-        where: {subjectId: userId}
+    reviewUtils.Review.sync().then(function() {
+      return reviewUtils.Review.findAll({
+        where: {subjectId: reviewUtils.userId}
       });
     })
     .then(function(results) {
@@ -37,7 +42,21 @@ module.exports = {
     });
   },
 
-  postReview: function(){
+  postReview: function(req, res){
+    var reviewUtils = getInfo(req);
 
+    var review = {
+      starRating: req.body.starRating, 
+      text: req.body.text,
+      authorId: req.userId,
+      subjectId: reviewUtils.userId,
+      eventId: req.body.eventId
+    };
+
+    reviewUtils.Review.sync().then(function() {
+      return reviewUtils.Review.create(review);
+    }).then(function(newReview) {
+      utils.sendResponse(res,200,newReview);
+    });
   },
 };
