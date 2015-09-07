@@ -25,8 +25,15 @@ module.exports = {
     }).then(function (newUser) {
       return newUser.save();
     }).then(function (newUser) {
+      var expireDate = Date.now() + 100000000;
+      var token = jwt.encode({"Id": newUser.username,
+                              "exp": expireDate}, utils.jwtTokenSecret);
       newUser.set('password', null);
-      utils.sendResponse(res, 201, newUser);
+      var returnObject = {
+        token: token,
+        user: newUser
+      };
+      utils.sendResponse(res, 200, returnObject);
     }).catch(function (err) {
       console.log('Error: ', err);
     });
@@ -50,11 +57,12 @@ module.exports = {
     }).then(function (user){
       if(user){
         var expireDate = Date.now() + 100000000;
-        var token = jwt.encode({"iss": "joe",
+        var token = jwt.encode({"Id": user.username,
                                 "exp": expireDate}, utils.jwtTokenSecret);
-        // user.set('password', null);
+        user.set('password', null);
         var returnObject = {
-          token: token
+          token: token,
+          user: user
         };
         utils.sendResponse(res, 200, returnObject);
       } else utils.sendResponse(res, 404, {error: "Password incorrect"});
