@@ -40,7 +40,6 @@ module.exports = {
   },
 
   login: function(req, res){
-    console.log('~~~~~~~~~~', req.body);
     var models = req.app.get('models');
     var User = models.User;
     var potentialUser = {};
