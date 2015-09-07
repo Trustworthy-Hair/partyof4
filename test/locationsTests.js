@@ -11,16 +11,6 @@ var testData = {};
 
 describe('routes', function() {
 
-  before(function(done){
-    server.get('models').sequelize.sync({ force: true}).then(function () {
-      done();
-    });
-  });
-
-  beforeEach(function () {
-
-  });
-
   describe('GET /locations', function() {
     // it('should return items from /locations when given a proper latitude and longitude', function(done) {
     //   request

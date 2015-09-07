@@ -7,7 +7,7 @@ var loginValid = {
   password: "password"
 };
 
-var logIn = function(callback, accessToken) {
+var logIn = function(callback) {
   request
     .post('/users/login')
     .send(loginValid)

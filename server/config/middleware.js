@@ -29,7 +29,7 @@ var authToken = function(req, res, next) {
         if (decoded.exp <= Date.now()) {
           utils.sendResponse(res, 400, 'Access token has expired');
         } else {
-          req.userId = decoded.iss;
+          req.userId = decoded.id;
           return next();
         }
       } catch (err) {
