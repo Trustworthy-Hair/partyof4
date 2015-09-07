@@ -2,13 +2,13 @@ var supertest = require('supertest'),
     server    = require('../server/server'),
     request   = supertest(server);
 
-var loginValid = [{
-  username: "test",
-  password: "password"
-},
-{ username: "brandon",
-  password: "password"
-}];
+var loginValid = [
+  { username: "test",
+    password: "password" },
+  { username: "brandon",
+    password: "password" },
+  { username: "shelley",
+    password: "shelley" }];
 
 
 var logIn = function(callback, cred) {

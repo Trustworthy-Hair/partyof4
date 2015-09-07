@@ -167,5 +167,32 @@ describe('routes', function() {
     })
   });
 
+  describe('POST', function(){
+    it('should accept another new user', function(done){
+      request
+        .post('/users/signup')
+        .send(testData.user3)
+        .end(function(err, result){
+          done()
+        });
+    })
+    it('should login new user', function(done){
+      request
+        .post('/users/login')
+        .send(testData.user3login)
+        .end(function (err, result){
+          expect(result.body).to.have.property('token');
+          done();
+        });
+    })
+    it('should update this new user', function(done){
+      utils.logIn(function(result, accessToken) {
+        request
+          .post('/users/3?accessToken='+accessToken)
+          .send(testData.user3newData)
+          .expect(201,done);
+      }, 2);
+    })
+  });
 
 });

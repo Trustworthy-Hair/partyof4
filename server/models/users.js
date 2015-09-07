@@ -54,7 +54,8 @@ module.exports = function (sequelize, DataTypes) {
     description: DataTypes.TEXT,
     status: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      defaultValue: 'New User!'
     },
     connectedToFacebook: DataTypes.BOOLEAN
   },{
