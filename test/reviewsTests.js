@@ -14,6 +14,7 @@ describe('routes', function() {
 
   beforeEach(function () {
     testData.review = {
+      eventId: 1,
       starRating: 3,
       text: "Was late to the event"
     };
