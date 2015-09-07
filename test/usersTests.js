@@ -111,6 +111,17 @@ describe('routes', function() {
   });  
 
   describe('POST', function(){
+    it('should not update user if you are not logged in as that user', function(done){
+      utils.logIn(function(result, accessToken) {
+        request
+          .post('/users/2?accessToken='+accessToken)
+          .send(testData.newUser)
+          .expect(403, done);
+      });
+    })
+  });  
+
+  describe('POST', function(){
     it('should receive login error', function(done){
       request
         .post('/users/login')

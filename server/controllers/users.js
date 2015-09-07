@@ -57,7 +57,7 @@ module.exports = {
     }).then(function (user){
       if(user){
         var expireDate = Date.now() + 100000000;
-        var token = jwt.encode({"Id": user.username,
+        var token = jwt.encode({"id": user.username,
                                 "exp": expireDate}, utils.jwtTokenSecret);
         user.set('password', null);
         var returnObject = {
@@ -94,6 +94,13 @@ module.exports = {
     var models = req.app.get('models');
     var User = models.User;
     var userId = req.params.userId;
+
+    var currentUser = req.userId;
+    console.log('***********************************************'+currentUser);
+    if (userId !== currentUser) {
+      utils.sendResponse(res, 403, 'Unauthorized to edit this user');
+    }
+
     var updatedUser = {};
     for(var x in req.body){
       updatedUser[x] = req.body[x];
