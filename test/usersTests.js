@@ -71,9 +71,9 @@ describe('routes', function() {
         .send(testData.req)
         .end(function (err, result) {
           ['id', 'createdAt', 'updatedAt'].forEach(function (property) {
-            delete result.body[property];
+            delete result.body.user[property];
           });
-          assert.deepEqual(result.body, testData.res);
+          assert.deepEqual(result.body.user, testData.res);
           done();
         });
     });
