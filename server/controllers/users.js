@@ -26,7 +26,7 @@ module.exports = {
       return newUser.save();
     }).then(function (newUser) {
       var expireDate = Date.now() + 100000000;
-      var token = jwt.encode({"Id": newUser.username,
+      var token = jwt.encode({"id": newUser.id,
                               "exp": expireDate}, utils.jwtTokenSecret);
       newUser.set('password', null);
       var returnObject = {
