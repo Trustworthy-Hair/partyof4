@@ -104,6 +104,7 @@ module.exports = {
     }).then(function (user){
       return user.set(updatedUser);
     }).then(function (user){
+      if (updatedUser.password === undefined) return user;
       return user.hashPassword(user);
     }).then(function (user){
       return user.save();
