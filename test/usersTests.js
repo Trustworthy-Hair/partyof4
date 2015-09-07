@@ -58,7 +58,23 @@ describe('routes', function() {
     testData.loginInvalid = {
       username: "brandon",
       password: "butts"
-    }
+    };
+
+    testData.user3 = {
+      username: "shelley",
+      password: "shelley",
+      email: "shelley@shelley.com"
+    };
+
+    testData.user3login = {
+      username: "shelley",
+      password: "shelley"
+    };
+
+    testData.user3newData = {
+      interests: ["corgis","dinosaurs","tarantulas"],
+      description: "Looking for great pho",
+    };
     
   });
 
@@ -117,7 +133,7 @@ describe('routes', function() {
           .post('/users/2?accessToken='+accessToken)
           .send(testData.newUser)
           .expect(403, done);
-      });
+      }, 1);
     })
   });  
 
@@ -150,5 +166,6 @@ describe('routes', function() {
         });
     })
   });
+
 
 });
