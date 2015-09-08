@@ -80,12 +80,12 @@ If username is not found, will return 301. If successful login, will return 200,
 - username
 - password
 - email
+- status
 
 #### Optional 
 - profileImageUrl
 - interests
 - description
-- status
 - connectedToFacebook
 
 #### Example request

@@ -58,7 +58,23 @@ describe('routes', function() {
     testData.loginInvalid = {
       username: "brandon",
       password: "butts"
-    }
+    };
+
+    testData.user3 = {
+      username: "shelley",
+      password: "shelley",
+      email: "shelley@shelley.com"
+    };
+
+    testData.user3login = {
+      username: "shelley",
+      password: "shelley"
+    };
+
+    testData.user3newData = {
+      interests: ["corgis","dinosaurs","tarantulas"],
+      description: "Looking for great pho",
+    };
     
   });
 
@@ -111,6 +127,17 @@ describe('routes', function() {
   });  
 
   describe('POST', function(){
+    it('should not update user if you are not logged in as that user', function(done){
+      utils.logIn(function(result, accessToken) {
+        request
+          .post('/users/2?accessToken='+accessToken)
+          .send(testData.newUser)
+          .expect(403, done);
+      }, 1);
+    })
+  });  
+
+  describe('POST', function(){
     it('should receive login error', function(done){
       request
         .post('/users/login')
@@ -137,6 +164,34 @@ describe('routes', function() {
           expect(result.body).to.have.property('token');
           done();
         });
+    })
+  });
+
+  describe('POST', function(){
+    it('should accept another new user', function(done){
+      request
+        .post('/users/signup')
+        .send(testData.user3)
+        .end(function(err, result){
+          done()
+        });
+    })
+    it('should login new user', function(done){
+      request
+        .post('/users/login')
+        .send(testData.user3login)
+        .end(function (err, result){
+          expect(result.body).to.have.property('token');
+          done();
+        });
+    })
+    it('should update this new user', function(done){
+      utils.logIn(function(result, accessToken) {
+        request
+          .post('/users/3?accessToken='+accessToken)
+          .send(testData.user3newData)
+          .expect(201,done);
+      }, 2);
     })
   });
 

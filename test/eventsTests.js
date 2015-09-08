@@ -102,7 +102,7 @@ describe('Events routes: ', function() {
             assert.equal(actualResponse.status, 200);
             done();
           });
-      });
+      }, 1);
     });
 
     it('should modify the event in the database', function (done) {
@@ -119,7 +119,16 @@ describe('Events routes: ', function() {
             assert.deepEqual(actualResponse.body, expectedResponse);
             done();
           });
-        });
+        }, 1);
+    });
+
+    it('should not modify the event in the database if user is not the host', function (done) {
+      utils.logIn(function(result, accessToken) {
+        request
+          .put('/events/1?accessToken='+accessToken)
+          .send({currentActivity: 'Waiting'})
+          .expect(403, done);
+        }, 2);
     });
   });
 

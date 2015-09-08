@@ -2,15 +2,20 @@ var supertest = require('supertest'),
     server    = require('../server/server'),
     request   = supertest(server);
 
-var loginValid = {
-  username: "test",
-  password: "password"
-};
+var loginValid = [
+  { username: "test",
+    password: "password" },
+  { username: "brandon",
+    password: "password" },
+  { username: "shelley",
+    password: "shelley" }];
 
-var logIn = function(callback) {
+
+var logIn = function(callback, cred) {
+  var credentials = cred ? loginValid[cred] : loginValid[0];
   request
     .post('/users/login')
-    .send(loginValid)
+    .send(credentials)
     .end(function (err, result){
       var accessToken = result.res.body.token;
       callback(result, accessToken);
