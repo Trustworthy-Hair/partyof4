@@ -65,15 +65,18 @@ var createFoursquareReq = function(type,params) {
   var query = params.q;
   var radius = (params.radius) ? params.radius : ((type === 'all') ? 1000 : 2000);
   var version = 20150903;
+  var openNow = params.open || true;
 
   var url = '/v2/venues/explore?client_id='+config.foursquareId+'&client_secret='+config.foursquareSecret+
-            '&ll='+lat+','+long+'&v='+version+'&radius='+radius+'&openNow=1';
+            '&ll='+lat+','+long+'&v='+version+'&radius='+radius;
 
   if (type === 'search') {
     url = url+'&query='+query;
   } else if (type === 'all') {
     url = url+'&section=food&limit=50';
   }
+
+  url = (openNow === '0') ? url+'&openNow=0' : url+'&openNow=1';
 
   return {
     host: 'api.foursquare.com',

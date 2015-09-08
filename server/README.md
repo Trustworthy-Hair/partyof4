@@ -30,9 +30,10 @@ Returns a list of venues from the Foursquare API near a given location
 #### Optional urls params 
 - q : search term for querying foursquare
 - radius : max distance (in meters) from current location for searching for venues
+- open: 0 or 1: boolean value for whether to only return venues open now (default is 1)
 
 #### Example request
-/locations?latitude=37.7837209&longitude=-122.4090445&q=donuts&radius=500
+/locations?latitude=37.7837209&longitude=-122.4090445&q=donuts&radius=500&open=0
 
 #### Response Format  
 ```javascript
