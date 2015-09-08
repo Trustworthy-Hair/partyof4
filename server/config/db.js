@@ -13,8 +13,10 @@ var Location = sequelize.import('../models/locations');
 
 User.belongsToMany(Event, { through: UserEvent });
 Event.belongsToMany(User, { through: UserEvent });
-
 Event.belongsTo(User, { as: 'host' });
+
+Location.hasMany(Event, { foreignKey: 'locationId'});
+Event.belongsTo(Location, { foreignKey: 'locationId' });
 
 Review.belongsTo(User, { as: 'author' });
 Review.belongsTo(User, { as: 'subject' });

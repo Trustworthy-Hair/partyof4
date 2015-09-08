@@ -8,9 +8,11 @@ module.exports = {
     // TODO: implement getNearbyEvents based on location
     var models = req.app.get('models');
     var Event = models.Event;
+    var Location = models.Location;
+    var User = models.User;
 
 
-    Event.findAll().then(function(events) {
+    Event.findAll({include: [Location, User]}).then(function(events) {
       utils.sendResponse(res, 201, events);
     }).catch(function(err) {
       console.error(err);
