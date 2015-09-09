@@ -8,6 +8,8 @@ var numOfLocations = process.argv[5] || 20;
 
 
 var db = require('../server/config/db');
+var config = require('../server/config/config');
+var https = require('https');
 var faker = require('faker');
 
 var createUsers = function() {
@@ -27,21 +29,45 @@ var createUsers = function() {
 };
 
 var createLocations = function() {
-  var newLocations = [];
-  for (var i = 0; i < numOfLocations; i++) {
-    newLocations.push({
-      fourSquareId: "" + (i + 1),
-      name: faker.company.companyName(),
-      address: faker.address.streetAddress(),
-      price: Math.round(Math.random() * 5),
-      longitude: parseFloat(faker.address.longitude()),
-      latitude: parseFloat(faker.address.latitude()),
-      tags: [faker.company.bsNoun(), faker.company.bsNoun()]
+  var foursquareId = config.foursquareId;
+  var foursquareSecret = config.foursquareSecret;
+  var lat = 37.7837418;
+  var long = -122.4089911;
+  var version = 20150909;
+
+  var newLocations;
+
+  var options = {
+    hostname: 'api.foursquare.com',
+    port: 443,
+    path: '/v2/venues/explore?client_id='+foursquareId+'&client_secret='+foursquareSecret+'&ll='+lat+','+long+'&v='+version,
+    method: 'GET'
+  };
+
+  var req = https.request(options, function(res) {
+    var data = '';
+    var newLocations;
+    res.on('data', function(chunk) {
+      data += chunk;
     });
-  }
-  return newLocations.map(function (newLocation) {
-    return db.Location.create(newLocation);
+    res.on('end', function() {
+      var responses = JSON.parse(data).response.groups[0].items;
+      newLocations = responses.map(function(response) {
+        var place = response.venue;
+        var location = place.location;
+        db.Location.create({
+          fourSquareId: place.id,
+          name: place.name,
+          address: location.address + '\n' + location.city + ', ' + location.state + ' ' + location.postalCode,
+          latitude: location.lat,
+          longitude: location.lng
+        });
+      });
+    });
   });
+
+  req.end();
+  return newLocations;
 };
 
 var createEvents = function(users, locations) {
