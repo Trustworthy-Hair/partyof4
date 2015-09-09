@@ -110,7 +110,6 @@ module.exports = {
         });
 
         foursquareRes.on('end', function () {
-          console.log('~~~~~~~~~~~~~~~~~~~', JSON.parse(responseBody));
           if (JSON.parse(responseBody).response.groups) {
             var responseArr = JSON.parse(responseBody).response.groups[0].items;
             var locations = responseArr.map(function(item) {
