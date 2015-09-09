@@ -135,7 +135,6 @@ module.exports = {
     var newUserEvent = {
       EventId: req.params.eventId,
       UserId: currentUser,
-      userConfirmed: false,
       arrivalStatus: 'Pending',
       cohost: false
     };  
@@ -147,6 +146,40 @@ module.exports = {
     }).catch(function(err) {
       utils.sendResponse(res, 500, 'Error: ', err);
     });
+  },
+
+  approveUser: function(req, res) {
+    var models = req.app.get('models');
+    var Event = models.Event;
+    var UserEvent = models.UserEvent;
+
+    var currentUser = req.userId;
+    var user = req.body.user;
+    var approved = req.body.approved;
+
+    if ((user !== undefined) && (approved !== undefined)) {
+      Event.sync().then(function() {
+        return Event.findById(req.params.eventId);
+      }).then(function(event) {
+        if (event.hostId === currentUser) {
+          var options = {where: { EventId: req.params.eventId, UserId: user }};
+          UserEvent.sync().then(function() {
+            return UserEvent.findOne(options);
+          }).then(function(userevent) {
+            var status = approved ? 'Accepted' : 'Declined';
+            return UserEvent.update({ userConfirmed: approved, arrivalStatus: status }, options);
+          }).then(function (update) {
+            utils.sendResponse(res, 200, 'Updated user');
+          });
+        } else {
+          utils.sendResponse(res, 403, 'Only the host can approve users');
+        }
+      }).catch(function(err) {
+        utils.sendResponse(res, 500, 'Error: ', err);
+      });
+    } else {
+      utils.sendResponse(res, 400, 'Request body should contain user id and approval status');
+    }
   },
 
   getEventHistoryByUser: function (req, res) {

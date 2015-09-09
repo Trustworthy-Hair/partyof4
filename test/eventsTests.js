@@ -160,7 +160,27 @@ describe('Events routes: ', function() {
             assert.equal(actualResponse.body.UserId, 3);
             done();
           });
-      },2);
+      }, 2);
+    });
+
+    it('should allow hosts to approve users of their events', function(done) {
+      utils.logIn(function(result, accessToken) {
+        var requestbody = {user: 3, approved: true};
+        request
+          .post('/events/1/approve?accessToken='+accessToken)
+          .send(requestbody)
+          .expect(200, done);
+      }, 1);
+    });
+
+    it('should not allow non-hosts to approve users', function(done) {
+      utils.logIn(function(result, accessToken) {
+        var requestbody = {user: 3, approved: true};
+        request
+          .post('/events/1/approve?accessToken='+accessToken)
+          .send(requestbody)
+          .expect(403, done);
+      }, 0);
     });
 
   });
