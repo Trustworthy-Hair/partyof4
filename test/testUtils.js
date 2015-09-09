@@ -10,6 +10,11 @@ var loginValid = [
   { username: "shelley",
     password: "shelley" }];
 
+var coordinates = {
+  latitude: 37.7837209,
+  longitude:-122.4090445
+};
+
 
 var logIn = function(callback, cred) {
   var credentials = cred ? loginValid[cred] : loginValid[0];
@@ -23,5 +28,6 @@ var logIn = function(callback, cred) {
 };
 
 module.exports = {
-  logIn: logIn
+  logIn: logIn,
+  coordinates: coordinates
 };

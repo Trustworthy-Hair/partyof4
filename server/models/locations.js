@@ -6,7 +6,6 @@
 
 module.exports = function (sequelize, DataTypes) {
   var Location = sequelize.define('Location', {
-    locationId: DataTypes.INTEGER,
     fourSquareId: DataTypes.STRING(24),
     name: DataTypes.STRING,
     address: DataTypes.JSON,

@@ -15,10 +15,6 @@ Note:
 
 module.exports = function (sequelize, DataTypes) {
   var Event = sequelize.define('Event', {
-    locationId: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
     plannedTime: {
       type: DataTypes.DATE,
       allowNull: false

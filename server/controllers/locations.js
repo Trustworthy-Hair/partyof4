@@ -1,7 +1,7 @@
 // locations.js
-var config = require('../config/config.js');
-
-var https  = require('https');
+var config = require('../config/config.js'),
+    utils  = require('../config/utils'),
+    https  = require('https');
 
 /*
  * Stores venue information in the Location table
@@ -15,16 +15,15 @@ var storeVenues = function(req, locations) {
       Location.findOne({where: {fourSquareId: loc.locationId}})
       .then(function(location) {
         if (!location) {
-          var price = loc.price ? loc.price.tier : 0;
           Location.create({
             fourSquareId: loc.locationId,
             name: loc.name,
             address: {street: loc.location[0],
                       city: loc.location[1],
                       country: loc.location[2]},
-            price: price,
-            longitude: loc.coords.latitude,
-            latitude: loc.coords.longitude,
+            price: loc.price,
+            longitude: loc.coords.longitude,
+            latitude: loc.coords.latitude,
             tags: loc.tags,
           });
         }
@@ -65,15 +64,18 @@ var createFoursquareReq = function(type,params) {
   var query = params.q;
   var radius = (params.radius) ? params.radius : ((type === 'all') ? 1000 : 2000);
   var version = 20150903;
+  var openNow = params.open || true;
 
   var url = '/v2/venues/explore?client_id='+config.foursquareId+'&client_secret='+config.foursquareSecret+
-            '&ll='+lat+','+long+'&v='+version+'&radius='+radius+'&openNow=1';
+            '&ll='+lat+','+long+'&v='+version+'&radius='+radius;
 
   if (type === 'search') {
     url = url+'&query='+query;
   } else if (type === 'all') {
     url = url+'&section=food&limit=50';
   }
+
+  url = (openNow === '0') ? url+'&openNow=0' : url+'&openNow=1';
 
   return {
     host: 'api.foursquare.com',
@@ -92,16 +94,11 @@ module.exports = {
     // Hack Reactor coordinates for testing
     // var lat = 37.7837418;
     // var long = -122.4089911;
-    var lat = req.query.latitude;
-    var long = req.query.longitude;
+    var currentLocation = utils.checkLatLong(req, res);
     var searchTerm = req.query.q;
     var typeOfReq = searchTerm ? 'search' : 'all';
 
-    if (!(lat && long)) {
-      res.status(400).send('Invalid request - include latitude and longitude in URL parameters').end();
-    } else if ((lat < -90 || lat > 90) || (long < -180 || long > 180)) {
-      res.status(400).send('Invalid request - latitide and longitude must be valid.' +
-                           '(-90 < latitude < 90 and -180 < longitude < 180)').end();
+    if (!currentLocation) {
     } else if (config.foursquareId === '' || config.foursquareSecret === '') {
       res.status(500).send('Foursquare API misconfigured - please contact partyof4 administrator').end();
     } else {
