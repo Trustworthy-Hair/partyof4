@@ -15,7 +15,7 @@ module.exports = {
     var options = {
       include: [Location]
     }; 
-    
+
     if (currentLocation) {
       Event.findAll(options).then(function(events) {
         var nearbyEvents = events.map(function(event) {
@@ -51,15 +51,19 @@ module.exports = {
     }
     newEvent.completedStatus = false;
 
-    /* Builds a Sequelize model based on newEvent object and saves to the database. 
-       Sends a response if this is successful. Otherwise, logs an error. */
-    Event.sync().then(function () {
-      return Event.create(newEvent);
-    }).then (function (newEvent) {
-      utils.sendResponse(res, 201, newEvent);
-    }).catch(function (err) {
-      console.log('Error: ', err);
-    });
+    if (newEvent.hostId !== req.userId) {
+      res.status(403).send('Not authorized to create an event with this hostId.').end();
+    } else {
+      /* Builds a Sequelize model based on newEvent object and saves to the database. 
+         Sends a response if this is successful. Otherwise, logs an error. */
+      Event.sync().then(function () {
+        return Event.create(newEvent);
+      }).then (function (newEvent) {
+        utils.sendResponse(res, 201, newEvent);
+      }).catch(function (err) {
+        console.log('Error: ', err);
+      });
+    }
   },
 
   getEvent: function(req, res){

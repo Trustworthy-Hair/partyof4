@@ -46,7 +46,16 @@ describe('Events routes: ', function() {
             assert.deepEqual(actualResponse.body, expectedResponse);
             done();
           });
-      });
+      }, 1);
+    });
+
+    it('should not let you make events for other users', function (done) {
+      utils.logIn(function(result, accessToken) {
+        request
+          .post('/events?accessToken='+accessToken)
+          .send(req)
+          .expect(403, done);
+      }, 2);
     });
   });
 
