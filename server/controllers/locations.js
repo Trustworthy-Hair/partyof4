@@ -15,14 +15,13 @@ var storeVenues = function(req, locations) {
       Location.findOne({where: {fourSquareId: loc.locationId}})
       .then(function(location) {
         if (!location) {
-          var price = loc.price ? loc.price.tier : 0;
           Location.create({
             fourSquareId: loc.locationId,
             name: loc.name,
             address: {street: loc.location[0],
                       city: loc.location[1],
                       country: loc.location[2]},
-            price: price,
+            price: loc.price,
             longitude: loc.coords.longitude,
             latitude: loc.coords.latitude,
             tags: loc.tags,
