@@ -127,6 +127,28 @@ module.exports = {
     });
   },
 
+  joinEvent: function(req, res) {
+    var models = req.app.get('models');
+    var UserEvent = models.UserEvent;
+
+    var currentUser = req.userId;
+    var newUserEvent = {
+      EventId: req.params.eventId,
+      UserId: currentUser,
+      userConfirmed: false,
+      arrivalStatus: 'Pending',
+      cohost: false
+    };  
+
+    UserEvent.sync().then(function() {
+      return UserEvent.create(newUserEvent);
+    }).then(function(userEvent) {
+      utils.sendResponse(res, 200, userEvent);
+    }).catch(function(err) {
+      utils.sendResponse(res, 500, 'Error: ', err);
+    });
+  },
+
   getEventHistoryByUser: function (req, res) {
     var models = req.app.get('models');
     var User = models.User;

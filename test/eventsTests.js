@@ -151,4 +151,18 @@ describe('Events routes: ', function() {
     });
   });
 
+  describe('should allow users to join events', function() {
+    it('should allow users to request to join events', function(done) {
+      utils.logIn(function(result, accessToken) {
+        request
+          .post('/events/1/join?accessToken='+accessToken)
+          .end(function(err, actualResponse) {
+            assert.equal(actualResponse.body.UserId, 3);
+            done();
+          });
+      },2);
+    });
+
+  });
+
 });
