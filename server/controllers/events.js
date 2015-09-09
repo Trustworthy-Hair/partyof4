@@ -156,7 +156,7 @@ module.exports = {
     }).then(function(userEvent) {
       utils.sendResponse(res, 200, userEvent);
     }).catch(function(err) {
-      utils.sendResponse(res, 500, 'Error: ', err);
+      utils.sendResponse(res, 500, 'Error: '+err);
     });
   },
 
@@ -166,19 +166,20 @@ module.exports = {
     var UserEvent = models.UserEvent;
 
     var currentUser = req.userId;
+    var eventId = req.params.eventId;
     var user = req.body.user;
     var approved = req.body.approved;
+    var status = approved ? 'Accepted' : 'Declined';
 
     if ((user !== undefined) && (approved !== undefined)) {
       Event.sync().then(function() {
-        return Event.findById(req.params.eventId);
+        return Event.findById(eventId);
       }).then(function(event) {
         if (event.hostId === currentUser) {
-          var options = {where: { EventId: req.params.eventId, UserId: user }};
+          var options = {where: { EventId: eventId, UserId: user }};
           UserEvent.sync().then(function() {
             return UserEvent.findOne(options);
           }).then(function(userevent) {
-            var status = approved ? 'Accepted' : 'Declined';
             return UserEvent.update({ userConfirmed: approved, arrivalStatus: status }, options);
           }).then(function (update) {
             utils.sendResponse(res, 200, 'Updated user');
@@ -187,10 +188,38 @@ module.exports = {
           utils.sendResponse(res, 403, 'Only the host can approve users');
         }
       }).catch(function(err) {
-        utils.sendResponse(res, 500, 'Error: ', err);
+        utils.sendResponse(res, 500, 'Error: '+err);
       });
     } else {
       utils.sendResponse(res, 400, 'Request body should contain user id and approval status');
+    }
+  },
+
+  changeStatus: function(req, res) {
+    var models = req.app.get('models');
+    var UserEvent = models.UserEvent;
+
+    var eventId = req.params.eventId;
+    var currentUser = req.userId;
+    var options = {where: { EventId: eventId, UserId: currentUser }};
+    var newStatus = req.body.status;
+
+    if (newStatus) {
+      UserEvent.sync().then(function() {
+        return UserEvent.findOne(options);
+      }).then(function(userevent) {
+        if (userevent) {
+          return UserEvent.update({ arrivalStatus: newStatus}, options);
+        } else {
+          return false;
+        }
+      }).then(function(update) {
+        return update ? utils.sendResponse(res, 200, 'Updated status') : utils.sendResponse(res, 400, 'Not a member of this event');
+      }).catch(function(err) {
+        utils.sendResponse(res, 500, 'Error: '+err);
+      }); 
+    } else {
+      utils.sendResponse(res, 200, 'No changes');
     }
   },
 

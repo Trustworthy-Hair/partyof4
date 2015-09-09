@@ -7,6 +7,7 @@
 - /events/:id
 - /events/:id/join
 - /events/:id/approve
+- /events/:id/status
 - /users/login
 - /users/signup
 - /users/:id
@@ -175,6 +176,21 @@ Allows hosts to approve or reject users that requested to join their event
 
 #### Response format
 Returns a 200 if the approval/rejection went successfully, 403 if the user is not the host, and 400 if there's a missing field from the body.
+
+## /events/:id/status
+###PUT request
+Updates a user's status message for a certain event
+
+### Required request body
+- status: string
+
+#### Example request
+```javascript
+{ status: 'walking over'}
+```
+
+#### Response format
+Returns a 200 if the update went successfully, 400 if the user is not a participant in this event.
 
 ## /users/login
 Logs a user in

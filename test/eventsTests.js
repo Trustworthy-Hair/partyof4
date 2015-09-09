@@ -183,6 +183,26 @@ describe('Events routes: ', function() {
       }, 0);
     });
 
+    it('should allow users to change their status messages', function(done) {
+      utils.logIn(function(result, accessToken) {
+        var requestbody = {status: 'walking over'};
+        request
+          .put('/events/1/status?accessToken='+accessToken)
+          .send(requestbody)
+          .expect(200, done);
+      }, 1);
+    });
+
+    it('should return a 400 if you are not a member of an event and trying to update status', function(done) {
+      utils.logIn(function(result, accessToken) {
+        var requestbody = {status: 'much status'};
+        request
+          .put('/events/1/status?accessToken='+accessToken)
+          .send(requestbody)
+          .expect(400, done);
+      }, 0);
+    });
+
   });
 
 });
