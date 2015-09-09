@@ -86,7 +86,9 @@ var createFoursquareReq = function(type,params) {
 
 module.exports = {
   getLocations: function(req,res){
-    req.query.q = req.query.q.replace(/ /g, '_');
+    if(req.query.q){
+      req.query.q = req.query.q.replace(/ /g, '_');
+    }
     // Hack Reactor coordinates for testing
     // var lat = 37.7837418;
     // var long = -122.4089911;
