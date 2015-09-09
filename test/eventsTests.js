@@ -167,7 +167,7 @@ describe('Events routes: ', function() {
       utils.logIn(function(result, accessToken) {
         var requestbody = {user: 3, approved: true};
         request
-          .post('/events/1/approve?accessToken='+accessToken)
+          .put('/events/1/approve?accessToken='+accessToken)
           .send(requestbody)
           .expect(200, done);
       }, 1);
@@ -177,7 +177,7 @@ describe('Events routes: ', function() {
       utils.logIn(function(result, accessToken) {
         var requestbody = {user: 3, approved: true};
         request
-          .post('/events/1/approve?accessToken='+accessToken)
+          .put('/events/1/approve?accessToken='+accessToken)
           .send(requestbody)
           .expect(403, done);
       }, 0);

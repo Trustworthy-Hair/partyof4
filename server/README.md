@@ -5,6 +5,8 @@
 - /locations
 - /events 
 - /events/:id
+- /events/:id/join
+- /events/:id/approve
 - /users/login
 - /users/signup
 - /users/:id
@@ -149,6 +151,30 @@ Modifies an event
 ```javascript
 tbd
 ```
+
+## /events/:id/join
+###POST request
+Creates new request for a user to join an event
+
+#### Response format
+Returns a 200 if the user was able to request ot join
+
+## /events/:id/approve
+###PUT request
+Allows hosts to approve or reject users that requested to join their event
+
+### Required request body
+- user: userid 
+- approved: true/false
+
+#### Example request
+```javascript
+{ user: 3, 
+  approved: true }
+```
+
+#### Response format
+Returns a 200 if the approval/rejection went successfully, 403 if the user is not the host, and 400 if there's a missing field from the body.
 
 ## /users/login
 Logs a user in

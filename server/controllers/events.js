@@ -41,6 +41,7 @@ module.exports = {
   createEvent: function(req, res){
     var models = req.app.get('models');
     var Event = models.Event;
+    var UserEvent = models.UserEvent;
 
     /* The newEvent object contains a number of properties -- some obtained
        from the body of the request and some defaults. This object is used
@@ -60,6 +61,17 @@ module.exports = {
         return Event.create(newEvent);
       }).then (function (newEvent) {
         utils.sendResponse(res, 201, newEvent);
+
+        var newUserEvent = {
+          EventId: newEvent.id,
+          UserId: req.userId,
+          cohost: true
+        };  
+
+        UserEvent.sync().then(function() {
+          return UserEvent.create(newUserEvent);
+        });
+
       }).catch(function (err) {
         console.log('Error: ', err);
       });
