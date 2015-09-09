@@ -20,7 +20,6 @@ ALL POST requests except login&signup require a token in the form of:
 
 ## /locations 
 ###GET request
-
 Returns a list of venues from the Foursquare API near a given location
 
 #### Required urls params 
@@ -52,21 +51,107 @@ Returns a list of venues from the Foursquare API near a given location
     coords: {latitude: 37.791704,longitude: -122.420935}
   }]}
 ```
+
 ## /events 
+###GET request
+Returns a list of events near a given location
 
 #### Required urls params 
+- latitude : latitude of user's position
+- longitude : longitude on user's position
+
 #### Optional urls params 
+- radius : max distance (in meters) from current location for searching for events (default is 1000)
+
 #### Example request
-#### Response Format  
+/events?latitude=37.7837209&longitude=-122.4090445&radius=200
+
+#### Response Format
+```javascript
+[{
+  id: 9,
+  plannedTime: "2016-05-08T07:51:00.530Z",
+  capacity: 10,
+  currentSize: 4,
+  currentActivity: "Ordering",
+  completedStatus: false,
+  createdAt: "2015-09-09T17:15:19.205Z",
+  distance: 189.85958992065562,
+  updatedAt: "2015-09-09T17:15:19.205Z",
+  hostId: 3,
+  locationId: 9,
+  Location: {
+    <LOCATION INFORMATION> 
+  },
+}]
+```
+
+###POST request
+Creates a new event
+
+#### Required request body
+- hostId
+- locationId
+- plannedTime
+- capacity
+- currentSize
+
+#### Optional request body
+- currentActivity
+
+#### Example request
+```javascript
+{
+  hostId: 1,
+  locationId: 1,
+  plannedTime: (new Date(2015, 8, 2, 19, 30)).toISOString(),
+  capacity: 10,
+  currentSize: 4,
+  currentActivity: 'Ordering',
+  completedStatus: false
+}
+```
 
 ## /events/:id
+###GET request
+Gets details about an event
 
-#### Required urls params 
-#### Optional urls params 
 #### Example request
+/events/1
+
 #### Response Format 
+```javascript
+{
+  id: 1,
+  plannedTime: "2015-09-28T21:19:23.204Z",
+  capacity: 10,
+  currentSize: 4,
+  currentActivity: "Ordering",
+  completedStatus: false,
+  createdAt: "2015-09-09T17:15:19.199Z",
+  updatedAt: "2015-09-09T17:15:19.199Z",
+  hostId: 2,
+  locationId: 1,
+  Location: {
+    <INFORMATION ABOUT Location>
+  },
+  Users: [ <USER OBJECTS> ]
+}
+```
+
+###POST request
+Modifies an event
+
+#### Request body
+- The elements of an event you want to change
+
+#### Example request
+```javascript
+tbd
+```
 
 ## /users/login
+Logs a user in
 
 #### Required request body
 - username
@@ -76,6 +161,7 @@ Returns a list of venues from the Foursquare API near a given location
 If username is not found, will return 301. If successful login, will return 200, and otherwise, will return 404.
 
 ## /users/signup
+Creates a new user
 
 #### Required request body
 - username
@@ -106,6 +192,7 @@ If username is not found, will return 301. If successful login, will return 200,
 
 ## /users/:id
 ###GET request
+Gets detailed information about a user
 
 #### Example request
 /users/2/
@@ -128,16 +215,20 @@ If username is not found, will return 301. If successful login, will return 200,
 ```
 
 ###POST request
+Modifies a user 
 
 #### Required request body
-#### Example request
+- The elements of a user you want to change
+
 #### Response Format 
 ```javascript
+tbd
 ```
 
 ## /users/:id/reviews
 
 ###GET request
+Gets the reviews for a given user
 
 #### Example request
 /users/2/reviews 
@@ -161,6 +252,7 @@ If username is not found, will return 301. If successful login, will return 200,
 ```
 
 ###POST request
+Writes a new review for a user
 
 #### Required request body
 - eventId: Identifier for the event that the review is pertaining to
