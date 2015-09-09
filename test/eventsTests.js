@@ -46,16 +46,25 @@ describe('Events routes: ', function() {
             assert.deepEqual(actualResponse.body, expectedResponse);
             done();
           });
-      });
+      }, 1);
+    });
+
+    it('should not let you make events for other users', function (done) {
+      utils.logIn(function(result, accessToken) {
+        request
+          .post('/events?accessToken='+accessToken)
+          .send(req)
+          .expect(403, done);
+      }, 2);
     });
   });
 
   describe('GET to /events', function () {
     it('should return nearby events', function (done) {
       request
-        .get('/events')
+        .get('/events?latitude='+utils.coordinates.latitude+'&longitude='+utils.coordinates.longitude)
         .end(function (err, actualResponse) {
-          ['id', 'createdAt', 'updatedAt'].forEach(function (property) {
+          ['id', 'createdAt', 'updatedAt', 'Location', 'distance'].forEach(function (property) {
             delete actualResponse.body[0][property];
           });
 
@@ -64,12 +73,22 @@ describe('Events routes: ', function() {
         });
     });
 
+    it ('should not return a 200 status code when latitude and longitude are missing or invalid', function(done) {
+      request
+        .get('/events')
+        .expect(400);
+
+            request
+        .get('/events?latitude=1000&longitude=-1000')
+        .expect(400, done);
+    });
+
     describe('/:eventId', function () {
       it('should return an existing event', function (done) {
         request
           .get('/events/1')
           .end(function (err, actualResponse) {
-            ['id', 'createdAt', 'updatedAt'].forEach(function (property) {
+            ['id', 'createdAt', 'updatedAt', 'Users', 'Location'].forEach(function (property) {
               delete actualResponse.body[property];
             });
 
@@ -110,7 +129,7 @@ describe('Events routes: ', function() {
         request
           .get('/events/1?accessToken='+accessToken)
           .end(function (err, actualResponse) {          
-            ['id', 'createdAt', 'updatedAt'].forEach(function (property) {
+            ['id', 'createdAt', 'updatedAt', 'Location', 'Users'].forEach(function (property) {
               delete actualResponse.body[property];
             });
 

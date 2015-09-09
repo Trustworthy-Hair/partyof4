@@ -16,6 +16,9 @@ Event.belongsToMany(User, { through: UserEvent });
 
 Event.belongsTo(User, { as: 'host' });
 
+Location.hasMany(Event, { foreignKey: 'locationId'});
+Event.belongsTo(Location, { foreignKey: 'locationId' });
+
 Review.belongsTo(User, { as: 'author' });
 Review.belongsTo(User, { as: 'subject' });
 Review.belongsTo(Event);
