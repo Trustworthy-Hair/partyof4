@@ -1,9 +1,11 @@
 // makeData.js
 
-//usage: `node makeData [true/false] [numberOfUsers] [numberOfEvents]`
+//usage: `node makeData [true/false] [numberOfUsers] [numberOfEvents] [numberOfLocations]`
 var dropTables = process.argv[2] || true;
 var numOfUsers = process.argv[3] || 10;
 var numOfEvents = process.argv[4] || 20;
+var numOfLocations = process.argv[5] || 20;
+
 
 var db = require('../server/config/db');
 var faker = require('faker');
@@ -26,7 +28,7 @@ var createUsers = function() {
 
 var createLocations = function() {
   var newLocations = [];
-  for (var i = 0; i < numOfEvents; i++) {
+  for (var i = 0; i < numOfLocations; i++) {
     newLocations.push({
       fourSquareId: "" + (i + 1),
       name: faker.company.companyName(),
@@ -43,8 +45,9 @@ var createLocations = function() {
 };
 
 var createEvents = function(users, locations) {
-  var newEvents = locations.map(function(location, i) {
-    return {
+  var newEvents = [];
+  for (var i = 0; i < numOfEvents; i++) {
+    newEvents.push({
       hostId: Math.ceil(Math.random() * numOfUsers),
       locationId: i + 1,
       plannedTime: (faker.date.future()).toISOString(),
@@ -52,14 +55,15 @@ var createEvents = function(users, locations) {
       currentSize: 4,
       currentActivity: 'Ordering',
       completedStatus: false
-    };
-  });
+    });
+  }
   return newEvents.map(function(newEvent) {
     return db.Event.create(newEvent);
   });
 };
 
-db.sequelize.sync({force: dropTables})
+// db.sequelize.sync({force: dropTables})
+db.sequelize.sync()
   .then(function() {
     return [createUsers, createLocations].map(function(cb) {
       return cb();

@@ -9,11 +9,32 @@ module.exports = {
     var models = req.app.get('models');
     var Event = models.Event;
     var Location = models.Location;
-    var User = models.User;
 
+    var lat = req.query.latitude;
+    var long = req.query.longitude;
+    var currentLocation= {
+      latitude: lat,
+      longitude: long
+    };
 
-    Event.findAll({include: [Location, User]}).then(function(events) {
-      utils.sendResponse(res, 201, events);
+    // var radius = req.query.radius;
+
+    var options = {
+      include: [Location]
+    }; 
+
+    Event.findAll(options).then(function(events) {
+      var nearbyEvents = events.filter(function(event) {
+        var eventLocation = {
+          latitude: event.Location.latitude,
+          longitude: event.Location.longitude
+        };
+        var dist = utils.checkDistance(currentLocation, eventLocation);
+        console.log(dist);
+        return true;
+      });
+
+      utils.sendResponse(res, 201, nearbyEvents);
     }).catch(function(err) {
       console.error(err);
     });
@@ -47,9 +68,16 @@ module.exports = {
     var models = req.app.get('models');
     var Event = models.Event;
     var eventId = req.params.eventId;
+    var Location = models.Location;
+    var User = models.User;
+
+    var options = {
+      where: {id: eventId},
+      include: [Location, User]
+    }; 
 
     Event.sync().then(function () {
-      return Event.findById(eventId);
+      return Event.findOne(options);
     }).then(function (event) {
       utils.sendResponse(res, 200, event);
     }).catch(function (err) {
