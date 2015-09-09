@@ -1,7 +1,7 @@
 // locations.js
-var config = require('../config/config.js');
-
-var https  = require('https');
+var config = require('../config/config.js'),
+    utils  = require('../config/utils'),
+    https  = require('https');
 
 /*
  * Stores venue information in the Location table
@@ -94,16 +94,11 @@ module.exports = {
     // Hack Reactor coordinates for testing
     // var lat = 37.7837418;
     // var long = -122.4089911;
-    var lat = req.query.latitude;
-    var long = req.query.longitude;
+    var currentLocation = utils.checkLatLong(req, res);
     var searchTerm = req.query.q;
     var typeOfReq = searchTerm ? 'search' : 'all';
 
-    if (!(lat && long)) {
-      res.status(400).send('Invalid request - include latitude and longitude in URL parameters').end();
-    } else if ((lat < -90 || lat > 90) || (long < -180 || long > 180)) {
-      res.status(400).send('Invalid request - latitide and longitude must be valid.' +
-                           '(-90 < latitude < 90 and -180 < longitude < 180)').end();
+    if (!currentLocation) {
     } else if (config.foursquareId === '' || config.foursquareSecret === '') {
       res.status(500).send('Foursquare API misconfigured - please contact partyof4 administrator').end();
     } else {

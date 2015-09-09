@@ -5,39 +5,37 @@ module.exports = {
   getNearbyEvents: function(req, res){
     /* Select all events from events table where distance
        between user and events < some number. */
-    // TODO: implement getNearbyEvents based on location
     var models = req.app.get('models');
     var Event = models.Event;
     var Location = models.Location;
 
-    var lat = req.query.latitude;
-    var long = req.query.longitude;
-    var currentLocation= {
-      latitude: lat,
-      longitude: long
-    };
-
-    // var radius = req.query.radius;
+    var radius = req.query.radius || 1000;
+    var currentLocation = utils.checkLatLong(req, res);
 
     var options = {
       include: [Location]
     }; 
+    
+    if (currentLocation) {
+      Event.findAll(options).then(function(events) {
+        var nearbyEvents = events.map(function(event) {
+          var eventLocation = {
+            latitude: event.Location.latitude,
+            longitude: event.Location.longitude
+          };
+          var dist = utils.checkDistance(currentLocation, eventLocation);
+          event.dataValues.distance = dist;
+          return event;
+        })
+        .filter(function(event) {
+          return event.dataValues.distance <= radius;
+        });
 
-    Event.findAll(options).then(function(events) {
-      var nearbyEvents = events.filter(function(event) {
-        var eventLocation = {
-          latitude: event.Location.latitude,
-          longitude: event.Location.longitude
-        };
-        var dist = utils.checkDistance(currentLocation, eventLocation);
-        console.log(dist);
-        return true;
+        utils.sendResponse(res, 201, nearbyEvents);
+      }).catch(function(err) {
+        console.error(err);
       });
-
-      utils.sendResponse(res, 201, nearbyEvents);
-    }).catch(function(err) {
-      console.error(err);
-    });
+    }
   },
 
   createEvent: function(req, res){
