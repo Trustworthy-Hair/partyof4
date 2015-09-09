@@ -86,7 +86,9 @@ var createFoursquareReq = function(type,params) {
 
 module.exports = {
   getLocations: function(req,res){
-
+    if(req.query.q){
+      req.query.q = req.query.q.replace(/ /g, '_');
+    }
     // Hack Reactor coordinates for testing
     // var lat = 37.7837418;
     // var long = -122.4089911;
@@ -110,13 +112,11 @@ module.exports = {
         });
 
         foursquareRes.on('end', function () {
-          if (JSON.parse(responseBody).response) {
+          if (JSON.parse(responseBody).response.groups) {
             var responseArr = JSON.parse(responseBody).response.groups[0].items;
-
             var locations = responseArr.map(function(item) {
               return formatLocationRes(item.venue);
             });
-
             storeVenues(req, locations);
             res.status(200).send({'locations':locations}).end();
           } else {
