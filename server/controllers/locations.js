@@ -23,8 +23,8 @@ var storeVenues = function(req, locations) {
                       city: loc.location[1],
                       country: loc.location[2]},
             price: price,
-            longitude: loc.coords.latitude,
-            latitude: loc.coords.longitude,
+            longitude: loc.coords.longitude,
+            latitude: loc.coords.latitude,
             tags: loc.tags,
           });
         }
