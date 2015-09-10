@@ -75,7 +75,7 @@ var createEvents = function() {
   });
 };
 
-//db.sequelize.sync({force: dropTables})
-db.sequelize.sync()
+db.sequelize.sync({force: dropTables})
+//db.sequelize.sync()
   .then(createUsers)
   .then(createEvents);
