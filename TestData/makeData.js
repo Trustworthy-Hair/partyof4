@@ -1,11 +1,8 @@
 // makeData.js
 
-//usage: `node makeData [true/false] [numberOfUsers] [numberOfEvents] [numberOfLocations]`
+//usage: `node makeData [true/false] [numberOfUsers]`
 var dropTables = process.argv[2] || true;
 var numOfUsers = process.argv[3] || 10;
-var numOfEvents = process.argv[4] || 20;
-var numOfLocations = process.argv[5] || 20;
-
 
 var db = require('../server/config/db');
 var config = require('../server/config/config');
@@ -23,19 +20,17 @@ var createUsers = function() {
       status: faker.hacker.phrase()
     });
   }
-  return newUsers.forEach(function (newUser) {
+  return newUsers.map(function (newUser) {
     return db.User.create(newUser);
   });
 };
 
-var createLocations = function() {
+var createEvents = function() {
   var foursquareId = config.foursquareId;
   var foursquareSecret = config.foursquareSecret;
   var lat = 37.7837418;
   var long = -122.4089911;
   var version = 20150909;
-
-  var newLocations;
 
   var options = {
     hostname: 'api.foursquare.com',
@@ -46,13 +41,12 @@ var createLocations = function() {
 
   var req = https.request(options, function(res) {
     var data = '';
-    var newLocations;
     res.on('data', function(chunk) {
       data += chunk;
     });
     res.on('end', function() {
       var responses = JSON.parse(data).response.groups[0].items;
-      newLocations = responses.map(function(response) {
+      return responses.map(function(response) {
         var place = response.venue;
         var location = place.location;
         db.Location.create({
@@ -61,40 +55,27 @@ var createLocations = function() {
           address: location.address + '\n' + location.city + ', ' + location.state + ' ' + location.postalCode,
           latitude: location.lat,
           longitude: location.lng
-        });
+        }).then(function(location) {
+          db.Event.create({
+            hostId: Math.ceil(Math.random() * numOfUsers),
+            locationId: location.id,
+            plannedTime: (faker.date.future()).toISOString(),
+            capacity: 10,
+            currentSize: 4,
+            currentActivity: 'Ordering',
+            completedStatus: false
+          });
+        })
       });
     });
   });
 
-  req.end();
-  return newLocations;
-};
-
-var createEvents = function(users, locations) {
-  var newEvents = [];
-  for (var i = 0; i < numOfEvents; i++) {
-    newEvents.push({
-      hostId: Math.ceil(Math.random() * numOfUsers),
-      locationId: i + 1,
-      plannedTime: (faker.date.future()).toISOString(),
-      capacity: 10,
-      currentSize: 4,
-      currentActivity: 'Ordering',
-      completedStatus: false
-    });
-  }
-  return newEvents.map(function(newEvent) {
-    return db.Event.create(newEvent);
+  return req.end(function(locations) {
+    return locations;
   });
 };
 
-// db.sequelize.sync({force: dropTables})
+//db.sequelize.sync({force: dropTables})
 db.sequelize.sync()
-  .then(function() {
-    return [createUsers, createLocations].map(function(cb) {
-      return cb();
-    });
-  })
-  .spread(function(users, locations) {
-    createEvents(users, locations);
-  });
+  .then(createUsers)
+  .then(createEvents);

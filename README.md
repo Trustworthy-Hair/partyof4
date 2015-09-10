@@ -46,7 +46,7 @@ bower install
 From within the root directory:
 
 ```sh
-node TestData/makeData.js [drop existing tables (true/false)] [# of users] [# of events]
+node TestData/makeData.js [drop existing tables (true/false)] [# of users]
 ```
 
 Optional arguments are for whether to drop all tables prior to seeding, the number of users and events to create.
