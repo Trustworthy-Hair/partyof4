@@ -10,8 +10,14 @@ var https = require('https');
 var faker = require('faker');
 
 var createUsers = function() {
-  var newUsers = [];
-  for (var i = 0; i < numOfUsers; i++) {
+  var newUsers = [{
+    username: 'buttsMgee',
+    password: 'password',
+    email: faker.internet.email(),
+    profileImageUrl: faker.image.imageUrl(),
+    status: faker.hacker.phrase()
+  }];
+  for (var i = 1; i < numOfUsers; i++) {
     newUsers.push({
       username: faker.internet.userName(),
       password: 'password',
@@ -21,7 +27,13 @@ var createUsers = function() {
     });
   }
   return newUsers.map(function (newUser) {
-    return db.User.create(newUser);
+    return db.User.create(newUser)
+      .then(function(newUser) {
+        return newUser.hashPassword(newUser);
+      })
+      .then(function(newUser) {
+        return newUser.save();
+      });
   });
 };
 
