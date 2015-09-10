@@ -86,7 +86,10 @@ module.exports = function(grunt) {
     },
     execute: {
       target: {
-        src: ['server/server.js']
+        src: [
+          'TestData/makeData.js',
+          'server/server.js'
+        ]
       }
     },
   });
