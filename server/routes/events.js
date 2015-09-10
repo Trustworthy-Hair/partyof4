@@ -7,6 +7,9 @@ module.exports = function(app){
 
   app.get('/events/:eventId', eventController.getEvent);
   app.put('/events/:eventId', eventController.updateEvent);
+  app.post('/events/:eventId/join', eventController.joinEvent);
+  app.put('/events/:eventId/approve', eventController.approveUser);
+  app.put('/events/:eventId/status', eventController.changeStatus);
 
   app.get('/users/:userId/history', eventController.getEventHistoryByUser);
 };

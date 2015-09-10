@@ -151,4 +151,58 @@ describe('Events routes: ', function() {
     });
   });
 
+  describe('should allow users to join events', function() {
+    it('should allow users to request to join events', function(done) {
+      utils.logIn(function(result, accessToken) {
+        request
+          .post('/events/1/join?accessToken='+accessToken)
+          .end(function(err, actualResponse) {
+            assert.equal(actualResponse.body.UserId, 3);
+            done();
+          });
+      }, 2);
+    });
+
+    it('should allow hosts to approve users of their events', function(done) {
+      utils.logIn(function(result, accessToken) {
+        var requestbody = {user: 3, approved: true};
+        request
+          .put('/events/1/approve?accessToken='+accessToken)
+          .send(requestbody)
+          .expect(200, done);
+      }, 1);
+    });
+
+    it('should not allow non-hosts to approve users', function(done) {
+      utils.logIn(function(result, accessToken) {
+        var requestbody = {user: 3, approved: true};
+        request
+          .put('/events/1/approve?accessToken='+accessToken)
+          .send(requestbody)
+          .expect(403, done);
+      }, 0);
+    });
+
+    it('should allow users to change their status messages', function(done) {
+      utils.logIn(function(result, accessToken) {
+        var requestbody = {status: 'walking over'};
+        request
+          .put('/events/1/status?accessToken='+accessToken)
+          .send(requestbody)
+          .expect(200, done);
+      }, 1);
+    });
+
+    it('should return a 400 if you are not a member of an event and trying to update status', function(done) {
+      utils.logIn(function(result, accessToken) {
+        var requestbody = {status: 'much status'};
+        request
+          .put('/events/1/status?accessToken='+accessToken)
+          .send(requestbody)
+          .expect(400, done);
+      }, 0);
+    });
+
+  });
+
 });

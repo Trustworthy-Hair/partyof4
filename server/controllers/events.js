@@ -41,6 +41,7 @@ module.exports = {
   createEvent: function(req, res){
     var models = req.app.get('models');
     var Event = models.Event;
+    var UserEvent = models.UserEvent;
 
     /* The newEvent object contains a number of properties -- some obtained
        from the body of the request and some defaults. This object is used
@@ -60,6 +61,17 @@ module.exports = {
         return Event.create(newEvent);
       }).then (function (newEvent) {
         utils.sendResponse(res, 201, newEvent);
+
+        var newUserEvent = {
+          EventId: newEvent.id,
+          UserId: req.userId,
+          cohost: true
+        };  
+
+        UserEvent.sync().then(function() {
+          return UserEvent.create(newUserEvent);
+        });
+
       }).catch(function (err) {
         console.log('Error: ', err);
       });
@@ -125,6 +137,90 @@ module.exports = {
     }).catch(function (err) {
       console.log('Error: ', err);
     });
+  },
+
+  joinEvent: function(req, res) {
+    var models = req.app.get('models');
+    var UserEvent = models.UserEvent;
+
+    var currentUser = req.userId;
+    var newUserEvent = {
+      EventId: req.params.eventId,
+      UserId: currentUser,
+      arrivalStatus: 'Pending',
+      cohost: false
+    };  
+
+    UserEvent.sync().then(function() {
+      return UserEvent.create(newUserEvent);
+    }).then(function(userEvent) {
+      utils.sendResponse(res, 200, userEvent);
+    }).catch(function(err) {
+      utils.sendResponse(res, 500, 'Error: '+err);
+    });
+  },
+
+  approveUser: function(req, res) {
+    var models = req.app.get('models');
+    var Event = models.Event;
+    var UserEvent = models.UserEvent;
+
+    var currentUser = req.userId;
+    var eventId = req.params.eventId;
+    var user = req.body.user;
+    var approved = req.body.approved;
+    var status = approved ? 'Accepted' : 'Declined';
+
+    if ((user !== undefined) && (approved !== undefined)) {
+      Event.sync().then(function() {
+        return Event.findById(eventId);
+      }).then(function(event) {
+        if (event.hostId === currentUser) {
+          var options = {where: { EventId: eventId, UserId: user }};
+          UserEvent.sync().then(function() {
+            return UserEvent.findOne(options);
+          }).then(function(userevent) {
+            return UserEvent.update({ userConfirmed: approved, arrivalStatus: status }, options);
+          }).then(function (update) {
+            utils.sendResponse(res, 200, 'Updated user');
+          });
+        } else {
+          utils.sendResponse(res, 403, 'Only the host can approve users');
+        }
+      }).catch(function(err) {
+        utils.sendResponse(res, 500, 'Error: '+err);
+      });
+    } else {
+      utils.sendResponse(res, 400, 'Request body should contain user id and approval status');
+    }
+  },
+
+  changeStatus: function(req, res) {
+    var models = req.app.get('models');
+    var UserEvent = models.UserEvent;
+
+    var eventId = req.params.eventId;
+    var currentUser = req.userId;
+    var options = {where: { EventId: eventId, UserId: currentUser }};
+    var newStatus = req.body.status;
+
+    if (newStatus) {
+      UserEvent.sync().then(function() {
+        return UserEvent.findOne(options);
+      }).then(function(userevent) {
+        if (userevent) {
+          return UserEvent.update({ arrivalStatus: newStatus}, options);
+        } else {
+          return false;
+        }
+      }).then(function(update) {
+        return update ? utils.sendResponse(res, 200, 'Updated status') : utils.sendResponse(res, 400, 'Not a member of this event');
+      }).catch(function(err) {
+        utils.sendResponse(res, 500, 'Error: '+err);
+      }); 
+    } else {
+      utils.sendResponse(res, 200, 'No changes');
+    }
   },
 
   getEventHistoryByUser: function (req, res) {
