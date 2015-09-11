@@ -40,8 +40,6 @@ module.exports = {
           return event.dataValues.distance <= radius;
         });
 
-
-
         utils.sendResponse(res, 201, nearbyEvents);
       }).catch(function(err) {
         console.error(err);
