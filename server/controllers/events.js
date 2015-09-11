@@ -16,8 +16,8 @@ module.exports = {
     var options = {
       include: [
         Location,
-        { model: User, attributes: ['id'] },
-        { model: User, as: 'host', attributes: ['id'] }
+        { model: User },
+        { model: User, as: 'host' }
       ]
     }; 
 
@@ -28,6 +28,10 @@ module.exports = {
             latitude: event.Location.latitude,
             longitude: event.Location.longitude
           };
+          event.host.password = null;
+          event.Users.forEach(function (user) {
+            user.password = null;
+          });
           var dist = utils.checkDistance(currentLocation, eventLocation);
           event.dataValues.distance = dist;
           return event;
@@ -35,6 +39,8 @@ module.exports = {
         .filter(function(event) {
           return event.dataValues.distance <= radius;
         });
+
+
 
         utils.sendResponse(res, 201, nearbyEvents);
       }).catch(function(err) {
