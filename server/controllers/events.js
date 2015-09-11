@@ -8,12 +8,17 @@ module.exports = {
     var models = req.app.get('models');
     var Event = models.Event;
     var Location = models.Location;
+    var User = models.User;
 
     var radius = req.query.radius || 1000;
     var currentLocation = utils.checkLatLong(req, res);
 
     var options = {
-      include: [Location]
+      include: [
+        Location,
+        { model: User, attributes: ['id'] },
+        { model: User, as: 'host', attributes: ['id'] }
+      ]
     }; 
 
     if (currentLocation) {
