@@ -1,21 +1,22 @@
 // locations.js
-var config = require('../config/config.js'),
-    utils  = require('../config/utils'),
-    https  = require('https');
+var config  = require('../config/config.js'),
+    utils   = require('../config/utils'),
+    https   = require('https'),
+    Promis  = require('bluebird');
 
 /*
  * Stores venue information in the Location table
  */
-var storeVenues = function(req, locations) {
+var storeVenues = function(req, locations, res) {
   var models = req.app.get('models');
   var Location = models.Location;
 
   Location.sync().then(function() {
-    locations.forEach(function(loc) {
-      Location.findOne({where: {fourSquareId: loc.locationId}})
+    return Promis.map(locations, function(loc) {
+      return Location.findOne({where: {fourSquareId: loc.locationId}})
       .then(function(location) {
         if (!location) {
-          Location.create({
+          return Location.create({
             fourSquareId: loc.locationId,
             name: loc.name,
             address: {street: loc.location[0],
@@ -25,10 +26,18 @@ var storeVenues = function(req, locations) {
             longitude: loc.coords.longitude,
             latitude: loc.coords.latitude,
             tags: loc.tags,
+          }).then(function(newloc) {
+            loc.locationId = newloc.id;
+            return;
           });
+        } else {
+          loc.locationId = location.id;
+          return;
         }
       });
     });
+  }).spread(function() {
+    res.status(200).send({'locations':locations}).end();
   });
 };
 
@@ -114,8 +123,8 @@ module.exports = {
             var locations = responseArr.map(function(item) {
               return formatLocationRes(item.venue);
             });
-            storeVenues(req, locations);
-            res.status(200).send({'locations':locations}).end();
+            storeVenues(req, locations,res);
+            // res.status(200).send({'locations':locations}).end();
           } else {
             res.status(500).send('Unexpected server error - please contact partyof4 administrator').end();
           }
