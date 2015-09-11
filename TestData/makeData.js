@@ -61,12 +61,16 @@ var createEvents = function() {
       return responses.map(function(response) {
         var place = response.venue;
         var location = place.location;
+        var categories = place.categories.map(function(category) {
+          return category.name;
+        });
         db.Location.create({
           fourSquareId: place.id,
           name: place.name,
           address: location.address + '\n' + location.city + ', ' + location.state + ' ' + location.postalCode,
           latitude: location.lat,
-          longitude: location.lng
+          longitude: location.lng,
+          tags: categories
         }).then(function(location) {
           db.Event.create({
             hostId: Math.ceil(Math.random() * numOfUsers),
