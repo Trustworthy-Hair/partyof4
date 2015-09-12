@@ -5,12 +5,17 @@ module.exports = {
   getNearbyEvents: function(req, res){
     /* Select all events from events table where distance
        between user and events < some number. */
+
     var models = req.app.get('models');
     var Event = models.Event;
     var Location = models.Location;
     var User = models.User;
 
     var radius = req.query.radius || 1000;
+    if (req.query.q) {
+      var search = req.query.q.split('_') || [];
+      console.log(search);
+    }
     var currentLocation = utils.checkLatLong(req, res);
 
     var options = {

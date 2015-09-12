@@ -64,10 +64,11 @@ Returns a list of events near a given location
 - longitude : longitude on user's position
 
 #### Optional urls params 
+- q : search term for querying events table
 - radius : max distance (in meters) from current location for searching for events (default is 1000)
 
 #### Example request
-/events?latitude=37.7837209&longitude=-122.4090445&radius=200
+/events?latitude=37.7837209&longitude=-122.4090445&q=coffee&radius=200
 
 #### Response Format
 ```javascript
