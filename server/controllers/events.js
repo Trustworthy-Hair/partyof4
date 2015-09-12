@@ -8,12 +8,17 @@ module.exports = {
     var models = req.app.get('models');
     var Event = models.Event;
     var Location = models.Location;
+    var User = models.User;
 
     var radius = req.query.radius || 1000;
     var currentLocation = utils.checkLatLong(req, res);
 
     var options = {
-      include: [Location]
+      include: [
+        Location,
+        { model: User },
+        { model: User, as: 'host' }
+      ]
     }; 
 
     if (currentLocation) {
@@ -23,6 +28,10 @@ module.exports = {
             latitude: event.Location.latitude,
             longitude: event.Location.longitude
           };
+          event.host.password = null;
+          event.Users.forEach(function (user) {
+            user.password = null;
+          });
           var dist = utils.checkDistance(currentLocation, eventLocation);
           event.dataValues.distance = dist;
           return event;
