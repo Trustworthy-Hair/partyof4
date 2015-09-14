@@ -1,8 +1,8 @@
 ![build status](https://travis-ci.org/Trustworthy-Hair/partyof4.svg)
 
-# Party Of 4 (Working Title)
+# Party Of 4 
 
-A social app where you can find open seats at nearby restaurants. Meet new people & eat great food!
+A social dining app where you can find open seats at nearby restaurants. Meet new people & eat great food!
 
 ## Team
 
@@ -14,21 +14,36 @@ A social app where you can find open seats at nearby restaurants. Meet new peopl
 ## Table of Contents
 
 1. [Team](#team)
-1. [Usage](#Usage)
+1. [General](#general)
+1. [Usage](#usage)
 1. [Requirements](#requirements)
 1. [Development](#development)
     1. [Installing Dependencies](#installing-dependencies)
+    1. [Running the server](#running-the-server)
     1. [Seeding Test Data](#seeding-test-data)
     1. [Roadmap](#roadmap)
 1. [Contributing](#contributing)
 
+
+## General
+
+PartyOf4 is a social dining app combining meeting new people with eating at great restaurants. We use the Foursquare API to supply a list of nearby venues to users so they can create and join events where they can grab a bite with others. 
+
+This repo is for running the server, and you can see the source for our native iOS app (built in React Native) [here](https://github.com/Trustworthy-Hair/partyof4mobile).
+
 ## Usage
+
+Please feel free to contribute to the project or submit a bug or feature request as an issue.
 
 ## Requirements
 
 - Node 0.10.x
+- PostgreSQL
+- Foursquare API key (as environment variables or hardcoded into server/config.js)
 
 ## Development
+
+Please checkout our internal API documentation [here](https://github.com/Trustworthy-Hair/partyof4/tree/master/server).
 
 ### Installing Dependencies
 
@@ -40,10 +55,19 @@ npm install
 bower install
 ```
 
+### Running the server
+
+From within the root directory: 
+
+```sh
+grunt build
+```
+
+You can also run tests with 'grunt test'.
+
 ### Seeding Test Data
 
-
-From within the root directory:
+Seeding data will automatically happen in grunt build, but you can also run the following from within the root directory:
 
 ```sh
 node TestData/makeData.js [drop existing tables (true/false)] [# of users]
@@ -54,7 +78,6 @@ Optional arguments are for whether to drop all tables prior to seeding, the numb
 ### Roadmap
 
 View the project roadmap [here](https://waffle.io/Trustworthy-Hair/partyof4)
-
 
 ## Contributing
 

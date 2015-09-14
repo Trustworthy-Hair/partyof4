@@ -11,7 +11,7 @@ var faker = require('faker');
 
 var createUsers = function() {
   var newUsers = [{
-    username: 'buttsMgee',
+    username: 'buttsmgee',
     password: 'password',
     email: faker.internet.email(),
     profileImageUrl: faker.image.imageUrl(),
@@ -19,7 +19,7 @@ var createUsers = function() {
   }];
   for (var i = 1; i < numOfUsers; i++) {
     newUsers.push({
-      username: faker.internet.userName(),
+      username: faker.internet.userName().toLowerCase(),
       password: 'password',
       email: faker.internet.email(),
       profileImageUrl: faker.image.imageUrl(),

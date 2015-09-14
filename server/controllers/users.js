@@ -7,8 +7,8 @@ module.exports = {
     var models = req.app.get('models');
     var User = models.User;
     var newUser = {};
-    for(var x in req.body){
-      newUser[x] = req.body[x];
+    for(var x in req.body){ 
+      newUser[x] = (x === 'username') ? req.body[x].toLowerCase() : req.body[x];
     }
 
     var options = {};
@@ -43,7 +43,7 @@ module.exports = {
     var models = req.app.get('models');
     var User = models.User;
     var potentialUser = {};
-    potentialUser.username = req.body.username;
+    potentialUser.username = req.body.username.toLowerCase();
     potentialUser.password = req.body.password;
 
     var options = {};
