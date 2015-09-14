@@ -3,6 +3,7 @@ process.env.NODE_ENV = 'test';
 var supertest = require('supertest'),
     server    = require('../server/server'),
     assert    = require('assert'),
+    expect    = require('expect.js'),
     utils     = require('./testUtils.js');
 
 var request = supertest(server);
@@ -68,7 +69,7 @@ describe('Events routes: ', function() {
             delete actualResponse.body[0][property];
           });
 
-          assert.deepEqual(actualResponse.body, [expectedResponse]);
+          expect(actualResponse.body[0]).to.have.property('locationId')
           done();
         });
     });
