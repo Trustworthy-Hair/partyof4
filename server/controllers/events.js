@@ -12,18 +12,21 @@ module.exports = {
     var User = models.User;
 
     var radius = req.query.radius || 1000;
-    if (req.query.q) {
-      var search = req.query.q.split('_') || [];
-      console.log(search);
-    }
+
+    var search = req.query.q.charAt(0).toUpperCase() + req.query.q.slice(1).toLowerCase();
+
     var currentLocation = utils.checkLatLong(req, res);
 
     var options = {
       include: [
-        Location,
+        {
+          model: Location,
+          where: {name: {$like: '%' + search + '%'}}
+        },
         { model: User },
         { model: User, as: 'host' }
-      ]
+      ],
+      limit: 10
     }; 
 
     if (currentLocation) {
