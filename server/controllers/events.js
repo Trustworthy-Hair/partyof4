@@ -235,12 +235,19 @@ module.exports = {
   getEventHistoryByUser: function (req, res) {
     var models = req.app.get('models');
     var User = models.User;
+    var Location = models.Location;
     var userId = req.params.userId;
+
+    var options = {
+      include: [Location, 
+        { model: User },
+        { model: User, as: 'host' }
+    ]}; 
 
     User.sync().then(function () {
       return User.findById(userId);
     }).then(function (user) {
-      return user.getEvents();
+      return user.getEvents(options);
     }).then(function (events) {
       utils.sendResponse(res, 201, events);
     }).catch(function (err) {
