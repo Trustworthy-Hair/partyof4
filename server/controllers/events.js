@@ -13,7 +13,7 @@ module.exports = {
 
     var radius = req.query.radius || 1000;
 
-    var search = req.query.q.charAt(0).toUpperCase() + req.query.q.slice(1).toLowerCase();
+    var search = (req.query.q) ? req.query.q.charAt(0).toUpperCase() + req.query.q.slice(1).toLowerCase() : '';
 
     var currentLocation = utils.checkLatLong(req, res);
 
