@@ -5,20 +5,28 @@ module.exports = {
   getNearbyEvents: function(req, res){
     /* Select all events from events table where distance
        between user and events < some number. */
+
     var models = req.app.get('models');
     var Event = models.Event;
     var Location = models.Location;
     var User = models.User;
 
     var radius = req.query.radius || 1000;
+
+    var search = (req.query.q) ? req.query.q.charAt(0).toUpperCase() + req.query.q.slice(1).toLowerCase() : '';
+
     var currentLocation = utils.checkLatLong(req, res);
 
     var options = {
       include: [
-        Location,
+        {
+          model: Location,
+          where: {name: {$like: '%' + search + '%'}}
+        },
         { model: User },
         { model: User, as: 'host' }
-      ]
+      ],
+      limit: 10
     }; 
 
     if (currentLocation) {
