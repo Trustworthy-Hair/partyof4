@@ -104,7 +104,11 @@ module.exports = {
 
     var options = {
       where: {id: eventId},
-      include: [Location, User]
+      include: [
+        Location,
+        { model: User },
+        { model: User, as: 'host' }
+      ]
     }; 
 
     Event.sync().then(function () {
