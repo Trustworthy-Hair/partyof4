@@ -7,16 +7,20 @@ var getInfo = function(req) {
   return {userId: userId, Review: Review};
 };
 
-var addToDatabase = function(options){
-  options.reviews[options.count].authorId = options.utils.userId
-  var savedReview = options.utils.Review.create(options.reviews[options.count]);
-  options.cb(options);
-  return savedReview;
-};
-
-var recursiveAdd = function(options){
-  options.count++;
-  if(options.reviews[options.count]) return addToDatabase(options);
+var recursiveAdder = function(options){
+  for(var i = 0; i < options.reviews.length; i++){
+    var review = options.reviews[i];
+    review.authorId = options.utils.userId
+    options.utils.Review.sync().then(function() {
+      return options.utils.Review.create(review);
+    }).then(function(newReview) {
+      options.savedReviews.push(newReview.dataValues);
+      return options.savedReviews;
+    }).catch(function(err){
+      console.log('Error: ', err)
+    });
+  }
+  return options;
 }
 
 module.exports = {
@@ -68,18 +72,10 @@ module.exports = {
       reviews: reviews,
       savedReviews: [],
       utils: reviewUtils,
-      cb: recursiveAdd
     }
 
-    reviewUtils.Review.sync().then(function() {
-      return addToDatabase(options)
-    }).then(function(newReview) {
-      options.savedReviews.push(newReview);
-      return options.savedReviews;
-    }).then(function(savedReviews){
-      if(savedReviews.length === reviews.length) utils.sendResponse(res,200, savedReviews);
-    }).catch(function(err){
-      console.log('Error: ', err)
-    });
+
+    recursiveAdder(options);
+
   }
 };
