@@ -7,6 +7,18 @@ var getInfo = function(req) {
   return {userId: userId, Review: Review};
 };
 
+var addToDatabase = function(options){
+  options.reviews[options.count].authorId = options.utils.userId
+  var savedReview = options.utils.Review.create(options.reviews[options.count]);
+  options.cb(options);
+  return savedReview;
+};
+
+var recursiveAdd = function(options){
+  options.count++;
+  if(options.reviews[options.count]) return addToDatabase(options);
+}
+
 module.exports = {
 
   getReviews: function(req, res){
@@ -44,19 +56,30 @@ module.exports = {
 
   postReview: function(req, res){
     var reviewUtils = getInfo(req);
+    var reviews = [];
+    var count = 0;
 
-    var review = {
-      starRating: req.body.starRating, 
-      text: req.body.text,
-      authorId: req.userId,
-      subjectId: reviewUtils.userId,
-      eventId: req.body.eventId
-    };
+    for(var i = 0; i < req.body.subjects.length; i++){
+      reviews.push(req.body.subjects[i]);
+    }
+
+    var options = {
+      count: count,
+      reviews: reviews,
+      savedReviews: [],
+      utils: reviewUtils,
+      cb: recursiveAdd
+    }
 
     reviewUtils.Review.sync().then(function() {
-      return reviewUtils.Review.create(review);
+      return addToDatabase(options)
     }).then(function(newReview) {
-      utils.sendResponse(res,200,newReview);
+      options.savedReviews.push(newReview);
+      return options.savedReviews;
+    }).then(function(savedReviews){
+      if(savedReviews.length === reviews.length) utils.sendResponse(res,200, savedReviews);
+    }).catch(function(err){
+      console.log('Error: ', err)
     });
-  },
+  }
 };
