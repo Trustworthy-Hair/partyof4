@@ -89,7 +89,7 @@ describe('Events routes: ', function() {
         request
           .get('/events/1')
           .end(function (err, actualResponse) {
-            ['id', 'createdAt', 'updatedAt', 'Users', 'Location'].forEach(function (property) {
+            ['id', 'createdAt', 'updatedAt', 'Users', 'Location', 'host'].forEach(function (property) {
               delete actualResponse.body[property];
             });
 
@@ -130,7 +130,7 @@ describe('Events routes: ', function() {
         request
           .get('/events/1?accessToken='+accessToken)
           .end(function (err, actualResponse) {          
-            ['id', 'createdAt', 'updatedAt', 'Location', 'Users'].forEach(function (property) {
+            ['id', 'createdAt', 'updatedAt', 'Location', 'Users', 'host'].forEach(function (property) {
               delete actualResponse.body[property];
             });
 
