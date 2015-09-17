@@ -14,7 +14,8 @@ describe('routes', function() {
 
   beforeEach(function () {
     testData.review = {
-      eventId: 1,
+      EventId: 1,
+      subjectId: 1,
       starRating: 3,
       text: "Was late to the event"
     };
@@ -25,11 +26,14 @@ describe('routes', function() {
     it('should be able to write a new review', function(done){
       utils.logIn(function(result, accessToken) {
         request
-          .post('/users/2/reviews?accessToken='+accessToken)
-          .send(testData.review)
+          .post('/users/2/reviews')
+          .send({
+            subjects: [testData.review],
+            accessToken: accessToken
+          })
           .end(function (err, result2) {
-            assert.equal(result2.body.starRating, testData.review.starRating);
-            assert.equal(result2.body.text, testData.review.text);
+            assert.equal(result2.body[0].starRating, testData.review.starRating);
+            assert.equal(result2.body[0].text, testData.review.text);
             done();
           });
       });
@@ -39,7 +43,7 @@ describe('routes', function() {
   describe('GET', function(){
     it('should be able to retrieve reviews', function(done){
       request
-        .get('/users/2/reviews')
+        .get('/users/1/reviews')
         .end(function (err, result) {
           assert.equal(result.body.averageRating, testData.review.starRating);
           assert.equal(result.body.reviews.length, 1);

@@ -7,6 +7,30 @@ var getInfo = function(req) {
   return {userId: userId, Review: Review};
 };
 
+var recursiveAdder = function(options, callback){
+  var results = [];
+  var invoker = function(index){
+    if(options.reviews[index]){
+      var review = options.reviews[index];
+      review.authorId = options.utils.userId;
+
+      options.utils.Review.sync().then(function() {
+        return options.utils.Review.create(review);
+      }).then(function(newReview) {
+        results.push(newReview.dataValues);
+        invoker(index+1);
+      }).catch(function(err){
+        console.log('Error: ', err);
+      });
+
+    }else{
+      return callback(results);
+    }
+  };
+  invoker(0);
+};
+
+
 module.exports = {
 
   getReviews: function(req, res){
@@ -44,19 +68,17 @@ module.exports = {
 
   postReview: function(req, res){
     var reviewUtils = getInfo(req);
+    var count = 0;
 
-    var review = {
-      starRating: req.body.starRating, 
-      text: req.body.text,
-      authorId: req.userId,
-      subjectId: reviewUtils.userId,
-      eventId: req.body.eventId
+    var options = {
+      count: count,
+      reviews: req.body.subjects,
+      utils: reviewUtils,
     };
 
-    reviewUtils.Review.sync().then(function() {
-      return reviewUtils.Review.create(review);
-    }).then(function(newReview) {
-      utils.sendResponse(res,200,newReview);
+    recursiveAdder(options, function(results){
+      utils.sendResponse(res,200, results);
     });
-  },
+
+  }
 };
