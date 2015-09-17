@@ -12,7 +12,7 @@ var recursiveAdder = function(options, callback){
   var invoker = function(index){
     if(options.reviews[index]){
       var review = options.reviews[index];
-      review.authorId = options.utils.userId
+      review.authorId = options.utils.userId;
 
       options.utils.Review.sync().then(function() {
         return options.utils.Review.create(review);
@@ -20,15 +20,15 @@ var recursiveAdder = function(options, callback){
         results.push(newReview.dataValues);
         invoker(index+1);
       }).catch(function(err){
-        console.log('Error: ', err)
+        console.log('Error: ', err);
       });
-      
+
     }else{
       return callback(results);
     }
-  }
+  };
   invoker(0);
-}
+};
 
 
 module.exports = {
@@ -79,7 +79,7 @@ module.exports = {
       count: count,
       reviews: reviews,
       utils: reviewUtils,
-    }
+    };
 
     recursiveAdder(options, function(results){
       utils.sendResponse(res,200, results);
