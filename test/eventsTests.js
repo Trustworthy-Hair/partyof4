@@ -22,7 +22,8 @@ describe('Events routes: ', function() {
       capacity: 10,
       currentSize: 4,
       currentActivity: 'Ordering',
-      completedStatus: false
+      completedStatus: false,
+      description: 'HELLO WORLD'
     };
 
     expectedResponse = {};

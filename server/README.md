@@ -99,6 +99,7 @@ Creates a new event
 - plannedTime
 - capacity
 - currentSize
+- description
 
 #### Optional request body
 - currentActivity
@@ -112,7 +113,8 @@ Creates a new event
   capacity: 10,
   currentSize: 4,
   currentActivity: 'Ordering',
-  completedStatus: false
+  completedStatus: false,
+  description: 'Playing board games at the cafe'
 }
 ```
 
@@ -132,6 +134,7 @@ Gets details about an event
   currentSize: 4,
   currentActivity: "Ordering",
   completedStatus: false,
+  description: 'Playing board games at the cafe'
   createdAt: "2015-09-09T17:15:19.199Z",
   updatedAt: "2015-09-09T17:15:19.199Z",
   hostId: 2,
