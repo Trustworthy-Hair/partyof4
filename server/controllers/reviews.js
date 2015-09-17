@@ -7,21 +7,29 @@ var getInfo = function(req) {
   return {userId: userId, Review: Review};
 };
 
-var recursiveAdder = function(options){
-  for(var i = 0; i < options.reviews.length; i++){
-    var review = options.reviews[i];
-    review.authorId = options.utils.userId
-    options.utils.Review.sync().then(function() {
-      return options.utils.Review.create(review);
-    }).then(function(newReview) {
-      options.savedReviews.push(newReview.dataValues);
-      return options.savedReviews;
-    }).catch(function(err){
-      console.log('Error: ', err)
-    });
+var recursiveAdder = function(options, callback){
+  var results = [];
+  var invoker = function(index){
+    if(options.reviews[index]){
+      var review = options.reviews[index];
+      review.authorId = options.utils.userId
+
+      options.utils.Review.sync().then(function() {
+        return options.utils.Review.create(review);
+      }).then(function(newReview) {
+        results.push(newReview.dataValues);
+        invoker(index+1);
+      }).catch(function(err){
+        console.log('Error: ', err)
+      });
+      
+    }else{
+      return callback(results);
+    }
   }
-  return options;
+  invoker(0);
 }
+
 
 module.exports = {
 
@@ -70,12 +78,12 @@ module.exports = {
     var options = {
       count: count,
       reviews: reviews,
-      savedReviews: [],
       utils: reviewUtils,
     }
 
-
-    recursiveAdder(options);
+    recursiveAdder(options, function(results){
+      utils.sendResponse(res,200, results);
+    });
 
   }
 };
