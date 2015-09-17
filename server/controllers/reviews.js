@@ -68,16 +68,11 @@ module.exports = {
 
   postReview: function(req, res){
     var reviewUtils = getInfo(req);
-    var reviews = [];
     var count = 0;
-
-    for(var i = 0; i < req.body.subjects.length; i++){
-      reviews.push(req.body.subjects[i]);
-    }
 
     var options = {
       count: count,
-      reviews: reviews,
+      reviews: req.body.subjects,
       utils: reviewUtils,
     };
 
