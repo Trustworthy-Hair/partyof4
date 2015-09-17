@@ -79,7 +79,8 @@ var createEvents = function() {
             capacity: 10,
             currentSize: 4,
             currentActivity: 'Ordering',
-            completedStatus: false
+            completedStatus: false,
+            description: faker.company.catchPhrase()
           });
         })
       });
