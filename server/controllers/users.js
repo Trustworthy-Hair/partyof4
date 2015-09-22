@@ -35,7 +35,7 @@ module.exports = {
       };
       utils.sendResponse(res, 200, returnObject);
     }).catch(function (err) {
-      console.log('Error: ', err);
+      utils.sendResponse(res, 400, err);
     });
   },
 
