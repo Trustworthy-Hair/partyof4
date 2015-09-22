@@ -11,7 +11,7 @@ module.exports = {
     var Location = models.Location;
     var User = models.User;
 
-    var radius = req.query.radius || 1000;
+    var radius = req.query.radius || 10000;
 
     var search = (req.query.q) ? req.query.q.charAt(0).toUpperCase() + req.query.q.slice(1).toLowerCase() : '';
 
