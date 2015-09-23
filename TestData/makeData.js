@@ -47,7 +47,7 @@ var createEvents = function() {
   var options = {
     hostname: 'api.foursquare.com',
     port: 443,
-    path: '/v2/venues/explore?client_id='+foursquareId+'&client_secret='+foursquareSecret+'&ll='+lat+','+long+'&v='+version,
+    path: '/v2/venues/explore?client_id='+foursquareId+'&client_secret='+foursquareSecret+'&near=San%20Francisco,%20CA&section=food&v='+version,
     method: 'GET'
   };
 

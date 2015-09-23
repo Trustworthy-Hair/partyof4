@@ -11,7 +11,7 @@ module.exports = {
     var Location = models.Location;
     var User = models.User;
 
-    var radius = req.query.radius || 1000;
+    var radius = req.query.radius || 10000;
 
     var search = (req.query.q) ? req.query.q.charAt(0).toUpperCase() + req.query.q.slice(1).toLowerCase() : '';
 
@@ -25,8 +25,7 @@ module.exports = {
         },
         { model: User },
         { model: User, as: 'host' }
-      ],
-      limit: 10
+      ]
     }; 
 
     if (currentLocation) {
@@ -64,6 +63,8 @@ module.exports = {
        from the body of the request and some defaults. This object is used
        to build the Sequelize model that will be saved in the database. */
     var newEvent = {};
+    var locationId = req.body.locationId;
+    delete req.body.locationId;
     for (var key in req.body) {
       newEvent[key] = req.body[key];
     }
@@ -76,6 +77,8 @@ module.exports = {
          Sends a response if this is successful. Otherwise, logs an error. */
       Event.sync().then(function () {
         return Event.create(newEvent);
+      }).then(function(newEvent) {
+        return newEvent.setLocation(locationId);
       }).then (function (newEvent) {
         utils.sendResponse(res, 201, newEvent);
 
