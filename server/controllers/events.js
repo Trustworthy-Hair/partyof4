@@ -63,8 +63,8 @@ module.exports = {
        from the body of the request and some defaults. This object is used
        to build the Sequelize model that will be saved in the database. */
     var newEvent = {};
-    var location = req.body.location;
-    delete req.body.location;
+    var locationId = req.body.locationId;
+    delete req.body.locationId;
     for (var key in req.body) {
       newEvent[key] = req.body[key];
     }
@@ -78,7 +78,7 @@ module.exports = {
       Event.sync().then(function () {
         return Event.create(newEvent);
       }).then(function(newEvent) {
-        return newEvent.setLocation(location.locationId);
+        return newEvent.setLocation(locationId);
       }).then (function (newEvent) {
         utils.sendResponse(res, 201, newEvent);
 
