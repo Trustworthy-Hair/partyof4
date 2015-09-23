@@ -25,8 +25,7 @@ module.exports = {
         },
         { model: User },
         { model: User, as: 'host' }
-      ],
-      limit: 10
+      ]
     }; 
 
     if (currentLocation) {
@@ -64,6 +63,8 @@ module.exports = {
        from the body of the request and some defaults. This object is used
        to build the Sequelize model that will be saved in the database. */
     var newEvent = {};
+    var location = req.body.location;
+    delete req.body.location;
     for (var key in req.body) {
       newEvent[key] = req.body[key];
     }
@@ -76,6 +77,8 @@ module.exports = {
          Sends a response if this is successful. Otherwise, logs an error. */
       Event.sync().then(function () {
         return Event.create(newEvent);
+      }).then(function(newEvent) {
+        return newEvent.setLocation(location.locationId);
       }).then (function (newEvent) {
         utils.sendResponse(res, 201, newEvent);
 
