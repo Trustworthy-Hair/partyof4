@@ -1,7 +1,6 @@
 {
-  "name": "Trustworthy-Hair",
+  "name": "Partyof4",
   "version": "0.0.1",
-  "description": "partyof4",
   "main": "server/server.js",
   "scripts": {
     "start": "grunt",
@@ -11,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/Trustworthy-Hair/partyof4.git"
   },
-  "author": "Incidental-Orgasm",
+  "author": "Trustworthy-Hair",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Trustworthy-Hair/partyof4/issues"

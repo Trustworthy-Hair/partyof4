@@ -20,7 +20,6 @@ A social dining app where you can find open seats at nearby restaurants. Meet ne
 1. [Development](#development)
     1. [Installing Dependencies](#installing-dependencies)
     1. [Running the server](#running-the-server)
-    1. [Seeding Test Data](#seeding-test-data)
     1. [Roadmap](#roadmap)
 1. [Contributing](#contributing)
 
@@ -64,16 +63,6 @@ grunt build
 ```
 
 You can also run tests with 'grunt test'.
-
-### Seeding Test Data
-
-Seeding data will automatically happen in grunt build, but you can also run the following from within the root directory:
-
-```sh
-node TestData/makeData.js [drop existing tables (true/false)] [# of users]
-```
-
-Optional arguments are for whether to drop all tables prior to seeding, the number of users and events to create.
 
 ### Roadmap
 
