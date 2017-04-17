@@ -7,7 +7,7 @@ module.exports = function(app) {
   app.get('/users/logout', userController.logout);
 
   app.get('/users/:userId', userController.getUser);
-  app.post('/users/:userId', userController.updateUser);
+  app.put('/users/:userId', userController.updateUser);
 
 };
  
